@@ -2,12 +2,7 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "functions": {
-    "src/api/route.ts": {
-      "runtime": "@vercel/node@latest"
-    }
-  },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/src/api/route.ts" }
+    { "source": "/api/(.*)", "destination": "/api" }
   ]
 }

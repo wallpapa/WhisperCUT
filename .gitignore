@@ -7,3 +7,4 @@ output/
 *.wav
 *.srt
 .DS_Store
+.vercel
