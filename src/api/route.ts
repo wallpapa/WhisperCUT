@@ -66,7 +66,7 @@ export async function handler(req: Request): Promise<Response> {
   try {
     const url = new URL(req.url);
     const action = url.searchParams.get("action") || "status";
-    const body: ApiRequest = req.method === "POST" ? await req.json() : { action };
+    const body: ApiRequest = req.method === "POST" ? (await req.json()) as ApiRequest : { action };
 
     let response: ApiResponse;
 

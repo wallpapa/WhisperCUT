@@ -155,7 +155,7 @@ async function transcribeWithCLI(
 }
 
 /** Generate SRT subtitle file from transcript */
-export function generateSRT(segments: TranscriptSegment[]): string {
+export function generateSRT(segments: TranscriptSegment[], _maxCharsPerLine?: number): string {
   return segments
     .map((seg, i) => {
       const start = formatSRTTime(seg.start);

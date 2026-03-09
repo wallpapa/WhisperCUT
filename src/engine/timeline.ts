@@ -119,36 +119,28 @@ export function createRoughcut(
   return tl;
 }
 
-/** Generate FFmpeg concat filter from timeline */
-export function toFFmpegCommands(timeline: Timeline): string[] {
-  const videoClips = timeline.clips.filter((c) => c.type === "video");
-  const commands: string[] = [];
+export interface FFmpegCommand {
+  type: "trim" | "concat";
+  input: string;
+  output: string;
+  startSec: number;
+  durationSec: number;
+}
 
-  // Trim each clip
+/** Generate structured FFmpeg commands from timeline */
+export function toFFmpegCommands(timeline: Timeline, outputDir = "/tmp"): FFmpegCommand[] {
+  const videoClips = timeline.clips.filter((c) => c.type === "video");
+  const commands: FFmpegCommand[] = [];
+
   for (let i = 0; i < videoClips.length; i++) {
     const clip = videoClips[i];
-    const trimCmd = [
-      "ffmpeg",
-      "-i", clip.source_path,
-      "-ss", String(clip.source_start_sec || 0),
-      "-t", String(clip.source_duration_sec || clip.duration_sec),
-      "-vf", `scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:-1:-1`,
-      "-c:v", "libx264", "-crf", "23", "-preset", "fast",
-      "-c:a", "aac", "-b:a", "192k",
-      "-y", `/tmp/whispercut_clip_${i}.mp4`,
-    ].join(" ");
-    commands.push(trimCmd);
-  }
-
-  // Concat all clips
-  if (videoClips.length > 1) {
-    const concatList = videoClips
-      .map((_, i) => `file '/tmp/whispercut_clip_${i}.mp4'`)
-      .join("\n");
-    commands.push(`echo "${concatList}" > /tmp/whispercut_concat.txt`);
-    commands.push(
-      `ffmpeg -f concat -safe 0 -i /tmp/whispercut_concat.txt -c copy -y output.mp4`
-    );
+    commands.push({
+      type: "trim",
+      input: clip.source_path,
+      output: `${outputDir}/whispercut_clip_${i}.mp4`,
+      startSec: clip.source_start_sec || 0,
+      durationSec: clip.source_duration_sec || clip.duration_sec,
+    });
   }
 
   return commands;
