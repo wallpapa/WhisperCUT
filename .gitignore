@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+.env.local
+output/
+*.mp4
+*.wav
+*.srt
+.DS_Store
