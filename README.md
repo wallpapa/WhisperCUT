@@ -1,89 +1,159 @@
-# WhisperCUT — AI-Native Vertical Video Factory
+<div align="center">
+  <h1>🎬 WhisperCUT v3</h1>
+  <p><strong>AI Agent as CapCut — Research-powered autonomous video production</strong></p>
+  <p>
+    <img src="https://img.shields.io/badge/version-3.0.0-blue" />
+    <img src="https://img.shields.io/badge/MCP-15%20tools-green" />
+    <img src="https://img.shields.io/badge/render-1080×1920%20%4060fps-orange" />
+    <img src="https://img.shields.io/badge/voice-MiniMax%20Dr.Gwang-purple" />
+    <img src="https://img.shields.io/badge/license-MIT-yellow" />
+  </p>
+</div>
 
-**No UI. AI agents only. MCP or HTTP API.**
+---
 
-10 MCP tools for end-to-end TikTok/Reels/Shorts production — from raw footage to published video.
+## What is WhisperCUT?
 
+WhisperCUT is an **AI-native video factory** where AI agents operate as creative directors + editors. No human in the loop.
+
+```bash
+# One MCP call → production-ready TikTok video
+whispercut_vibe_edit(topic="พัฒนาการลูก 3 ขวบ", vibe="educational_warm", platform="tiktok")
 ```
-Primary users: Claude Cowork · OpenClaw · AI agents via MCP stdio or HTTP API
-```
+
+Returns: `video_path` + `capcut_draft` + `science_report` + `predicted_completion_rate`
 
 ---
 
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                  WhisperCUT MCP Server                  │
-│                                                         │
-│  ── Video Factory (v1) ─────────────────────────────── │
-│  analyze → cut → caption → render → export → publish   │
-│  feedback                                               │
-│  Stack: Whisper · FFmpeg · OpenRouter · Supabase        │
-│                                                         │
-│  ── Style Cloner (v2, Gemini) ──────────────────────── │
-│  study → clone → capcut_clone                           │
-│  Stack: Gemini 2.5 Flash · yt-dlp · FFmpeg · Python    │
-└─────────────────────────────────────────────────────────┘
+AI Agent (OpenClaw / Claude Desktop / Any MCP client)
+         │
+         ▼
+┌─────────────────────────────────────┐
+│        VIBE ENGINE (v3)             │  ← Science-encoded creative director
+│  VibeLibrary → HookScorer           │
+│  HormoneArcPlanner → CTASelector    │
+│  TimelineEngine (CapCut-compatible) │
+└──────────────────┬──────────────────┘
+                   │
+     ┌─────────────┼─────────────┐
+     ▼             ▼             ▼
+ VoiceEngine   RenderHQ      QA Gate
+ (MiniMax      (FFmpeg        (Gemini
+  Dr.Gwang)    1080p @60fps)  score ≥7.5)
+                   │
+                   ▼
+          PublishEngine → TikTok / IG / YouTube / Facebook
+                   │
+                   ▼
+          Supabase (logs, analytics, feedback loop)
 ```
 
 ---
 
-## Tools
+## Research Foundation
 
-### Video Factory (v1)
+Every creative decision is encoded from neuroscience + platform algorithm research:
+
+| Finding | Encoded In |
+|---------|-----------|
+| Dopamine fires on **anticipation**, not reward — hook must open a gap | `HookScorer` taxonomy |
+| 5-hormone arc: cortisol→dopamine→oxytocin→adrenaline→serotonin | `VibeLibrary` hormone beats |
+| CTA conversion: CuriosityHook 8.3% vs FollowGeneric 2.1% | `CTASelector` |
+| Cognitive load: optimal cut = 1/2–4sec, text display 3–5sec | `TimelineEngine` pacing |
+| TikTok: completion 35%, re-watch 25%, share 20% of ranking | `QA Gate` thresholds |
+
+---
+
+## 15 MCP Tools
+
+### 🎬 Vibe Engine (v3) — Use these first
 
 | Tool | Description |
 |------|-------------|
-| `whispercut_analyze` | Transcribe & analyze a video file with Whisper |
-| `whispercut_cut` | Generate cut list from analysis (remove silence, bad takes) |
-| `whispercut_caption` | Burn animated subtitles with FFmpeg (Thai/EN) |
-| `whispercut_render` | Full 9:16 render — talking-head + captions + music |
-| `whispercut_export_capcut` | Export timeline as CapCut/JianYing draft |
-| `whispercut_publish` | Upload directly to TikTok via session cookie |
-| `whispercut_feedback` | AI quality score (hook/pacing/CTA) + improvement loop |
+| `whispercut_vibe_edit` | **PRIMARY** — topic + vibe → full production video |
+| `whispercut_list_vibes` | List all vibes with predicted performance |
 
-### Style Cloner (v2 — Gemini-powered)
+### 🏭 Video Factory (v1)
 
 | Tool | Description |
 |------|-------------|
-| `whispercut_study` | Batch analyze a TikTok channel → `style_template.json` |
-| `whispercut_clone` | Generate clone script from template + topic |
-| `whispercut_capcut_clone` | Export clone script as CapCut draft |
+| `whispercut_analyze` | Transcribe & analyze any video |
+| `whispercut_cut` | AI cut list from analysis |
+| `whispercut_caption` | Burn animated Thai subtitles |
+| `whispercut_render` | 9:16 render (talking-head + captions) |
+| `whispercut_export_capcut` | Export CapCut draft JSON |
+| `whispercut_publish` | Upload to TikTok |
+| `whispercut_feedback` | AI quality score + improvement |
+
+### 🧬 Style Cloner (v2)
+
+| Tool | Description |
+|------|-------------|
+| `whispercut_study` | Analyze TikTok channel → style template |
+| `whispercut_clone` | Generate script from template + topic |
+| `whispercut_capcut_clone` | Export as CapCut draft |
+
+### 🤖 Autonomous Agent
+
+| Tool | Description |
+|------|-------------|
+| `whispercut_run_pipeline` | Full autonomous pipeline (no human) |
+| `whispercut_schedule` | Add topic to content calendar |
+| `whispercut_status` | Today's quota + pipeline status |
+
+---
+
+## 5 Vibes (Content Archetypes)
+
+| Vibe | Best For | Completion | Share |
+|------|----------|-----------|-------|
+| `educational_warm` | Expert shares knowledge with empathy | 71% | 6.4% |
+| `shocking_reveal` | Bold claim + myth bust | 74% | **8.3%** |
+| `story_driven` | Narrative transportation | 68% | **9.1%** |
+| `quick_tips` | Fast list, high info density | **77%** | 7.1% |
+| `myth_bust` | Authority challenge + correction | 73% | 7.6% |
+| `auto` | AI selects optimal for topic | — | — |
 
 ---
 
 ## Quick Start
 
+### 1. Clone & install
 ```bash
-# Clone
-git clone https://github.com/wallpapa/WhisperCUT
+git clone https://github.com/wallpapa/WhisperCUT.git
 cd WhisperCUT
-
-# Install
 npm install
-
-# Configure
 cp .env.example .env
-# Add OPENROUTER_API_KEY + GEMINI_API_KEY + SUPABASE_* + TIKTOK_SESSION_ID
-
-# Run MCP server (stdio)
-npm run mcp
-
-# Dev mode (watch)
-npm run dev
 ```
 
-### Python dependencies (Style Cloner)
-
+### 2. Set API keys in `.env`
 ```bash
-pip install google-genai yt-dlp
+# Required for script generation + QA
+GEMINI_API_KEY=AIza...
+
+# Required for Dr.Gwang voice
+MINIMAX_API_KEY=eyJ...
+MINIMAX_GROUP_ID=1234...
+MINIMAX_VOICE_ID=Dr.Gwang   # Voice ID from My Voices page
+
+# Supabase (free tier)
+SUPABASE_URL=https://xxx.supabase.co
+SUPABASE_SERVICE_KEY=eyJ...
+
+# Social publishing
+TIKTOK_SESSION_ID=...
+TIKTOK_ACCOUNT_ID=...
 ```
 
----
+### 3. Run Supabase schema
+```sql
+-- Run src/db/schema.sql in Supabase SQL editor
+```
 
-## MCP Config (Claude Desktop / OpenClaw)
-
+### 4. Add to Claude Desktop / OpenClaw
 ```json
 {
   "mcpServers": {
@@ -91,80 +161,115 @@ pip install google-genai yt-dlp
       "command": "npx",
       "args": ["tsx", "/path/to/WhisperCUT/src/mcp/server.ts"],
       "env": {
-        "OPENROUTER_API_KEY": "sk-or-v1-...",
         "GEMINI_API_KEY": "...",
-        "SUPABASE_URL": "https://...",
-        "SUPABASE_SERVICE_KEY": "...",
-        "TIKTOK_SESSION_ID": "...",
-        "WHISPERCUT_DATA_DIR": "/tmp/tiktok-clone"
+        "MINIMAX_API_KEY": "...",
+        "MINIMAX_VOICE_ID": "Dr.Gwang"
       }
     }
   }
 }
 ```
 
----
+### 5. Test E2E
+```bash
+# FFmpeg-only test (no API keys needed)
+npx tsx test_e2e.ts
 
-## Style Cloner Workflow
-
-```
-1. Study a channel (downloads + Gemini analysis, one API call per video):
-   whispercut_study({ channel: "@doctorwaleerat", max_videos: 20 })
-
-2. Clone a new video on any topic:
-   whispercut_clone({ topic: "ทำไมเด็กสายตาสั้นมากขึ้น", duration_sec: 90 })
-
-3. Export to CapCut for final editing:
-   whispercut_capcut_clone({})
-
-Cost: Gemini 2.5 Flash — ~$0.01/video (free tier: 65 videos/day)
+# Full test with voice + real script
+export GEMINI_API_KEY="..."
+export MINIMAX_API_KEY="..."
+npx tsx test_e2e.ts
 ```
 
 ---
 
-## Repo Structure
+## Autonomous Scheduler (OpenClaw Cron)
+
+```yaml
+# OpenClaw cron config
+name: "whispercut-daily"
+schedule: "0 6 * * *"
+instruction: "Run the WhisperCUT pipeline for today's scheduled content"
+```
+
+Or schedule via MCP:
+```
+whispercut_schedule(topic="พัฒนาการสมองลูก", scheduled_date="2026-03-23", platforms=["tiktok","instagram"])
+```
+
+---
+
+## BYOE (Bring Your Own Everything)
+
+Platform cost: **~$0/month**
+
+| Component | Provider | Cost |
+|-----------|----------|------|
+| Script generation | Gemini 2.5 Flash | Free (250 req/day) |
+| Voice TTS | MiniMax (Dr.Gwang) | Pay-per-use (~$0.02/video) |
+| Video render | FFmpeg on your GPU | $0 |
+| Database | Supabase free tier | $0 |
+| MCP server | Your machine | $0 |
+
+---
+
+## Video Output Specs
+
+```
+Resolution:  1080 × 1920 (9:16 vertical)
+Frame rate:  60fps
+Codec:       H.264 High Profile, CRF 18
+Audio:       AAC 320kbps stereo, 44100Hz
+Container:   MP4 (faststart for streaming)
+Fonts:       Sarabun (Thai) auto-detected
+```
+
+---
+
+## AutoResearchClaw Integration
+
+Run weekly knowledge updates from academic research:
+```bash
+cd /tmp/arc-research
+export GEMINI_API_KEY="..."
+researchclaw run --topic "Psychological mechanisms of viral short-form video" --auto-approve
+```
+
+Findings automatically update `vibe-library.ts` hormone arc weights.
+
+---
+
+## Project Structure
 
 ```
 WhisperCUT/
 ├── src/
-│   ├── mcp/
-│   │   ├── server.ts          # Unified MCP server (10 tools)
-│   │   └── tools/
-│   │       ├── analyze.ts     # v1: Whisper transcription
-│   │       ├── cut.ts         # v1: Cut list generation
-│   │       ├── caption.ts     # v1: Subtitle burn
-│   │       ├── render.ts      # v1: FFmpeg 9:16 render
-│   │       ├── export.ts      # v1: CapCut export
-│   │       ├── publish.ts     # v1: TikTok upload
-│   │       ├── feedback.ts    # v1: AI feedback loop
-│   │       ├── study.ts       # v2: Channel style analysis
-│   │       └── clone.ts       # v2: Clone + CapCut export
-│   ├── engine/                # v1: FFmpeg, Whisper, Timeline
-│   ├── ai/                    # v1: AI provider, prompts, feedback
-│   └── db/                    # v1: Supabase client + schema
-├── python/                    # v2: Python pipeline scripts
-│   ├── batch_pipeline.py      # Download + analyze batch
-│   ├── aggregate_style.py     # Aggregate analysis → template
-│   ├── clone_generator.py     # Generate + render clone script
-│   ├── capcut_export.py       # CapCut draft export
-│   └── test_gemini.py         # Gemini API test
-├── samples/
-│   ├── sample_analysis.json   # Example video analysis output
-│   └── style_template.json    # Example aggregated style template
-├── api/                       # HTTP API wrapper (optional)
-└── .env.example
+│   ├── science/          # Research-encoded science layer
+│   │   ├── vibe-library.ts      # 5 vibes with hormone arcs
+│   │   ├── hook-scorer.ts       # Taxonomy-based hook QA
+│   │   └── cta-selector.ts      # Behavioral economics CTA
+│   ├── engine/           # Production layer
+│   │   ├── vibe-engine.ts       # Core AI creative director
+│   │   ├── timeline-engine.ts   # CapCut-compatible timeline
+│   │   ├── ffmpeg.ts            # HQ render (1080p @60fps)
+│   │   └── voice.ts             # MiniMax + F5-TTS
+│   ├── agent/            # Autonomous pipeline
+│   │   ├── pipeline.ts          # Full zero-human pipeline
+│   │   ├── scheduler.ts         # OpenClaw cron integration
+│   │   ├── qa-gate.ts           # Gemini quality scoring
+│   │   └── rate-limiter.ts      # Platform quota management
+│   ├── mcp/              # MCP server + tools
+│   └── db/               # Supabase schema
+├── templates/            # Community style templates
+├── python/               # Style cloner (v2)
+├── research/             # Research synthesis docs
+└── test_e2e.ts           # End-to-end test
 ```
 
 ---
 
-## Requirements
-
-- Node.js ≥ 22
-- Python 3.10+ (for Style Cloner)
-- FFmpeg (system install)
-- Whisper (for v1 transcription)
-- yt-dlp (for Style Cloner download)
-
 ## License
 
-MIT
+MIT — build freely, attribute appreciated.
+
+Built with: FFmpeg · MiniMax TTS · Gemini AI · Supabase · Model Context Protocol

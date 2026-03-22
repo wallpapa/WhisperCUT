@@ -1,0 +1,99 @@
+{
+  "_meta": {
+    "channel": "@doctorwaleerat",
+    "description": "Dr.Waleerat TikTok style — educational_warm, Thai parenting/child dev",
+    "version": "3.0",
+    "updated": "2026-03-22",
+    "avg_completion_rate": 0.71,
+    "avg_share_rate": 0.064
+  },
+  "vibe": "educational_warm",
+  "voice": {
+    "provider": "minimax",
+    "voice_id": "Dr.Gwang",
+    "speed": 1.0,
+    "pitch": 0,
+    "style": "warm, calm, authoritative but approachable"
+  },
+  "hook": {
+    "taxonomy": "DirectAddress",
+    "duration_sec": 3,
+    "patterns": [
+      "ถ้าลูกคุณอายุ {age} ขวบ สิ่งนี้สำคัญมาก",
+      "พ่อแม่ที่มีลูกวัย {age} ขวบ ต้องรู้เรื่องนี้",
+      "คุณรู้ไหมว่า {fact} — นี่คือสิ่งที่เปลี่ยนลูกคุณได้"
+    ],
+    "font_size": 72,
+    "font_color": "white",
+    "badge": "MUST WATCH",
+    "badge_color": "0xFF6B6B"
+  },
+  "hormone_arc": [
+    { "label": "hook",       "hormone": "cortisol",   "pct": [0, 5],   "cut_rate": 0.5 },
+    { "label": "problem",    "hormone": "dopamine",   "pct": [5, 25],  "cut_rate": 0.3 },
+    { "label": "story",      "hormone": "oxytocin",   "pct": [25, 60], "cut_rate": 0.2 },
+    { "label": "revelation", "hormone": "adrenaline", "pct": [60, 80], "cut_rate": 0.6 },
+    { "label": "solution",   "hormone": "serotonin",  "pct": [80, 92], "cut_rate": 0.3 },
+    { "label": "cta",        "hormone": "serotonin",  "pct": [92, 100],"cut_rate": 0.2 }
+  ],
+  "story_pattern": "ProblemAgitateSolve",
+  "cta": {
+    "primary": "SaveUtility",
+    "primary_templates": [
+      "เซฟคลิปนี้ไว้ส่งให้คุณแม่ที่คุณรัก",
+      "กดเซฟก่อนลืม — ใช้ได้เลยวันนี้",
+      "บันทึกไว้ — ข้อมูลนี้สำคัญมาก"
+    ],
+    "secondary": "CommentQuestion",
+    "secondary_templates": [
+      "แม่ๆ พ่อๆ เคยเจอแบบนี้ไหม?",
+      "ลูกคุณเป็นแบบนี้ไหม? คอมเมนต์มาเลย"
+    ],
+    "placement_pct": 82
+  },
+  "visual": {
+    "face_time_pct": 0.72,
+    "caption_density": 0.48,
+    "bg_style": "hormone_gradient",
+    "accent_bar": true,
+    "font": "Sarabun",
+    "caption_fontsize": 52,
+    "caption_position": "center"
+  },
+  "pacing": {
+    "optimal_duration_sec": 75,
+    "hook_cut_rate": 0.5,
+    "body_cut_rate": 0.3,
+    "story_cut_rate": 0.2,
+    "transition_default": "l_cut"
+  },
+  "platform_adaptations": {
+    "tiktok": {
+      "add_trending_sound": true,
+      "sound_volume_pct": 15,
+      "caption_bottom_margin": 200
+    },
+    "instagram": {
+      "explicit_save_cta": true,
+      "caption_bottom_margin": 180
+    },
+    "youtube": {
+      "add_chapter_markers": true,
+      "outro_duration_sec": 5
+    }
+  },
+  "content_categories": [
+    "child_development",
+    "parenting_tips",
+    "brain_development",
+    "education",
+    "family"
+  ],
+  "rewatch_element": "Plant one rapid-spoken statistic early that viewers will rewatch to catch",
+  "performance_history": {
+    "videos_analyzed": 0,
+    "top_hook_types": ["DirectAddress", "CuriosityGap"],
+    "avg_watch_seconds": 0,
+    "notes": "Initialize after first batch of videos analyzed"
+  }
+}

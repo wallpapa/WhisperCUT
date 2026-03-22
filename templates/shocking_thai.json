@@ -1,0 +1,68 @@
+{
+  "_meta": {
+    "channel": "generic_shocking_thai",
+    "description": "High-energy myth-bust / shocking reveal — Thai parenting content",
+    "version": "3.0",
+    "avg_completion_rate": 0.74,
+    "avg_share_rate": 0.083
+  },
+  "vibe": "shocking_reveal",
+  "voice": {
+    "provider": "minimax",
+    "voice_id": "Dr.Gwang",
+    "speed": 1.05,
+    "pitch": 1,
+    "style": "urgent, authoritative, high-energy"
+  },
+  "hook": {
+    "taxonomy": "BoldClaim",
+    "duration_sec": 3,
+    "patterns": [
+      "สิ่งที่คุณทำทุกวัน กำลังทำลายสมองลูก",
+      "หยุดทำสิ่งนี้ทันที ถ้าคุณรักลูก",
+      "ความจริงที่ไม่มีใครบอกคุณเรื่อง {topic}"
+    ],
+    "font_size": 72,
+    "font_color": "white",
+    "badge": "STOP NOW",
+    "badge_color": "0xFF2D2D"
+  },
+  "hormone_arc": [
+    { "label": "hook",       "hormone": "cortisol",   "pct": [0, 8],   "cut_rate": 1.0 },
+    { "label": "problem",    "hormone": "dopamine",   "pct": [8, 35],  "cut_rate": 0.5 },
+    { "label": "revelation", "hormone": "adrenaline", "pct": [35, 65], "cut_rate": 0.7 },
+    { "label": "solution",   "hormone": "serotonin",  "pct": [65, 85], "cut_rate": 0.4 },
+    { "label": "cta",        "hormone": "dopamine",   "pct": [85, 100],"cut_rate": 0.3 }
+  ],
+  "story_pattern": "MythBustTruth",
+  "cta": {
+    "primary": "CuriosityHook",
+    "primary_templates": [
+      "คลิปหน้าจะทำให้คุณตกใจกว่านี้อีก",
+      "ยังมีอีก 3 เรื่องที่คุณต้องรู้ — มาในคลิปหน้า",
+      "สิ่งที่มาในคลิปถัดไป — คุณจะเชื่อไม่ได้"
+    ],
+    "secondary": "ShareGift",
+    "secondary_templates": [
+      "ส่งให้พ่อแม่ที่ยังทำแบบนี้อยู่",
+      "แชร์ก่อนสายเกินไป"
+    ],
+    "placement_pct": 85
+  },
+  "visual": {
+    "face_time_pct": 0.60,
+    "caption_density": 0.58,
+    "bg_style": "hormone_gradient",
+    "accent_bar": true,
+    "font": "Sarabun",
+    "caption_fontsize": 54,
+    "caption_position": "center"
+  },
+  "pacing": {
+    "optimal_duration_sec": 63,
+    "hook_cut_rate": 1.0,
+    "body_cut_rate": 0.5,
+    "story_cut_rate": 0.4,
+    "transition_default": "zoom_punch"
+  }
+}
