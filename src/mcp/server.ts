@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 /**
- * WhisperCUT MCP Server — unified v1 + v2 + Agent
+ * WhisperCUT MCP Server — v3 Vibe Engine + v2 Agent + v1 Factory
  *
- * 13 tools for AI-native vertical video factory:
+ * 15 tools for AI-native vertical video factory:
+ *
+ * ── Vibe Engine (v3) — PRIMARY ──────────────────────────────────
+ *   whispercut_vibe_edit      — Research-powered one-call video production
+ *   whispercut_list_vibes     — List vibes with predicted performance
  *
  * ── Video Factory (v1) ──────────────────────────────────────────
  *   whispercut_analyze        — Transcribe & analyze a video file
@@ -19,7 +23,7 @@
  *   whispercut_capcut_clone   — Export clone script as CapCut draft
  *
  * ── Autonomous Agent ────────────────────────────────────────────
- *   whispercut_run_pipeline   — Full autonomous pipeline: study→script→QA→render→publish
+ *   whispercut_run_pipeline   — Full autonomous pipeline: vibe_edit→QA→render→publish
  *   whispercut_schedule       — Add topic to content_calendar for scheduled run
  *   whispercut_status         — Today's quota + upcoming jobs + recent pipeline results
  *
@@ -53,13 +57,22 @@ import {
   handleStatus,      statusTool,
 } from "./tools/run-pipeline.js";
 
+// ── v3 tools (Vibe Engine) ───────────────────────────────────────
+import {
+  handleVibeEdit,  vibeEditTool,
+  handleListVibes, listVibesTool,
+} from "./tools/vibe-edit.js";
+
 const server = new Server(
-  { name: "whispercut", version: "2.0.0" },
+  { name: "whispercut", version: "3.0.0" },
   { capabilities: { tools: {} } }
 );
 
-// ── All 13 tools ─────────────────────────────────────────────────
+// ── All 15 tools ─────────────────────────────────────────────────
 const tools = [
+  // v3 — Vibe Engine (PRIMARY — use these first)
+  vibeEditTool,
+  listVibesTool,
   // v1 — Video Factory
   analyzeTool,
   cutTool,
@@ -100,6 +113,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case "whispercut_run_pipeline":   return await handleRunPipeline(args);
       case "whispercut_schedule":       return await handleSchedule(args);
       case "whispercut_status":         return await handleStatus(args);
+      // v3 Vibe Engine
+      case "whispercut_vibe_edit":      return await handleVibeEdit(args);
+      case "whispercut_list_vibes":     return handleListVibes(args);
 
       default:
         return {
@@ -118,7 +134,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("WhisperCUT MCP server v2.0.0 running — 13 tools ready");
+  console.error("WhisperCUT MCP server v3.0.0 running — 15 tools ready (vibe_edit is primary)");
 }
 
 main().catch((err) => {
