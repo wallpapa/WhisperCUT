@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * WhisperCUT MCP Server — unified v1 + v2
+ * WhisperCUT MCP Server — unified v1 + v2 + Agent
  *
- * 9 tools for AI-native vertical video factory:
+ * 13 tools for AI-native vertical video factory:
  *
  * ── Video Factory (v1) ──────────────────────────────────────────
  *   whispercut_analyze        — Transcribe & analyze a video file
@@ -17,6 +17,11 @@
  *   whispercut_study          — Batch analyze a TikTok channel → style template
  *   whispercut_clone          — Generate clone script from template + topic
  *   whispercut_capcut_clone   — Export clone script as CapCut draft
+ *
+ * ── Autonomous Agent ────────────────────────────────────────────
+ *   whispercut_run_pipeline   — Full autonomous pipeline: study→script→QA→render→publish
+ *   whispercut_schedule       — Add topic to content_calendar for scheduled run
+ *   whispercut_status         — Today's quota + upcoming jobs + recent pipeline results
  *
  * Primary users: Claude Cowork / OpenClaw / AI agents via MCP or HTTP API
  */
@@ -41,12 +46,19 @@ import { handleFeedback, feedbackTool } from "./tools/feedback.js";
 import { handleStudy, studyTool } from "./tools/study.js";
 import { handleClone, cloneTool, handleCapcutClone, capcutCloneTool } from "./tools/clone.js";
 
+// ── Agent tools (autonomous pipeline) ───────────────────────────
+import {
+  handleRunPipeline, runPipelineTool,
+  handleSchedule,    scheduleTool,
+  handleStatus,      statusTool,
+} from "./tools/run-pipeline.js";
+
 const server = new Server(
   { name: "whispercut", version: "2.0.0" },
   { capabilities: { tools: {} } }
 );
 
-// ── All 10 tools ─────────────────────────────────────────────────
+// ── All 13 tools ─────────────────────────────────────────────────
 const tools = [
   // v1 — Video Factory
   analyzeTool,
@@ -60,6 +72,10 @@ const tools = [
   studyTool,
   cloneTool,
   capcutCloneTool,
+  // Agent — Autonomous Pipeline
+  runPipelineTool,
+  scheduleTool,
+  statusTool,
 ];
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools }));
@@ -80,6 +96,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case "whispercut_study":          return await handleStudy(args);
       case "whispercut_clone":          return await handleClone(args);
       case "whispercut_capcut_clone":   return await handleCapcutClone(args);
+      // Agent
+      case "whispercut_run_pipeline":   return await handleRunPipeline(args);
+      case "whispercut_schedule":       return await handleSchedule(args);
+      case "whispercut_status":         return await handleStatus(args);
 
       default:
         return {
@@ -98,7 +118,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("WhisperCUT MCP server v2.0.0 running — 10 tools ready");
+  console.error("WhisperCUT MCP server v2.0.0 running — 13 tools ready");
 }
 
 main().catch((err) => {

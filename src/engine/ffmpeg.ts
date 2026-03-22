@@ -268,3 +268,76 @@ export async function renderFinal(
   ]);
   return outputPath;
 }
+
+/**
+ * Render 1080p HQ — production-grade output for TikTok / Reels / Shorts
+ *
+ * Settings:
+ *   - 1080×1920 @ 60fps (smooth motion for fast cuts)
+ *   - H.264 High Profile, CRF 18 (near-lossless visual quality)
+ *   - preset slow (best compression/quality ratio without GPU)
+ *   - 320kbps AAC stereo (broadcast audio quality)
+ *   - Color grading: contrast + saturation boost (TikTok house style)
+ *   - faststart: enables streaming before full download
+ */
+export async function renderHQ(
+  audioPath: string,
+  outputPath: string,
+  durationSec: number,
+  textOverlays: Array<{ text: string; startSec: number; endSec: number }> = [],
+  bgColor = "0x0D0D0D",             // near-black (TikTok standard bg)
+): Promise<string> {
+  const FPS_HQ = 60;
+
+  // Build drawtext filters for each overlay
+  const drawtextFilters = textOverlays.map((ov, i) => {
+    const safe = ov.text.replace(/'/g, "").replace(/:/g, " ").slice(0, 55);
+    const y = i % 2 === 0 ? "h*0.72" : "h*0.80";   // alternate rows
+    return (
+      `drawtext=text='${safe}'` +
+      `:fontcolor=white:fontsize=52` +
+      `:x=(w-text_w)/2:y=${y}` +
+      `:borderw=3:bordercolor=black` +
+      `:enable='between(t,${ov.startSec.toFixed(2)},${ov.endSec.toFixed(2)})'`
+    );
+  });
+
+  // Base video filter: scale + color grade + overlays
+  const colorGrade = "eq=contrast=1.08:saturation=1.12:brightness=0.02";
+  const vfParts = [
+    `scale=${WIDTH}:${HEIGHT}:force_original_aspect_ratio=decrease`,
+    `pad=${WIDTH}:${HEIGHT}:-1:-1:color=${bgColor}`,
+    `setsar=1`,
+    colorGrade,
+    ...drawtextFilters,
+  ];
+  const vf = vfParts.join(",");
+
+  const audioArgs = audioPath
+    ? ["-i", audioPath, "-c:a", "aac", "-b:a", "320k", "-ar", "44100", "-ac", "2"]
+    : ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo", "-c:a", "aac", "-b:a", "128k"];
+
+  await exec(FFMPEG, [
+    // Black background source
+    "-f", "lavfi", "-i", `color=c=${bgColor}:s=${WIDTH}x${HEIGHT}:r=${FPS_HQ}:d=${durationSec}`,
+    // Audio
+    ...audioArgs,
+    // Video encoding — H.264 High Profile, CRF 18
+    "-vf", vf,
+    "-c:v", "libx264",
+    "-profile:v", "high",
+    "-level:v", "5.1",
+    "-crf", "18",
+    "-preset", "slow",
+    "-r", String(FPS_HQ),
+    "-pix_fmt", "yuv420p",
+    // Audio mux
+    "-shortest",
+    // Container
+    "-movflags", "+faststart",
+    "-y",
+    outputPath,
+  ]);
+
+  return outputPath;
+}

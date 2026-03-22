@@ -1,6 +1,59 @@
 -- WhisperCUT Supabase Schema
 -- Run this migration in Supabase SQL editor
 
+-- ── Autonomous Pipeline Tables ────────────────────────────────────────────
+
+CREATE TABLE IF NOT EXISTS content_calendar (
+  id             BIGSERIAL PRIMARY KEY,
+  topic          TEXT        NOT NULL,
+  scheduled_date DATE        NOT NULL,
+  duration_sec   INT         DEFAULT 90,
+  platforms      TEXT[]      DEFAULT ARRAY['tiktok', 'instagram'],
+  account_ids    JSONB       DEFAULT '{}',
+  study_channel  TEXT        DEFAULT '@doctorwaleerat',
+  priority       INT         DEFAULT 5,
+  status         TEXT        DEFAULT 'pending', -- pending | done | failed
+  processed_at   TIMESTAMPTZ,
+  created_at     TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_calendar_date_status
+  ON content_calendar (scheduled_date, status);
+
+CREATE TABLE IF NOT EXISTS publish_log (
+  id             BIGSERIAL PRIMARY KEY,
+  platform       TEXT        NOT NULL,
+  account_id     TEXT        NOT NULL,
+  yt_project_id  TEXT,
+  topic          TEXT,
+  video_path     TEXT,
+  published_at   TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_publish_log_platform_date
+  ON publish_log (platform, account_id, published_at);
+
+CREATE TABLE IF NOT EXISTS pipeline_runs (
+  id          BIGSERIAL PRIMARY KEY,
+  topic       TEXT,
+  qa_score    FLOAT,
+  published   TEXT[]      DEFAULT ARRAY[]::TEXT[],
+  skipped     TEXT[]      DEFAULT ARRAY[]::TEXT[],
+  video_path  TEXT,
+  duration_ms INT,
+  created_at  TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS style_templates (
+  id          BIGSERIAL PRIMARY KEY,
+  channel     TEXT        NOT NULL UNIQUE,
+  template    JSONB       NOT NULL,
+  video_count INT         DEFAULT 0,
+  updated_at  TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- ── Video Factory Tables (v1) ─────────────────────────────────────────────
+
 -- Projects table
 CREATE TABLE IF NOT EXISTS projects (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
