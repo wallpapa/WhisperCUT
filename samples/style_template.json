@@ -1,0 +1,410 @@
+{
+  "meta": {
+    "total_videos_analyzed": 17,
+    "avg_tokens_per_video": 41048,
+    "total_tokens": 697827
+  },
+  "hook_patterns": {
+    "distribution": {
+      "question": 11,
+      "statement": 5,
+      "news_clip": 3,
+      "shock": 1
+    },
+    "top_hooks": [
+      [
+        "question",
+        11
+      ],
+      [
+        "statement",
+        5
+      ],
+      [
+        "news_clip",
+        3
+      ],
+      [
+        "shock",
+        1
+      ]
+    ],
+    "avg_hook_duration_sec": 4.411764705882353,
+    "examples": [
+      {
+        "type": "question|news_clip",
+        "description": "เริ่มต้นด้วยคำถามเกี่ยวกับการมีประกันสังคมต่อไปหรือไม่ หลังเกิดดราม่า โดยมีการอ้างอิงข่าวเป็นภาพประกอบด้านบน",
+        "text_overlay": "ประกันสังคม ควรมีอยู่มั้ย !?",
+        "duration_sec": 3
+      },
+      {
+        "type": "news_clip|statement",
+        "description": "เริ่มต้นด้วยการอ้างอิงข่าว 'ทนาย ก.' ที่เป็นประเด็น และระบุว่าจะวิเคราะห์ในมุมมองของหมอ โดยไม่ตัดสินถูกผิด ซึ่งสร้างความน่าสนใจและกำหนดขอบเขตของการสนทนา",
+        "text_overlay": "ไม่รู้ผีห่าซาตานตัวไหนเข้าสิง\n'ทนาย ก.' รับก่อคุกคามจริง เผยพ่อบอกไม่มี 10ล.ไม่ต้องคุย\nสิ่งที่จะสอนลูก\nเคสทนาย ก.",
+        "duration_sec": 6
+      },
+      {
+        "type": "question",
+        "description": "เริ่มต้นด้วยคำถามที่ท้าทายความเชื่อทั่วไปเกี่ยวกับความจำเป็นในการเรียนเก่ง",
+        "text_overlay": "ลูกไม่จำเป็นต้องเรียนเก่ง!?",
+        "duration_sec": 3
+      },
+      {
+        "type": "statement",
+        "description": "ผู้พูดเริ่มต้นด้วยการปฏิเสธแนวคิดที่ว่า 'ลูกไม่จำเป็นต้องเรียนเก่ง' เว้นแต่ว่าครอบครัวจะรวย ก่อนจะตั้งคำถามว่าทำไมไม่ควรบอกลูกแบบนั้นและเชิญชวนให้ดูงานวิจัย โดยมีเอฟเฟกต์ใบหน้าบิดเบี้ยวเพื่อดึงดูดความสนใจและข้อความ 'โลกสวยให้ข้ามไป!' เพื่อสร้างความอยากรู้อยากเห็น",
+        "text_overlay": "ลูกไม่จำเป็นต้องเรียนเก่ง ep.2 / โลกสวยให้ข้ามไป!",
+        "duration_sec": 7
+      },
+      {
+        "type": "question",
+        "description": "The video starts with a provocative statement/question about associating with rich people to become rich, referencing a known personality 'Kru Oy'.",
+        "text_overlay": "อยากรวยต้องคบคนรวย “ครูอ้อยเข็มทิศชีวิต” | คบเพื่อนรวย ทำให้รวยขึ้น!?",
+        "duration_sec": 5
+      },
+      {
+        "type": "statement",
+        "description": "The speaker immediately states what she would not do if she could turn back time, creating intrigue.",
+        "text_overlay": "ถ้าย้อนเวลาได้ จะไม่ทำสิ่งนี้",
+        "duration_sec": 3
+      },
+      {
+        "type": "question",
+        "description": "Speaker asks 'Why do people snore?' and encourages viewers to tag friends with snoring problems.",
+        "text_overlay": "ทำไมคนเรา ต้อง \"นอนกรน\"",
+        "duration_sec": 5
+      },
+      {
+        "type": "question",
+        "description": "เริ่มต้นด้วยคำถามสมมติเกี่ยวกับสถานการณ์ในลิฟต์เพื่อกระตุ้นความสงสัยและตั้งคำถามเกี่ยวกับพฤติกรรมการเลียนแบบ",
+        "text_overlay": "ทำไมคนเรา ชอบทำตามคนอื่น!?",
+        "duration_sec": 5
+      },
+      {
+        "type": "question|news_clip",
+        "description": "The video starts with a question posed by the presenter, immediately followed by text overlays framing the topic as a revelation from research, drawing the viewer in.",
+        "text_overlay": "เปิดเหตุผล!! พ่อแม่ รักลูก ไม่เท่ากัน งานวิจัยชี้ มาจากสิ่งนี้นี่เอง พ่อแม่ รักลูก.. เท่ากันมั้ย?",
+        "duration_sec": 7
+      },
+      {
+        "type": "statement",
+        "description": "The video opens with the speaker stating a common observation about people who lack knowledge, setting the stage for the topic of confidence and competence.",
+        "text_overlay": "คนที่ไม่รู้อะไรเลยเนี่ย ก็จะไม่รู้ด้วยว่าตัวเองไม่รู้",
+        "duration_sec": 3
+      }
+    ]
+  },
+  "cta_patterns": {
+    "distribution": {
+      "follow": 12,
+      "comment": 7,
+      "engage": 1,
+      "none": 1,
+      "subscribe": 1,
+      "book_plug": 1
+    },
+    "top_ctas": [
+      [
+        "follow",
+        12
+      ],
+      [
+        "comment",
+        7
+      ],
+      [
+        "engage",
+        1
+      ],
+      [
+        "none",
+        1
+      ],
+      [
+        "subscribe",
+        1
+      ]
+    ],
+    "examples": [
+      {
+        "type": "engage",
+        "description": "กระตุ้นให้ผู้ชมมาแชร์ประสบการณ์ของตนเอง"
+      },
+      {
+        "type": "comment",
+        "description": "เชิญชวนให้ผู้ชมแสดงความคิดเห็นหรือให้คำแนะนำเพิ่มเติม"
+      },
+      {
+        "type": "none",
+        "description": "วิดีโอจบลงด้วยการสรุปประเด็นหลัก โดยไม่มีการเรียกร้องให้ดำเนินการใดๆ ชัดเจน"
+      },
+      {
+        "type": "comment",
+        "description": "ผู้พูดเชิญชวนให้ผู้ชมแสดงความคิดเห็นและแบ่งปันประสบการณ์เกี่ยวกับประเด็นที่กล่าวถึง"
+      },
+      {
+        "type": "follow",
+        "description": "Asks viewers to like, share, and comment their thoughts, encouraging engagement and channel growth."
+      },
+      {
+        "type": "comment|follow",
+        "description": "The speaker asks the audience what they would not do if they could go back in time, encouraging comments. She also asks viewers to follow her channel for similar content."
+      },
+      {
+        "type": "follow",
+        "description": "Speaker asks viewers to follow her TikTok channel for more content."
+      },
+      {
+        "type": "follow",
+        "description": "ถามผู้ชมว่าเป็นคนแบบไหน (เริ่มก่อนหรือทำตาม) และเชิญชวนให้คอมเมนต์ จากนั้นกระตุ้นให้กดติดตามช่องพร้อมแสดง UI ของ TikTok"
+      },
+      {
+        "type": "comment|follow",
+        "description": "First, encourages viewers to comment on their own family experiences. Then, explicitly asks viewers to follow the creator's channel for more similar content."
+      },
+      {
+        "type": "follow|subscribe|comment",
+        "description": "The speaker encourages viewers to follow her channel, subscribe, and engage by commenting on their own experiences or thoughts related to the Dunning-Kruger Effect."
+      }
+    ]
+  },
+  "body_structure": {
+    "avg_sections": 10.294117647058824,
+    "section_type_distribution": {
+      "talking_head": 112,
+      "split_screen": 79,
+      "text_card": 19,
+      "b_roll": 7,
+      "talking_head_with_image_overlay": 3,
+      "visual_effect": 2,
+      "talking_head_with_chart_overlay": 1,
+      "graphic": 1
+    }
+  },
+  "text_overlay_patterns": {
+    "avg_overlays_per_video": 38.470588235294116,
+    "font_styles": {
+      "bold": 16,
+      "outline": 4
+    },
+    "positions": {
+      "bottom": 14,
+      "center": 3,
+      "top": 2
+    },
+    "colors": {
+      "#FFFFFF": 17,
+      "#FF0000": 15,
+      "#FFFF00": 8,
+      "#000000": 6,
+      "#FFD700": 2,
+      "#00FF00": 2,
+      "#00FFFF": 2,
+      "#9933FF": 1,
+      "#800080": 1,
+      "#FFC0CB": 1
+    },
+    "backgrounds": {
+      "solid": 17
+    },
+    "sample_overlays": [
+      "ประกันสังคม",
+      "แถลงด่วน! หลังเจอดราม่า",
+      "ประกันสังคม ควรมีอยู่มั้ย !?",
+      "เจ็บป่วยเมื่อใด พกบัตรประชาชนไว้ แล้วไปใช้ สิทธิ 'บัตรทอง'",
+      "ระบบบัตรทอง",
+      "ไม่รู้ผีห่าซาตานตัวไหนเข้าสิง",
+      "'ทนาย ก.' รับก่อคุกคามจริง เผยพ่อบอกไม่มี 10ล.ไม่ต้องคุย",
+      "สิ่งที่จะสอนลูก",
+      "เคสทนาย ก.",
+      "ทุกวงการ!",
+      "ลูกไม่จำเป็นต้องเรียนเก่ง!?",
+      "คำพูด \"คนรวย\"",
+      "ต้องเป็นคนที่ \"ค่อนข้างรวย\"",
+      "ของ \"บ้านไม่รวย\"",
+      "จากการเรียน!",
+      "ลูกไม่จำเป็นต้องเรียนเก่ง ep.2",
+      "โลกสวยให้ข้ามไป!",
+      "งานวิจัยจาก OECD",
+      "พื้นฐานครอบครัวส่งผลต่อ \"ผลการเรียน\" และ รายได้ของลูก!",
+      "ที่บ้านรวย ลูกมักจะเรียนดี \"เรียนสูง\" ส่งผลไปที่ \"รายได้ของลูก\"",
+      "อยากรวยต้องคบคนรวย “ครูอ้อยเข็มทิศชีวิต”",
+      "คบเพื่อนรวย ทำให้รวยขึ้น!?",
+      "คนจน จะดึงให้คุณ “ต่ำลง”",
+      "“จงเป็นเพื่อนกับคนรวยอย่างน้อยหนึ่งคน เพราะพวกเค้าจะสอนคุณให้รวย และอาจจะให้เงินคุณเริ่มธุรกิจ คนจนจะทำให้คุณตกต่ำลง” ครูอ้อย เข็มทิศชีวิต ผู้ก่อตั้งและ CEO ของแอปพลิเคชัน Zoul",
+      "ถึงแม้ เราจะไม่เห็นด้วย “ครูอ้อย”",
+      "ถ้าย้อนเวลาได้ จะไม่ทำสิ่งนี้",
+      "การจัดงานแต่ง",
+      "สิ้นเปลือง เหนื่อย!",
+      "เมื่อก่อนยังไม่มี AI เหมือนตอนนี้",
+      "ถ้ายุคนี้ ใช้ AI ทำภาพได้"
+    ]
+  },
+  "visual_style": {
+    "camera_angles": {
+      "front": 17
+    },
+    "pacing": {
+      "medium": 13,
+      "fast": 3,
+      "medium-fast": 1
+    },
+    "transitions": {
+      "cut": 17,
+      "zoom": 6,
+      "fade": 3,
+      "zoom_in": 2,
+      "split_screen": 2,
+      "visual_effects_for_emphasis": 1,
+      "filter_change": 1,
+      "graphic_overlay": 1,
+      "digital_glitch_effect": 1,
+      "glitch": 1,
+      "warp_face_effect": 1,
+      "sparkle_effect": 1,
+      "push_right": 1
+    },
+    "settings": [
+      "Modern clinic or cafe interior with large windows",
+      "ในร่ม ตกแต่งด้วยวอลเปเปอร์ลายธรรมชาติ (ต้นไม้, กวาง) และมีชั้นวางของประดับตกแต่ง",
+      "An indoor, modern, and aesthetically pleasing commercial space (looks like a clinic or a cafe lounge) with soft lighting and decor.",
+      "Indoors, featuring a decorative wallpaper with nature and deer motifs, and a wooden shelf displaying an hourglass and a golden deer figurine.",
+      "Indoor, with a decorative wall featuring nature-themed illustrations (deer, trees) and wooden shelves holding decorative items like a golden deer statue and an hourglass.",
+      "ในร่ม, ห้องที่มีผนังลายต้นไม้และชั้นวางของตกแต่ง",
+      "สำนักงาน/ห้องทำงานที่ดูทันสมัย มีชั้นวางของตกแต่งและผนังสีเขียวอ่อน",
+      "An indoor cafe or living room with patterned wallpaper featuring deer and floral motifs, and decorative shelves.",
+      "ในร่ม ภายในร้านกาแฟหรือห้องนั่งเล่นที่มีผนังตกแต่งด้วยลวดลายกวางและพืชพรรณโทนสีน้ำตาล-เบจ และชั้นวางของสีทองแดง",
+      "An indoor setting with a detailed, nature-themed (deer, plants) wallpaper and shelves with decorative items (golden deer, hourglass, small plants)."
+    ]
+  },
+  "content_patterns": {
+    "categories": {
+      "education": 10,
+      "psychology": 5,
+      "parenting": 4,
+      "business": 2,
+      "health": 2,
+      "drama": 1,
+      "lifestyle": 1,
+      "social_issues": 1
+    },
+    "language_mix": {
+      "thai_only": 15,
+      "thai_english": 2
+    },
+    "avg_duration_sec": 118.76470588235294,
+    "avg_segments": 20.58823529411765,
+    "engagement_hooks": [
+      [
+        "ตั้งคำถามเชิงกระตุ้นความคิด",
+        1
+      ],
+      [
+        "อ้างอิงข่าวและดราม่าปัจจุบัน",
+        1
+      ],
+      [
+        "เปรียบเทียบสิทธิประโยชน์โดยละเอียด",
+        1
+      ],
+      [
+        "ยกตัวอย่างจากประสบการณ์จริง/คนใกล้ตัว",
+        1
+      ],
+      [
+        "เชิญชวนให้ผู้ชมร่วมแสดงความคิดเห็น/แชร์ประสบการณ์",
+        1
+      ],
+      [
+        "อ้างอิงข่าวที่เป็นกระแส (ทนาย ก.)",
+        1
+      ],
+      [
+        "ใช้ภาพข่าวและภาพประกอบที่เกี่ยวข้อง",
+        1
+      ],
+      [
+        "การแบ่งปันประสบการณ์/มุมมองส่วนตัว (ในฐานะหมอและแม่)",
+        1
+      ],
+      [
+        "การใช้คำเตือนและคำแนะนำที่ตรงไปตรงมา",
+        1
+      ],
+      [
+        "การเชิญชวนให้คอมเมนต์เพื่อสร้างปฏิสัมพันธ์",
+        1
+      ],
+      [
+        "ท้าทายความเชื่อยอดนิยม",
+        1
+      ],
+      [
+        "เล่าประสบการณ์ส่วนตัว",
+        1
+      ],
+      [
+        "การใช้ภาพประกอบที่เกี่ยวข้องและข้อความที่น่าสนใจ",
+        1
+      ],
+      [
+        "การโต้แย้งด้วยเหตุผลและข้อเท็จจริง",
+        1
+      ],
+      [
+        "shocking_statement_hook",
+        1
+      ],
+      [
+        "research_backed_claims",
+        1
+      ],
+      [
+        "personal_opinion",
+        1
+      ],
+      [
+        "call_to_comment",
+        1
+      ],
+      [
+        "Provocative opening statement (referencing a known personality)",
+        1
+      ],
+      [
+        "Uses research and academic theories to back up claims",
+        1
+      ]
+    ],
+    "tone_samples": [
+      "opinionated",
+      "informative|neutral|cautious",
+      "ให้ความรู้, วิเคราะห์เชิงวิชาการแต่เข้าใจง่าย",
+      "จริงจัง, ตักเตือน, ให้ความรู้, ห่วงใย",
+      "ให้ความรู้, น่าเชื่อถือ, เป็นกันเอง",
+      "informative_and_direct",
+      "educational",
+      "conversational, reflective, cautionary, engaging",
+      "informative|engaging",
+      "informative, friendly, enthusiastic, self-promotional (towards the end)"
+    ],
+    "target_audience_samples": [
+      "Individuals interested in psychology, self-improvement, personal development, or understanding human behavior related to confidence and competence.",
+      "ผู้ปกครอง, วัยรุ่น, ผู้ที่สนใจประเด็นสังคมและข่าวสาร",
+      "Parents, especially those considering a medical career for their children.",
+      "บุคคลทั่วไปที่สนใจการพัฒนาตนเอง, นักศึกษา, คนวัยทำงาน",
+      "Individuals planning weddings, those reflecting on past life choices, people interested in financial advice, couples.",
+      "ผู้ที่นอนกรน, ผู้ที่มีคนใกล้ชิดนอนกรน, ผู้ที่สนใจเรื่องสุขภาพและการวิวัฒนาการ",
+      "Parents, especially those with multiple children or concerns about sibling dynamics.",
+      "Individuals seeking to improve their financial situation, entrepreneurs, and those interested in personal development or networking.",
+      "ผู้ปกครอง, นักเรียน, ผู้ที่มาจากครอบครัวฐานะปานกลางถึงน้อย, ผู้ที่สนใจเรื่องการพัฒนาตนเองและอาชีพ",
+      "ผู้ที่สนใจจิตวิทยา, พฤติกรรมมนุษย์, การตลาด, และการตัดสินใจในชีวิตประจำวัน"
+    ]
+  },
+  "transcript_samples": [
+    "ประกันสังคม มันยังต้องมีอยู่ไหม ในเมื่อบัตรทองตอนนี้ เบิกทุกอย่างได้มากกว่าประกันสังคมอีก ไม่ต้องระบุโรงพยาบาลด้วย จากดราม่าประกันสังคมตอนนี้ นะคะ หมอนั่งดูข่าวเนี่ย หมอก็คิดว่าแบบ เมืองไทยมีระบบบัตรท",
+    "จากข่าวทนาย ก. นะ ใครผิดใครถูกไม่อยากคอมเมนต์นะ เพราะว่า เราก็ไม่ได้รู้ในเบื้องลึกเบื้องหลังนะคะ แต่ วิเคราะห์ในมุมของหมอแล้วกันนะ คนแบบทนาย ก. เนี่ย มันมีอยู่จริง มีเยอะด้วยแหละ ทุกวงการ! ผู้ชายที่อา",
+    "ลูกไม่จำเป็นต้องเรียนเก่ง!? ทำไมหมอรู้สึกว่าคำเนี้ยมันกลายเป็นวาทกรรมของคนที่มีอันจะกิน คำเนี้ย ต้องเป็นคนที่ค่อนข้างรวย เราเป็นตัวอย่างของคนบ้านไม่รวย แล้วก็ประสบความสำเร็จจากการเรียนเนี่ยแหละ ถ้าเรา",
+    "หมอเห็นด้วยนะ พวกไม่ ต้อง เก่ง เลข ก็ ได้ ไป เก่ง วิชา อื่น ก็ ได้ ถ้า แบบ ไม่ เก่ง อะไร เลย อ่ะ เรียน อะไร ก็ ไม่ เก่ง เลย อัน นั้น น่ะ มัน ไม่ ได้ ยก เว้น ว่า บ้าน รวย ทำไม เรา ถึง ไม่ ควร บอก ลูก ว",
+    "จงเป็นเพื่อนกับคนรวยอย่างน้อย 1 คน เพราะคนรวยจะสอนคุณ แต่คนจนจะดึงให้คุณต่ำลง คือช่วงนี้อาจจะเห็นดราม่าของครูอ้อยนะคะ ถึงแม้เราอาจจะไม่เห็นด้วยกับครูอ้อยนะ แต่ว่าไอ้คำพูดของครูอ้อยเนี่ยมันมีความจริงซ่"
+  ]
+}

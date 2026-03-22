@@ -1,7 +1,7 @@
 {
   "name": "whispercut",
-  "version": "0.1.0",
-  "description": "AI-native vertical video factory — MCP server for Claude Cowork. No UI, auto feedback loop, TikTok/Reels/Shorts only.",
+  "version": "2.0.0",
+  "description": "AI-native vertical video factory — MCP server for Claude Cowork. No UI. 10 tools: video factory (Whisper+FFmpeg) + style cloner (Gemini). 9:16 only.",
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/mcp/server.ts",
@@ -12,6 +12,7 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",
     "@supabase/supabase-js": "^2.49.4",
+    "@google/genai": "^0.10.0",
     "ai": "^4.3.16",
     "@ai-sdk/openai-compatible": "^0.2.14",
     "zod": "^3.24.2",
@@ -35,6 +36,8 @@
     "tiktok",
     "vertical-video",
     "capcut",
+    "gemini",
+    "style-cloner",
     "whisper",
     "ffmpeg"
   ],
