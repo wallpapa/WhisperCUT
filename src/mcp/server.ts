@@ -70,8 +70,14 @@ import {
 } from "./tools/p2p.js";
 import { startWorker, stopWorker } from "../p2p/worker.js";
 
+// ── Shared Memory Network ───────────────────────────────────────
+import {
+  handleMemoryStatus, memoryStatusTool,
+  handleTrackPerformance, trackPerformanceTool,
+} from "./tools/memory.js";
+
 const server = new Server(
-  { name: "whispercut", version: "3.0.0" },
+  { name: "whispercut", version: "3.2.0" },
   { capabilities: { tools: {} } }
 );
 
@@ -99,6 +105,9 @@ const tools = [
   // P2P Network
   p2pStatusTool,
   p2pSubmitTool,
+  // Shared Memory Network
+  memoryStatusTool,
+  trackPerformanceTool,
 ];
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools }));
@@ -129,6 +138,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       // P2P Network
       case "whispercut_p2p_status":     return { content: [{ type: "text", text: JSON.stringify(await handleP2PStatus(), null, 2) }] };
       case "whispercut_p2p_submit":     return { content: [{ type: "text", text: JSON.stringify(await handleP2PSubmit(args as any), null, 2) }] };
+      // Shared Memory
+      case "whispercut_memory_status":   return { content: [{ type: "text", text: JSON.stringify(await handleMemoryStatus(args as any), null, 2) }] };
+      case "whispercut_track_performance": return { content: [{ type: "text", text: JSON.stringify(await handleTrackPerformance(args as any), null, 2) }] };
 
       default:
         return {
@@ -147,7 +159,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("WhisperCUT MCP server v3.1.0 running — 17 tools ready (vibe_edit is primary)");
+  console.error("WhisperCUT MCP server v3.2.0 running — 19 tools ready (vibe_edit is primary)");
 
   // Start P2P worker daemon (contributes 20% AI power to network)
   if (process.env.SUPABASE_URL) {

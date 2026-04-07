@@ -16,6 +16,8 @@ import { generateVoice } from "../../engine/voice.js";
 import { generateTimeline } from "../../engine/timeline-engine.js";
 import { renderHQ } from "../../engine/ffmpeg.js";
 import { listVibes } from "../../science/vibe-library.js";
+import { extractFromVibeEdit } from "../../p2p/memory-extractor.js";
+import { retrieveMemories } from "../../p2p/memory-retriever.js";
 
 const OUTPUT_DIR = process.env.OUTPUT_DIR || "./output";
 
@@ -92,8 +94,15 @@ export async function handleVibeEdit(args: any) {
 
   console.error(`\n[vibe-edit] START: "${topic}" | vibe=${vibe} | platform=${platform}`);
 
+  // ── [0] Retrieve network knowledge ────────────────────────────────────
+  console.error("[vibe-edit] [0/6] Retrieving network knowledge...");
+  const networkKnowledge = await retrieveMemories({ topic, platform, vibe }).catch(() => ({ memories: [], promptText: "" }));
+  if (networkKnowledge.promptText) {
+    console.error(`[vibe-edit] Retrieved ${networkKnowledge.memories.length} memories from network`);
+  }
+
   // ── [1] Generate vibe script ───────────────────────────────────────────
-  console.error("[vibe-edit] [1/5] Generating science-encoded script...");
+  console.error("[vibe-edit] [1/6] Generating science-encoded script...");
   const editResult = vibe === "auto"
     ? await autoVibeEdit({ topic, platform: platform as Platform, goal, duration })
     : await vibeEdit({
@@ -113,6 +122,10 @@ export async function handleVibeEdit(args: any) {
   console.error(`[vibe-edit] Hook: ${hook_score.overall}/10 (${hook_score.taxonomy}, +${hook_score.taxonomy_lift_pct}%)`);
   console.error(`[vibe-edit] CTA: ${cta_recommendation.type} (${(cta_recommendation.conversion_rate * 100).toFixed(1)}% conv)`);
   console.error(`[vibe-edit] Predicted completion: ${(script.predicted_completion_rate * 100).toFixed(0)}%`);
+
+  // ── Extract to shared memory ──────────────────────────────────────────
+  const memCount = await extractFromVibeEdit(editResult).catch(() => 0);
+  if (memCount > 0) console.error(`[vibe-edit] Extracted ${memCount} memories to network`);
 
   if (!render) {
     return {
