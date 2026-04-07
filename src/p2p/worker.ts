@@ -33,26 +33,50 @@ let ownJobCount = 0;
 let networkJobCount = 0;
 let workerStatus: "idle" | "busy" = "idle";
 
+// ── Agent Registry Integration ───────────────────────────────────
+import { hasAgent, processViaAgent } from "../agents/registry.js";
+
 // ── Job Processors ───────────────────────────────────────────────
 
 type JobProcessor = (payload: Record<string, unknown>) => Promise<unknown>;
 
 const PROCESSORS: Record<string, JobProcessor> = {
   hook_score: async (payload) => {
+    // Try agent first, fallback to direct AI call
+    if (hasAgent("hook_score")) {
+      const result = await processViaAgent("hook_score", payload);
+      return result.output;
+    }
     const prompt = payload.prompt as string;
     return aiGenerateJSON(prompt);
   },
   qa_gate: async (payload) => {
+    if (hasAgent("qa_gate")) {
+      const result = await processViaAgent("qa_gate", payload);
+      return result.output;
+    }
     const prompt = payload.prompt as string;
     return aiGenerateJSON(prompt);
   },
   vibe_script: async (payload) => {
+    if (hasAgent("vibe_script")) {
+      const result = await processViaAgent("vibe_script", payload);
+      return result.output;
+    }
     const prompt = payload.prompt as string;
     return aiGenerateJSON(prompt);
   },
   weekly_plan: async (payload) => {
     const prompt = payload.prompt as string;
     return aiGenerateJSON(prompt);
+  },
+  // NEW: Content planning via PlannerAgent
+  content_plan: async (payload) => {
+    if (hasAgent("content_plan")) {
+      const result = await processViaAgent("content_plan", payload);
+      return result.output;
+    }
+    return { error: "PlannerAgent not registered" };
   },
 };
 

@@ -117,6 +117,13 @@ import {
 // ── E2E Unified Pipeline ────────────────────────────────────────
 import { handleE2E, e2eTool } from "./tools/e2e.js";
 
+// ── Multi-Agent Architecture ────────────────────────────────────
+import { registerAgent, getAgentStats } from "../agents/registry.js";
+import { ScriptAgent } from "../agents/creative/script-agent.js";
+import { HookAgent } from "../agents/creative/hook-agent.js";
+import { QAGateAgent } from "../agents/quality/qa-gate-agent.js";
+import { ContentPlannerAgent } from "../agents/planning/planner-agent.js";
+
 const server = new Server(
   { name: "whispercut", version: "3.2.0" },
   { capabilities: { tools: {} } }
@@ -250,7 +257,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("WhisperCUT MCP server v5.0.0 running — 36 tools ready");
+  // Register multi-agent swarm
+  registerAgent(new ScriptAgent());
+  registerAgent(new HookAgent());
+  registerAgent(new QAGateAgent());
+  registerAgent(new ContentPlannerAgent());
+  const agentStats = getAgentStats();
+  console.error(`WhisperCUT MCP server v5.1.0 running — 36 tools + ${agentStats.total_agents} agents ready`);
 
   // Start P2P worker daemon (contributes 20% AI power to network)
   if (process.env.SUPABASE_URL) {
