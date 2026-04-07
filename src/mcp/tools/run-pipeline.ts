@@ -5,8 +5,8 @@
  */
 
 import { createClient } from "@supabase/supabase-js";
-import { runPipeline, type Platform } from "../../agent/pipeline.js";
-import { DAILY_LIMITS } from "../../agent/rate-limiter.js";
+import { runPipeline } from "../../agent/pipeline.js";
+import { DAILY_LIMITS, type Platform } from "../../agent/rate-limiter.js";
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,

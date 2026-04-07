@@ -15,6 +15,7 @@ import { existsSync, mkdirSync, readdirSync, statSync, readFileSync } from "fs";
 import { join }            from "path";
 import { generateVoice }  from "../engine/voice.js";
 import { canPublish, getAvailableYTProject, logPublish, waitForGeminiSlot, type Platform } from "./rate-limiter.js";
+export type { Platform };
 import { runQAGate, MAX_RETRIES } from "./qa-gate.js";
 import { createClient }    from "@supabase/supabase-js";
 

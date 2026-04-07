@@ -1,0 +1,227 @@
+{
+  "id": "f91427d3-d5d8-41ac-986c-1f8eba9acd31",
+  "name": "doctorwaleerat-highlight",
+  "canvas_config": {
+    "width": 1080,
+    "height": 1920,
+    "ratio": "9:16"
+  },
+  "fps": 30,
+  "duration": 34920000,
+  "materials": {
+    "videos": [
+      {
+        "id": "3638b657-f7e0-40c4-b0e4-a917c26b8ea9",
+        "type": "video",
+        "path": "./test-output/doctorwaleerat_latest.mp4",
+        "duration": 3580000,
+        "width": 1080,
+        "height": 1920
+      },
+      {
+        "id": "78edded4-42d9-465a-b38f-be5c67fd6c11",
+        "type": "video",
+        "path": "./test-output/doctorwaleerat_latest.mp4",
+        "duration": 2080000,
+        "width": 1080,
+        "height": 1920
+      },
+      {
+        "id": "113fff97-fb31-46cf-bf25-04c59e2b0ba2",
+        "type": "video",
+        "path": "./test-output/doctorwaleerat_latest.mp4",
+        "duration": 24320000,
+        "width": 1080,
+        "height": 1920
+      },
+      {
+        "id": "c2d5d4b8-cbef-459a-9160-a610ea94ae30",
+        "type": "video",
+        "path": "./test-output/doctorwaleerat_latest.mp4",
+        "duration": 1660000,
+        "width": 1080,
+        "height": 1920
+      },
+      {
+        "id": "28b5bded-1850-4d5b-a7a1-ab3e67c3d282",
+        "type": "video",
+        "path": "./test-output/doctorwaleerat_latest.mp4",
+        "duration": 1560000,
+        "width": 1080,
+        "height": 1920
+      },
+      {
+        "id": "4dbff898-8c55-428b-8fcd-5537799c517d",
+        "type": "video",
+        "path": "./test-output/doctorwaleerat_latest.mp4",
+        "duration": 1720000,
+        "width": 1080,
+        "height": 1920
+      }
+    ],
+    "audios": [],
+    "texts": [
+      {
+        "id": "39761fa7-2e3d-4f5b-a3dd-971e33a61618",
+        "type": "text",
+        "content": "{\"text\":\"ทำไมเด็กที่เกิดมาส่วนยายน่าตาจะเหมือนพ่อมากกว่ามแม่\",\"styles\":[{\"font\":{\"id\":\"\",\"path\":\"\"},\"size\":22,\"color\":\"#FFFFFFFF\",\"bold\":false,\"italic\":false}]}"
+      },
+      {
+        "id": "3b3b8fc0-93e5-465a-8bf9-35858f2d6415",
+        "type": "text",
+        "content": "{\"text\":\"ตั้งท่านรูกมากกาลเดือน ท่านก็คลุกร่อออกมาก\",\"styles\":[{\"font\":{\"id\":\"\",\"path\":\"\"},\"size\":22,\"color\":\"#FFFFFFFF\",\"bold\":false,\"italic\":false}]}"
+      },
+      {
+        "id": "789f0011-38d8-4193-ad36-53d1a420a030",
+        "type": "text",
+        "content": "{\"text\":\"มีแต่คนถ้าว่า อืมมั้นพ่อมีเหมือนแม่เลย\",\"styles\":[{\"font\":{\"id\":\"\",\"path\":\"\"},\"size\":22,\"color\":\"#FFFFFFFF\",\"bold\":false,\"italic\":false}]}"
+      },
+      {
+        "id": "8c598eed-6d3e-490f-951c-3dac22edd90d",
+        "type": "text",
+        "content": "{\"text\":\"ลูกคนเนี่ยเป็นลูกของฉันแน่นอน\",\"styles\":[{\"font\":{\"id\":\"\",\"path\":\"\"},\"size\":22,\"color\":\"#FFFFFFFF\",\"bold\":false,\"italic\":false}]}"
+      },
+      {
+        "id": "b3839e69-85a7-4247-8961-2a07ed1e571e",
+        "type": "text",
+        "content": "{\"text\":\"ก็เกิดความพูกผ่านกัน\",\"styles\":[{\"font\":{\"id\":\"\",\"path\":\"\"},\"size\":22,\"color\":\"#FFFFFFFF\",\"bold\":false,\"italic\":false}]}"
+      },
+      {
+        "id": "950a82ed-4326-46a7-911c-9e4860738156",
+        "type": "text",
+        "content": "{\"text\":\"คือยอมหลับว่าเฮืนเป็นลูกฉัน\",\"styles\":[{\"font\":{\"id\":\"\",\"path\":\"\"},\"size\":22,\"color\":\"#FFFFFFFF\",\"bold\":false,\"italic\":false}]}"
+      }
+    ],
+    "images": [],
+    "stickers": []
+  },
+  "tracks": [
+    {
+      "type": "video",
+      "segments": [
+        {
+          "material_id": "3638b657-f7e0-40c4-b0e4-a917c26b8ea9",
+          "target_timerange": {
+            "start": 0,
+            "duration": 3580000
+          },
+          "source_timerange": {
+            "start": 0,
+            "duration": 3580000
+          }
+        },
+        {
+          "material_id": "78edded4-42d9-465a-b38f-be5c67fd6c11",
+          "target_timerange": {
+            "start": 3580000,
+            "duration": 2080000
+          },
+          "source_timerange": {
+            "start": 3580000,
+            "duration": 2080000
+          }
+        },
+        {
+          "material_id": "113fff97-fb31-46cf-bf25-04c59e2b0ba2",
+          "target_timerange": {
+            "start": 5660000,
+            "duration": 24320000
+          },
+          "source_timerange": {
+            "start": 5660000,
+            "duration": 24320000
+          }
+        },
+        {
+          "material_id": "c2d5d4b8-cbef-459a-9160-a610ea94ae30",
+          "target_timerange": {
+            "start": 29980000,
+            "duration": 1660000
+          },
+          "source_timerange": {
+            "start": 34000000,
+            "duration": 1660000
+          }
+        },
+        {
+          "material_id": "28b5bded-1850-4d5b-a7a1-ab3e67c3d282",
+          "target_timerange": {
+            "start": 31640000,
+            "duration": 1560000
+          },
+          "source_timerange": {
+            "start": 35660000,
+            "duration": 1560000
+          }
+        },
+        {
+          "material_id": "4dbff898-8c55-428b-8fcd-5537799c517d",
+          "target_timerange": {
+            "start": 33200000,
+            "duration": 1720000
+          },
+          "source_timerange": {
+            "start": 38400000,
+            "duration": 1720000
+          }
+        }
+      ],
+      "attribute": {
+        "is_default_name": true,
+        "name": "Track 1"
+      }
+    },
+    {
+      "type": "text",
+      "segments": [
+        {
+          "material_id": "39761fa7-2e3d-4f5b-a3dd-971e33a61618",
+          "target_timerange": {
+            "start": 0,
+            "duration": 3580000
+          }
+        },
+        {
+          "material_id": "3b3b8fc0-93e5-465a-8bf9-35858f2d6415",
+          "target_timerange": {
+            "start": 3580000,
+            "duration": 2080000
+          }
+        },
+        {
+          "material_id": "789f0011-38d8-4193-ad36-53d1a420a030",
+          "target_timerange": {
+            "start": 5660000,
+            "duration": 24320000
+          }
+        },
+        {
+          "material_id": "8c598eed-6d3e-490f-951c-3dac22edd90d",
+          "target_timerange": {
+            "start": 29980000,
+            "duration": 1660000
+          }
+        },
+        {
+          "material_id": "b3839e69-85a7-4247-8961-2a07ed1e571e",
+          "target_timerange": {
+            "start": 31640000,
+            "duration": 1560000
+          }
+        },
+        {
+          "material_id": "950a82ed-4326-46a7-911c-9e4860738156",
+          "target_timerange": {
+            "start": 33200000,
+            "duration": 1720000
+          }
+        }
+      ],
+      "attribute": {
+        "is_default_name": true,
+        "name": "Track 2"
+      }
+    }
+  ],
+  "version": "3.0.0"
+}

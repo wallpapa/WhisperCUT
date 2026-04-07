@@ -1,0 +1,196 @@
+{
+  "id": "3153c296-b5a3-4ac5-8184-44bcfc4ecc1e",
+  "name": "doctorwaleerat-test",
+  "canvas_config": {
+    "width": 1080,
+    "height": 1920,
+    "ratio": "9:16"
+  },
+  "fps": 30,
+  "duration": 30000000,
+  "materials": {
+    "videos": [
+      {
+        "id": "dd442fd8-5050-4072-8121-597217619f12",
+        "type": "video",
+        "path": "./test-output/doctorwaleerat_latest.mp4",
+        "duration": 3000000,
+        "width": 1080,
+        "height": 1920
+      },
+      {
+        "id": "d8351f13-64cf-4170-8917-f52ba19e5035",
+        "type": "video",
+        "path": "./test-output/doctorwaleerat_latest.mp4",
+        "duration": 5000000,
+        "width": 1080,
+        "height": 1920
+      },
+      {
+        "id": "2bfa832d-5a94-4a96-81f0-0e2256b622cb",
+        "type": "video",
+        "path": "./test-output/doctorwaleerat_latest.mp4",
+        "duration": 7000000,
+        "width": 1080,
+        "height": 1920
+      },
+      {
+        "id": "1c933ba7-27f3-416c-93a2-21124fe522bf",
+        "type": "video",
+        "path": "./test-output/doctorwaleerat_latest.mp4",
+        "duration": 7000000,
+        "width": 1080,
+        "height": 1920
+      },
+      {
+        "id": "06e57bd3-1dfe-4312-b323-4875db317032",
+        "type": "video",
+        "path": "./test-output/doctorwaleerat_latest.mp4",
+        "duration": 8000000,
+        "width": 1080,
+        "height": 1920
+      }
+    ],
+    "audios": [],
+    "texts": [
+      {
+        "id": "bd1d94e3-96cd-40a4-ba0f-7e0f6091026c",
+        "type": "text",
+        "content": "{\"text\":\"ทำไมลูกหน้าตาเหมือนพ่อมากกว่าแม่\",\"styles\":[{\"font\":{\"id\":\"\",\"path\":\"\"},\"size\":22,\"color\":\"#FFFFFFFF\",\"bold\":false,\"italic\":false}]}"
+      },
+      {
+        "id": "b11cbfb4-f3f2-4915-912a-6c05a86994fa",
+        "type": "text",
+        "content": "{\"text\":\"เรื่องนี้มีคำอธิบายทางวิทยาศาสตร์\",\"styles\":[{\"font\":{\"id\":\"\",\"path\":\"\"},\"size\":22,\"color\":\"#FFFFFFFF\",\"bold\":false,\"italic\":false}]}"
+      },
+      {
+        "id": "6145336b-94a4-4b66-9371-bfa9315981dc",
+        "type": "text",
+        "content": "{\"text\":\"DNA ของพ่อจะมี dominant gene มากกว่า\",\"styles\":[{\"font\":{\"id\":\"\",\"path\":\"\"},\"size\":22,\"color\":\"#FFFFFFFF\",\"bold\":false,\"italic\":false}]}"
+      },
+      {
+        "id": "8143afab-79f9-4e47-bd39-cc6191ebf5a0",
+        "type": "text",
+        "content": "{\"text\":\"ทำให้ลูกสาวหน้าเหมือนพ่อ\",\"styles\":[{\"font\":{\"id\":\"\",\"path\":\"\"},\"size\":22,\"color\":\"#FFFFFFFF\",\"bold\":false,\"italic\":false}]}"
+      },
+      {
+        "id": "730ef4dc-1fc1-4a7e-b907-48209dfdd267",
+        "type": "text",
+        "content": "{\"text\":\"แต่ลูกชายหน้าเหมือนแม่\",\"styles\":[{\"font\":{\"id\":\"\",\"path\":\"\"},\"size\":22,\"color\":\"#FFFFFFFF\",\"bold\":false,\"italic\":false}]}"
+      }
+    ],
+    "images": [],
+    "stickers": []
+  },
+  "tracks": [
+    {
+      "type": "video",
+      "segments": [
+        {
+          "material_id": "dd442fd8-5050-4072-8121-597217619f12",
+          "target_timerange": {
+            "start": 0,
+            "duration": 3000000
+          },
+          "source_timerange": {
+            "start": 0,
+            "duration": 3000000
+          }
+        },
+        {
+          "material_id": "d8351f13-64cf-4170-8917-f52ba19e5035",
+          "target_timerange": {
+            "start": 3000000,
+            "duration": 5000000
+          },
+          "source_timerange": {
+            "start": 3000000,
+            "duration": 5000000
+          }
+        },
+        {
+          "material_id": "2bfa832d-5a94-4a96-81f0-0e2256b622cb",
+          "target_timerange": {
+            "start": 8000000,
+            "duration": 7000000
+          },
+          "source_timerange": {
+            "start": 8000000,
+            "duration": 7000000
+          }
+        },
+        {
+          "material_id": "1c933ba7-27f3-416c-93a2-21124fe522bf",
+          "target_timerange": {
+            "start": 15000000,
+            "duration": 7000000
+          },
+          "source_timerange": {
+            "start": 15000000,
+            "duration": 7000000
+          }
+        },
+        {
+          "material_id": "06e57bd3-1dfe-4312-b323-4875db317032",
+          "target_timerange": {
+            "start": 22000000,
+            "duration": 8000000
+          },
+          "source_timerange": {
+            "start": 22000000,
+            "duration": 8000000
+          }
+        }
+      ],
+      "attribute": {
+        "is_default_name": true,
+        "name": "Track 1"
+      }
+    },
+    {
+      "type": "text",
+      "segments": [
+        {
+          "material_id": "bd1d94e3-96cd-40a4-ba0f-7e0f6091026c",
+          "target_timerange": {
+            "start": 0,
+            "duration": 3000000
+          }
+        },
+        {
+          "material_id": "b11cbfb4-f3f2-4915-912a-6c05a86994fa",
+          "target_timerange": {
+            "start": 3000000,
+            "duration": 5000000
+          }
+        },
+        {
+          "material_id": "6145336b-94a4-4b66-9371-bfa9315981dc",
+          "target_timerange": {
+            "start": 8000000,
+            "duration": 7000000
+          }
+        },
+        {
+          "material_id": "8143afab-79f9-4e47-bd39-cc6191ebf5a0",
+          "target_timerange": {
+            "start": 15000000,
+            "duration": 7000000
+          }
+        },
+        {
+          "material_id": "730ef4dc-1fc1-4a7e-b907-48209dfdd267",
+          "target_timerange": {
+            "start": 22000000,
+            "duration": 8000000
+          }
+        }
+      ],
+      "attribute": {
+        "is_default_name": true,
+        "name": "Track 2"
+      }
+    }
+  ],
+  "version": "3.0.0"
+}

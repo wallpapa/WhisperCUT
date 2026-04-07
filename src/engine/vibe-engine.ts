@@ -11,6 +11,7 @@
 
 import { GoogleGenAI } from "@google/genai";
 import { getVibe, recommendVibe, type VibeType } from "../science/vibe-library.js";
+export type { VibeType };
 import { scoreHook } from "../science/hook-scorer.js";
 import { selectCTA } from "../science/cta-selector.js";
 
@@ -254,7 +255,8 @@ export async function autoVibeEdit(params: {
     duration,
   } = params;
 
-  const recommendedVibe = recommendVibe(contentType, platform, goal === "saves" ? "saves" : "completion");
+  const safePlatform = platform === "facebook" ? "instagram" : platform;
+  const recommendedVibe = recommendVibe(contentType, safePlatform, goal === "saves" ? "saves" : "completion");
   console.error(`[vibe-engine] Auto-selected vibe: "${recommendedVibe}" for ${contentType}/${platform}/${goal}`);
 
   return vibeEdit({ topic, vibe: recommendedVibe, platform, duration, goal });
