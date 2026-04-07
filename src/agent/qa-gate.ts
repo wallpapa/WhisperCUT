@@ -28,8 +28,7 @@ export async function runQAGate(
   templatePath: string,
   attempt = 1
 ): Promise<QAResult> {
-  const { GoogleGenAI } = await import("@google/genai");
-  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
+  const { aiGenerateJSON } = await import("../ai/provider.js");
 
   if (!existsSync(scriptPath)) {
     throw new Error(`Script not found: ${scriptPath}`);
@@ -72,18 +71,13 @@ ${JSON.stringify(script, null, 2)}
   "revised_cta": "ถ้า CTA ไม่ดีพอ — เสนอ CTA ที่ดีกว่า"
 }`;
 
-  const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
-    contents: prompt,
-  });
-
-  let raw = (response.text ?? "").trim();
-  if (raw.startsWith("```")) {
-    raw = raw.split("\n").slice(1).join("\n");
-    if (raw.endsWith("```")) raw = raw.slice(0, -3).trim();
-  }
-
-  const feedback = JSON.parse(raw);
+  const feedback = await aiGenerateJSON<{
+    scores: Record<string, number>;
+    strengths: string[];
+    improvements: string[];
+    revised_hook?: string;
+    revised_cta?: string;
+  }>(prompt);
   const overall  = feedback.scores?.overall ?? 0;
   const passed   = overall >= QA_THRESHOLD;
 

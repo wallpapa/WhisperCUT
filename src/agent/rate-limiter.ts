@@ -83,6 +83,10 @@ const GEMINI_RPM = 10;
 const GEMINI_RPD = 250;
 
 export async function waitForGeminiSlot(): Promise<void> {
+  // Skip throttle for non-Gemini providers (Ollama, OpenRouter, custom)
+  const provider = process.env.AI_PROVIDER || (process.env.GEMINI_API_KEY ? "gemini" : "ollama");
+  if (provider !== "gemini") return;
+
   const now = Date.now();
   const oneMinuteAgo = now - 60_000;
 

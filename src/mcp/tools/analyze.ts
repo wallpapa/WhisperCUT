@@ -87,7 +87,7 @@ export async function handleAnalyze(args: any) {
   const analysis = await aiStructured(
     analyzeFootagePrompt(transcript.full_text, scenesStr, language),
     AnalysisSchema,
-    { system: SYSTEM_PROMPT, role: "text" }
+    { system: SYSTEM_PROMPT }
   );
 
   const result = {

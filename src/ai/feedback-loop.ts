@@ -51,12 +51,11 @@ const MAX_ITERATIONS = 3;
 export async function scoreVideo(
   transcript: string,
   durationSec: number,
-  useLocal = false
+  _useLocal = false
 ): Promise<VideoScore> {
   return aiStructured(
     scoreVideoPrompt(transcript, durationSec),
-    ScoreSchema,
-    { role: "text", useLocal }
+    ScoreSchema
   );
 }
 
@@ -99,8 +98,7 @@ export async function feedbackLoop(
     // Improve the script
     const improved = await aiStructured(
       improveScriptPrompt(currentScript, score, score.improvements, language),
-      ImproveSchema,
-      { role: "multilingual", useLocal }
+      ImproveSchema
     );
 
     currentScript = improved.revised_script;

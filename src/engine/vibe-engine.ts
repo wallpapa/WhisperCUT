@@ -9,13 +9,11 @@
  * the vibe engine encodes the science and executes automatically.
  */
 
-import { GoogleGenAI } from "@google/genai";
+import { aiGenerateJSON } from "../ai/provider.js";
 import { getVibe, recommendVibe, type VibeType } from "../science/vibe-library.js";
 export type { VibeType };
 import { scoreHook } from "../science/hook-scorer.js";
 import { selectCTA } from "../science/cta-selector.js";
-
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
 
 export type Platform = "tiktok" | "instagram" | "youtube" | "facebook";
 
@@ -206,17 +204,7 @@ Respond in JSON only:
   ]
 }`;
 
-  const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
-    contents: prompt,
-  });
-
-  let raw = (response.text ?? "").trim();
-  if (raw.startsWith("```")) {
-    raw = raw.split("\n").slice(1).join("\n").replace(/```$/, "").trim();
-  }
-
-  const parsed = JSON.parse(raw);
+  const parsed = await aiGenerateJSON<Record<string, unknown>>(prompt);
   const segments = parsed.segments as VibeScript["segments"];
 
   const hookSegment = segments.find(s => s.label === "hook");

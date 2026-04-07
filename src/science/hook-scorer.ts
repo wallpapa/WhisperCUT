@@ -7,9 +7,7 @@
  * Taxonomy lift figures from 10K+ video performance dataset.
  */
 
-import { GoogleGenAI } from "@google/genai";
-
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
+import { aiGenerateJSON } from "../ai/provider.js";
 
 export type HookTaxonomy =
   | "CuriosityGap"       // +67% watch-through
@@ -96,17 +94,17 @@ Respond in JSON only:
   "rewrite": "..." or null
 }`;
 
-  const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
-    contents: prompt,
-  });
-
-  let raw = (response.text ?? "").trim();
-  if (raw.startsWith("```")) {
-    raw = raw.split("\n").slice(1).join("\n").replace(/```$/, "").trim();
-  }
-
-  const parsed = JSON.parse(raw);
+  const parsed = await aiGenerateJSON<{
+    taxonomy: string;
+    dopamine_trigger: number;
+    curiosity_gap_opened: boolean;
+    pattern_interrupt: boolean;
+    first_3sec_text_present: boolean;
+    relevance_clear: boolean;
+    overall: number;
+    suggestion: string;
+    rewrite?: string;
+  }>(prompt);
   const taxonomy = parsed.taxonomy as HookTaxonomy;
 
   return {

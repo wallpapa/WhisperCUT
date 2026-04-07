@@ -72,8 +72,7 @@ async function markJobDone(topic: string, status: "done" | "failed"): Promise<vo
 async function generateWeeklyPlan(): Promise<void> {
   console.error("[scheduler] content_calendar empty — generating weekly plan with AI...");
 
-  const { GoogleGenAI } = await import("@google/genai");
-  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
+  const { aiGenerateJSON } = await import("../ai/provider.js");
 
   const channel = process.env.STUDY_CHANNEL ?? "@doctorwaleerat";
   const prompt = `คุณคือ AI content strategist สำหรับช่อง TikTok ของ ${channel}
@@ -94,18 +93,7 @@ async function generateWeeklyPlan(): Promise<void> {
 วันที่เริ่มต้น: ${new Date(Date.now() + 86400000).toISOString().split("T")[0]}
 สร้าง 7 รายการ หัวข้อต้องน่าสนใจ มีคุณค่าทางการศึกษา เหมาะกับผู้ปกครองไทย`;
 
-  const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
-    contents: prompt,
-  });
-
-  let raw = (response.text ?? "").trim();
-  if (raw.startsWith("```")) {
-    raw = raw.split("\n").slice(1).join("\n");
-    if (raw.endsWith("```")) raw = raw.slice(0, -3).trim();
-  }
-
-  const plan = JSON.parse(raw);
+  const plan = await aiGenerateJSON<Array<Record<string, unknown>>>(prompt);
   await supabase.from("content_calendar").insert(
     plan.map((item: any) => ({ ...item, status: "pending" }))
   );
