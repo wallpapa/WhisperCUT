@@ -63,6 +63,13 @@ import {
   handleListVibes, listVibesTool,
 } from "./tools/vibe-edit.js";
 
+// ── P2P Network ─────────────────────────────────────────────────
+import {
+  handleP2PStatus, p2pStatusTool,
+  handleP2PSubmit, p2pSubmitTool,
+} from "./tools/p2p.js";
+import { startWorker, stopWorker } from "../p2p/worker.js";
+
 const server = new Server(
   { name: "whispercut", version: "3.0.0" },
   { capabilities: { tools: {} } }
@@ -89,6 +96,9 @@ const tools = [
   runPipelineTool,
   scheduleTool,
   statusTool,
+  // P2P Network
+  p2pStatusTool,
+  p2pSubmitTool,
 ];
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools }));
@@ -116,6 +126,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       // v3 Vibe Engine
       case "whispercut_vibe_edit":      return await handleVibeEdit(args);
       case "whispercut_list_vibes":     return handleListVibes(args);
+      // P2P Network
+      case "whispercut_p2p_status":     return { content: [{ type: "text", text: JSON.stringify(await handleP2PStatus(), null, 2) }] };
+      case "whispercut_p2p_submit":     return { content: [{ type: "text", text: JSON.stringify(await handleP2PSubmit(args as any), null, 2) }] };
 
       default:
         return {
@@ -134,7 +147,28 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("WhisperCUT MCP server v3.0.0 running — 15 tools ready (vibe_edit is primary)");
+  console.error("WhisperCUT MCP server v3.1.0 running — 17 tools ready (vibe_edit is primary)");
+
+  // Start P2P worker daemon (contributes 20% AI power to network)
+  if (process.env.SUPABASE_URL) {
+    try {
+      await startWorker();
+      console.error("[p2p] Worker daemon started — contributing 20% to network");
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      console.error(`[p2p] Worker start failed (non-fatal): ${msg}`);
+    }
+  }
+
+  // Graceful shutdown
+  process.on("SIGINT", async () => {
+    await stopWorker();
+    process.exit(0);
+  });
+  process.on("SIGTERM", async () => {
+    await stopWorker();
+    process.exit(0);
+  });
 }
 
 main().catch((err) => {
