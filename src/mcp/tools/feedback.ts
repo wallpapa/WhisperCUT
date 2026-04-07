@@ -3,6 +3,7 @@
  */
 import { feedbackLoop, quickScore } from "../../ai/feedback-loop.js";
 import type { FeedbackResult, VideoScore } from "../../ai/feedback-loop.js";
+import { extractFromFeedback } from "../../p2p/memory-extractor.js";
 
 export const feedbackTool = {
   name: "whispercut_feedback",
@@ -14,6 +15,15 @@ export const feedbackTool = {
       transcript: {
         type: "string",
         description: "The video transcript or script text",
+      },
+      topic: {
+        type: "string",
+        description: "Content topic or category (e.g. skincare, cooking)",
+      },
+      platform: {
+        type: "string",
+        description: "Target platform (tiktok, reels, shorts)",
+        default: "tiktok",
       },
       duration_sec: {
         type: "number",
@@ -56,6 +66,8 @@ export const feedbackTool = {
 export async function handleFeedback(args: any) {
   const {
     transcript,
+    topic,
+    platform = "tiktok",
     duration_sec,
     language = "th",
     aspects = ["hook", "cta", "pacing", "engagement"],
@@ -75,6 +87,8 @@ export async function handleFeedback(args: any) {
 
     const avgScore = (s: VideoScore) =>
       (s.hook_score + s.cta_score + s.pacing_score + s.engagement_score) / 4;
+
+    await extractFromFeedback(result, topic, platform).catch(() => 0);
 
     return {
       content: [
@@ -103,6 +117,8 @@ export async function handleFeedback(args: any) {
   } else {
     // Quick score only, no improvement
     const { average, scores } = await quickScore(transcript, duration_sec);
+
+    await extractFromFeedback({ final_score: scores, improved: false, iterations: [] }, topic, platform).catch(() => 0);
 
     return {
       content: [

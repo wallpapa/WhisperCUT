@@ -5,6 +5,7 @@
 import { execSync } from "child_process";
 import { readFileSync, existsSync, mkdirSync, readdirSync } from "fs";
 import { join } from "path";
+import { extractFromStudy } from "../../p2p/memory-extractor.js";
 
 export const studyTool = {
   name: "whispercut_study",
@@ -45,6 +46,8 @@ export async function handleStudy(args: any) {
     const analysisCount = readdirSync(join(DATA_DIR, "analysis")).filter((f) =>
       f.endsWith(".json")
     ).length;
+
+    await extractFromStudy({ channel, template, video_count: analysisCount }).catch(() => 0);
 
     return {
       content: [

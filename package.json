@@ -7,7 +7,8 @@
     "dev": "tsx watch src/mcp/server.ts",
     "build": "tsc",
     "start": "node dist/mcp/server.js",
-    "mcp": "tsx src/mcp/server.ts"
+    "mcp": "tsx src/mcp/server.ts",
+    "memory-update": "tsx src/p2p/memory-cron.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",

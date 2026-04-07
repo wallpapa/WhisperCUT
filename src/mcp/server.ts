@@ -78,6 +78,27 @@ import {
   handleTikTokSetup, tiktokSetupTool,
 } from "./tools/memory.js";
 
+// ── Tavily Research ─────────────────────────────────────────────
+import {
+  handleResearchTopic, researchTopicTool,
+  handleFindResearch, findResearchTool,
+} from "./tools/research.js";
+
+// ── Canva Image Generation + RL ─────────────────────────────────
+import {
+  handleGenerateCovers, generateCoversTool,
+  handleSelectCover, selectCoverTool,
+  handleCoverPreferences, coverPreferencesTool,
+} from "./tools/canva.js";
+
+// ── Content Workflow ────────────────────────────────────────────
+import {
+  handleClaimTopic, claimTopicTool,
+  handleUpdateTopicStatus, updateTopicStatusTool,
+  handleProductionBoard, productionBoardTool,
+  handleAddTopic, addTopicTool,
+} from "./tools/content-workflow.js";
+
 const server = new Server(
   { name: "whispercut", version: "3.2.0" },
   { capabilities: { tools: {} } }
@@ -113,6 +134,18 @@ const tools = [
   // TikTok Auto-Tracking
   syncTikTokTool,
   tiktokSetupTool,
+  // Tavily Research
+  researchTopicTool,
+  findResearchTool,
+  // Canva Image Generation + RL
+  generateCoversTool,
+  selectCoverTool,
+  coverPreferencesTool,
+  // Content Workflow
+  claimTopicTool,
+  updateTopicStatusTool,
+  productionBoardTool,
+  addTopicTool,
 ];
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools }));
@@ -148,6 +181,18 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case "whispercut_track_performance": return { content: [{ type: "text", text: JSON.stringify(await handleTrackPerformance(args as any), null, 2) }] };
       case "whispercut_sync_tiktok":       return { content: [{ type: "text", text: JSON.stringify(await handleSyncTikTok(args as any), null, 2) }] };
       case "whispercut_tiktok_setup":      return { content: [{ type: "text", text: JSON.stringify(await handleTikTokSetup(), null, 2) }] };
+      // Tavily Research
+      case "whispercut_research_topic":    return await handleResearchTopic(args as any);
+      case "whispercut_find_research":     return await handleFindResearch(args as any);
+      // Canva + RL
+      case "whispercut_generate_covers":   return { content: [{ type: "text", text: JSON.stringify(await handleGenerateCovers(args as any), null, 2) }] };
+      case "whispercut_select_cover":      return { content: [{ type: "text", text: JSON.stringify(await handleSelectCover(args as any), null, 2) }] };
+      case "whispercut_cover_preferences": return { content: [{ type: "text", text: JSON.stringify(await handleCoverPreferences(), null, 2) }] };
+      // Content Workflow
+      case "whispercut_claim_topic":       return { content: [{ type: "text", text: JSON.stringify(await handleClaimTopic(args as any), null, 2) }] };
+      case "whispercut_update_topic_status": return { content: [{ type: "text", text: JSON.stringify(await handleUpdateTopicStatus(args as any), null, 2) }] };
+      case "whispercut_production_board":  return { content: [{ type: "text", text: JSON.stringify(await handleProductionBoard(args as any), null, 2) }] };
+      case "whispercut_add_topic":         return { content: [{ type: "text", text: JSON.stringify(await handleAddTopic(args as any), null, 2) }] };
 
       default:
         return {
@@ -166,7 +211,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("WhisperCUT MCP server v3.3.0 running — 21 tools ready (vibe_edit is primary)");
+  console.error("WhisperCUT MCP server v4.0.0 running — 30 tools ready (vibe_edit is primary)");
 
   // Start P2P worker daemon (contributes 20% AI power to network)
   if (process.env.SUPABASE_URL) {
