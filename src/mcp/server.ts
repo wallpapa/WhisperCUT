@@ -99,6 +99,9 @@ import {
   handleAddTopic, addTopicTool,
 } from "./tools/content-workflow.js";
 
+// ── Auto Edit Pipeline ──────────────────────────────────────────
+import { handleAutoEdit, autoEditTool } from "./tools/auto-edit.js";
+
 const server = new Server(
   { name: "whispercut", version: "3.2.0" },
   { capabilities: { tools: {} } }
@@ -146,6 +149,8 @@ const tools = [
   updateTopicStatusTool,
   productionBoardTool,
   addTopicTool,
+  // Auto Edit
+  autoEditTool,
 ];
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools }));
@@ -193,6 +198,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case "whispercut_update_topic_status": return { content: [{ type: "text", text: JSON.stringify(await handleUpdateTopicStatus(args as any), null, 2) }] };
       case "whispercut_production_board":  return { content: [{ type: "text", text: JSON.stringify(await handleProductionBoard(args as any), null, 2) }] };
       case "whispercut_add_topic":         return { content: [{ type: "text", text: JSON.stringify(await handleAddTopic(args as any), null, 2) }] };
+      // Auto Edit
+      case "whispercut_auto_edit":         return await handleAutoEdit(args as any);
 
       default:
         return {
@@ -211,7 +218,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("WhisperCUT MCP server v4.0.0 running — 30 tools ready (vibe_edit is primary)");
+  console.error("WhisperCUT MCP server v4.1.0 running — 31 tools ready (vibe_edit + auto_edit)");
 
   // Start P2P worker daemon (contributes 20% AI power to network)
   if (process.env.SUPABASE_URL) {
