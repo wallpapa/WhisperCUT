@@ -74,6 +74,8 @@ import { startWorker, stopWorker } from "../p2p/worker.js";
 import {
   handleMemoryStatus, memoryStatusTool,
   handleTrackPerformance, trackPerformanceTool,
+  handleSyncTikTok, syncTikTokTool,
+  handleTikTokSetup, tiktokSetupTool,
 } from "./tools/memory.js";
 
 const server = new Server(
@@ -108,6 +110,9 @@ const tools = [
   // Shared Memory Network
   memoryStatusTool,
   trackPerformanceTool,
+  // TikTok Auto-Tracking
+  syncTikTokTool,
+  tiktokSetupTool,
 ];
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools }));
@@ -141,6 +146,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       // Shared Memory
       case "whispercut_memory_status":   return { content: [{ type: "text", text: JSON.stringify(await handleMemoryStatus(args as any), null, 2) }] };
       case "whispercut_track_performance": return { content: [{ type: "text", text: JSON.stringify(await handleTrackPerformance(args as any), null, 2) }] };
+      case "whispercut_sync_tiktok":       return { content: [{ type: "text", text: JSON.stringify(await handleSyncTikTok(args as any), null, 2) }] };
+      case "whispercut_tiktok_setup":      return { content: [{ type: "text", text: JSON.stringify(await handleTikTokSetup(), null, 2) }] };
 
       default:
         return {
@@ -159,7 +166,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("WhisperCUT MCP server v3.2.0 running — 19 tools ready (vibe_edit is primary)");
+  console.error("WhisperCUT MCP server v3.3.0 running — 21 tools ready (vibe_edit is primary)");
 
   // Start P2P worker daemon (contributes 20% AI power to network)
   if (process.env.SUPABASE_URL) {

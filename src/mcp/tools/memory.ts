@@ -1,11 +1,14 @@
 /**
- * whispercut_memory_status    — Shared memory bank stats + top patterns
+ * whispercut_memory_status     — Shared memory bank stats + top patterns
  * whispercut_track_performance — Log TikTok video metrics + feed back to memory
+ * whispercut_sync_tiktok       — Auto-sync TikTok video performance from account
+ * whispercut_tiktok_setup      — Guide user to set up TikTok credentials
  */
 
 import { createClient } from "@supabase/supabase-js";
 import { logPerformance, runMemoryUpdate } from "../../p2p/memory-updater.js";
 import { retrieveMemories } from "../../p2p/memory-retriever.js";
+import { syncTikTokPerformance, hasTikTokCredentials, getTikTokSetupInstructions } from "../../p2p/tiktok-tracker.js";
 
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -185,5 +188,87 @@ export async function handleTrackPerformance(args: {
       ? args.memory_ids!.length
       : 0,
     verdict: result.viral_score >= 7 ? "VIRAL" : result.viral_score >= 4 ? "GOOD" : "NEEDS IMPROVEMENT",
+  };
+}
+
+// ── whispercut_sync_tiktok ────────────────────────────────────────
+
+export const syncTikTokTool = {
+  name: "whispercut_sync_tiktok",
+  description:
+    "Auto-sync TikTok video performance from your account. " +
+    "Fetches latest videos' views, likes, shares, comments, saves " +
+    "and saves to video_performance table → feeds into shared memory network. " +
+    "Requires TIKTOK_SESSION_ID in .env (get from Chrome DevTools). " +
+    "Use whispercut_tiktok_setup if not configured.",
+  inputSchema: {
+    type: "object" as const,
+    properties: {
+      username: { type: "string", description: "TikTok username (without @). Default: from .env" },
+      count: { type: "number", description: "Number of recent videos to sync (default: 10)" },
+    },
+  },
+};
+
+export async function handleSyncTikTok(args: { username?: string; count?: number }) {
+  if (!hasTikTokCredentials()) {
+    return {
+      error: "TikTok not configured",
+      setup: getTikTokSetupInstructions(),
+    };
+  }
+
+  const result = await syncTikTokPerformance(args.username, args.count || 10);
+  return {
+    synced: result.synced,
+    updated: result.skipped,
+    total: result.synced + result.skipped,
+    videos: result.videos,
+    message: result.synced > 0
+      ? `Synced ${result.synced} new videos, updated ${result.skipped} existing → feeding into memory network`
+      : result.skipped > 0
+        ? `All ${result.skipped} videos already tracked — metrics updated`
+        : "No videos found. Check TIKTOK_SESSION_ID — may be expired.",
+  };
+}
+
+// ── whispercut_tiktok_setup ───────────────────────────────────────
+
+export const tiktokSetupTool = {
+  name: "whispercut_tiktok_setup",
+  description:
+    "Guide user to set up TikTok auto-tracking. " +
+    "Shows step-by-step instructions to get session_id from Chrome " +
+    "and configure .env for automatic performance tracking.",
+  inputSchema: { type: "object" as const, properties: {} },
+};
+
+export async function handleTikTokSetup() {
+  const hasCredentials = hasTikTokCredentials();
+  const username = process.env.TIKTOK_USERNAME || "(not set)";
+
+  if (hasCredentials) {
+    // Already configured — show status
+    const { count: tracked } = await supabase
+      .from("video_performance")
+      .select("*", { count: "exact", head: true })
+      .eq("channel", `@${username}`);
+
+    return {
+      status: "configured",
+      username: `@${username}`,
+      session_active: true,
+      videos_tracked: tracked ?? 0,
+      message: `TikTok auto-tracking active for @${username}. Use whispercut_sync_tiktok to fetch latest metrics.`,
+    };
+  }
+
+  return {
+    status: "not_configured",
+    instructions: getTikTokSetupInstructions(),
+    env_template: {
+      TIKTOK_USERNAME: "doctorwaleerat",
+      TIKTOK_SESSION_ID: "(paste from Chrome DevTools)",
+    },
   };
 }
