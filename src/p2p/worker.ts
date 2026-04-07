@@ -14,6 +14,7 @@
 import { createClient, RealtimeChannel } from "@supabase/supabase-js";
 import { aiGenerateJSON } from "../ai/provider.js";
 import { getProviderInfo } from "../ai/provider.js";
+import { detectCapabilities, formatCapabilities, type NodeCapabilities } from "./resource-detector.js";
 import { earnCredits, CREDIT_WEIGHTS } from "./credits.js";
 
 const supabase = createClient(
@@ -60,15 +61,22 @@ const PROCESSORS: Record<string, JobProcessor> = {
 /** Start the P2P worker daemon */
 export async function startWorker(): Promise<void> {
   const info = getProviderInfo();
-  console.error(`[p2p] Starting worker: ${USER_EMAIL} (${info.provider}/${info.model})`);
 
-  // Register or update worker
+  // Auto-detect ALL local resources
+  console.error(`[p2p] Detecting local resources...`);
+  const caps = await detectCapabilities();
+  console.error(`[p2p] Resources detected:\n${formatCapabilities(caps)}`);
+
+  const tier = process.env.RESOURCE_TIER || "free";
+  console.error(`[p2p] Starting worker: ${USER_EMAIL} (${info.provider}/${info.model}) tier=${tier}`);
+
+  // Register with full capability profile
   await supabase.from("p2p_workers").upsert({
     user_email: USER_EMAIL,
     provider: info.provider,
     model: info.model,
     status: "idle",
-    capabilities: Object.keys(PROCESSORS),
+    capabilities: caps as unknown as Record<string, unknown>,
     last_heartbeat: new Date().toISOString(),
   }, { onConflict: "user_email" });
 
