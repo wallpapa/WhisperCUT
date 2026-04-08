@@ -8,15 +8,19 @@
     "build": "tsc",
     "start": "node dist/mcp/server.js",
     "mcp": "tsx src/mcp/server.ts",
-    "memory-update": "tsx src/p2p/memory-cron.ts"
+    "memory-update": "tsx src/p2p/memory-cron.ts",
+    "generate-cover": "tsx src/engine/cover-generator.ts"
   },
   "dependencies": {
     "@ai-sdk/openai-compatible": "^0.2.14",
     "@google/genai": "^0.10.0",
     "@modelcontextprotocol/sdk": "^1.12.1",
+    "@resvg/resvg-js": "^2.6.2",
     "@supabase/supabase-js": "^2.49.4",
     "ai": "^4.3.16",
+    "canvas": "^3.2.3",
     "dotenv": "^17.4.1",
+    "satori": "^0.26.0",
     "uuid": "^11.1.0",
     "zod": "^3.24.2"
   },
