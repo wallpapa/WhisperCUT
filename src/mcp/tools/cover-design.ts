@@ -24,6 +24,7 @@ import {
   detectTopicCategory,
 } from "../../engine/scene-dna.js";
 import { getMemoryLayer } from "../../memory/memory-layer.js";
+import { recordCoverSelection } from "../../memory/rl-collector.js";
 
 // ── Config ────────────────────────────────────────────────────
 
@@ -493,6 +494,26 @@ export async function handleSelectCoverAI(args: {
         selected_at: new Date().toISOString(),
       })
       .eq("id", generation_id);
+
+    // 4. Record training data for GRPO (Phase 3)
+    try {
+      await recordCoverSelection({
+        channel,
+        topic: gen.topic || "unknown",
+        category: gen.topic ? "medical" : "unknown",
+        variants: variants.map((v: any) => ({
+          label: v.label,
+          strategy: v.strategy || "unknown",
+          style: v.style || {},
+        })),
+        selectedLabel: selected,
+        model: "pro",
+        quietLuxury: true,
+        generationId: generation_id,
+      });
+    } catch (e: any) {
+      console.error(`[cover-design] RL collector failed: ${e.message}`);
+    }
   } catch (e: any) {
     return {
       content: [{ type: "text", text: `RL update error: ${e.message}. Selection noted locally.` }],

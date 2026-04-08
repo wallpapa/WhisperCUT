@@ -14,6 +14,7 @@ import type { MemoryEvent, RecallQuery, MemoryInsight, MemoryProvider, Pattern }
 import { mem0Provider } from "./providers/mem0.js";
 import { supabaseBridgeProvider } from "./providers/supabase.js";
 import { teleMemProvider, isTeleMemAvailable } from "./providers/telemem.js";
+import { memFactoryProvider, hasGRPOPolicy } from "./providers/memfactory.js";
 
 // ── Singleton ─────────────────────────────────────────────────
 
@@ -32,15 +33,23 @@ export class MemoryLayer {
       this.providers.push(supabaseBridgeProvider);
     }
 
-    // Phase 2: TeleMem (async — check sidecar availability)
+    // Phase 2: TeleMem + Phase 3: MemFactory (async init)
     this._initPromise = this._initAsync();
   }
 
   private async _initAsync() {
+    // Phase 2: TeleMem video memory (if sidecar running)
     try {
       const teleMemReady = await isTeleMemAvailable();
       if (teleMemReady) {
         this.providers.push(teleMemProvider);
+      }
+    } catch {}
+
+    // Phase 3: MemFactory GRPO policy (if trained policy exists)
+    try {
+      if (hasGRPOPolicy()) {
+        this.providers.push(memFactoryProvider);
       }
     } catch {}
 
