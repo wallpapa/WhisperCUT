@@ -98,6 +98,9 @@ import {
   handleCoverPrefsAI, coverPrefsAITool,
 } from "./tools/cover-design.js";
 
+// ── Memory Layer ────────────────────────────────────────────────
+import { getMemoryLayer } from "../memory/memory-layer.js";
+
 // ── Content Workflow ────────────────────────────────────────────
 import {
   handleClaimTopic, claimTopicTool,
@@ -278,7 +281,12 @@ async function main() {
   registerAgent(new QAGateAgent());
   registerAgent(new ContentPlannerAgent());
   const agentStats = getAgentStats();
-  console.error(`WhisperCUT MCP server v5.1.0 running — 36 tools + ${agentStats.total_agents} agents ready`);
+
+  // Init memory layer
+  const memoryLayer = getMemoryLayer();
+  console.error(`[memory] Layer ready: ${memoryLayer.providerNames.join(", ")} (${memoryLayer.providerCount} providers)`);
+
+  console.error(`WhisperCUT MCP server v5.2.0 running — 39 tools + ${agentStats.total_agents} agents + memory layer ready`);
 
   // Start P2P worker daemon (contributes 20% AI power to network)
   if (process.env.SUPABASE_URL) {
