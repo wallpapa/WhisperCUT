@@ -91,6 +91,13 @@ import {
   handleCoverPreferences, coverPreferencesTool,
 } from "./tools/canva.js";
 
+// ── AI Cover Design Agent (Nano Banana Pro + Scene DNA + RL) ────
+import {
+  handleGenerateCover, generateCoverTool,
+  handleSelectCoverAI, selectCoverAITool,
+  handleCoverPrefsAI, coverPrefsAITool,
+} from "./tools/cover-design.js";
+
 // ── Content Workflow ────────────────────────────────────────────
 import {
   handleClaimTopic, claimTopicTool,
@@ -182,6 +189,10 @@ const tools = [
   ttsDrGwangTool,
   // E2E Unified Pipeline (PRIMARY — the "one tool" for full production)
   e2eTool,
+  // AI Cover Design Agent (Nano Banana Pro + Scene DNA + Per-Channel RL)
+  generateCoverTool,
+  selectCoverAITool,
+  coverPrefsAITool,
 ];
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools }));
@@ -239,6 +250,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case "whispercut_tts_dr_gwang":          return await handleTtsDrGwang(args as any);
       // E2E Unified Pipeline
       case "whispercut_e2e":                  return await handleE2E(args as any);
+      // AI Cover Design Agent
+      case "whispercut_generate_cover":       return await handleGenerateCover(args as any);
+      case "whispercut_select_cover_ai":      return await handleSelectCoverAI(args as any);
+      case "whispercut_cover_preferences_ai": return await handleCoverPrefsAI(args as any);
 
       default:
         return {
