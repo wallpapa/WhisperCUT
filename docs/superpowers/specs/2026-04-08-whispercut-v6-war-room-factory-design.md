@@ -112,11 +112,21 @@ Step 2: ROUTE
   - fear_crusher         → when content shows procedures or "เจ็บ" in comments
   - mind_reader          → when comments >50 (enough for psychology analysis)
   - conversion_doctor    → when comments contain "ราคา", "อยากทำ", "อยู่ไหน"
-  - series_architect     → when clip has viral metrics (save% >5%)
+  - series_architect     → when clip is EP.N (series) OR save% >5% AND topic has sub-topics
   - comment_detective    → when comments loaded and numerous
   - price_detective      → when "ราคา"/"เท่าไหร่" in comments
   - access_optimizer     → when "อยู่ไหน"/"สาขา"/"จังหวัด" in comments
   - clinic_spy           → when watching competitor channel (not @waleeratclinic)
+  
+  SERIES DATA REQUIREMENT:
+  - When EP.N detected → MUST fetch all prior episode metrics before analysis
+  - series_architect requires historical data to recommend continuation vs. kill
+
+  ADDITIONAL ROUTING FLAGS (from E2E QA):
+  - visual_risk_flag     → when visual_sensei detects algo-suppressing choices (B&W filter, static inserts)
+  - ip_risk_severity     → differentiate: name-mention (low) vs image-use (medium) vs broadcast-screenshot (high)
+  - content_function     → classify: seeding (niche loyal) vs scaling (broad shallow) vs converting (drives action)
+  - line_group_proxy     → when Share% >35%, flag as "likely LINE group distribution"
   
   PERSONA spawn based on topic:
   - Topic about parenting/fear/first-timer → persona คุณนิด (45, แม่บ้าน)
@@ -376,7 +386,31 @@ WHERE dimension = 'hook_quality'
 ORDER BY win_rate DESC LIMIT 5;
 ```
 
-## 6. Key Constraints (from 38 agents)
+## 6. Proven Patterns (from E2E test on 5 clips)
+
+### Cross-Clip Patterns (validated)
+1. **Share >35% = "LINE group content"** — clips forwarded in family/parent group chats (organic distribution)
+2. **High likes ≠ high Save%** — controversy scales reach; utility scales loyalty. Portfolio needs both.
+3. **RED text highlighting** = universal visual constant (4/5 clips use it)
+4. **Class/money anxiety** = super-theme for @doctorwaleerat parenting audience
+5. **Series format = compound interest** — EP.2 achieved highest combined Save%+Share%
+
+### Content Function Classification (NEW from E2E)
+| Function | Pattern | Example | Strategy |
+|----------|---------|---------|----------|
+| **Seeding** | High save%, low reach | "คนโง่อวดฉลาด" (18.3% save, 438 likes) | Build loyal niche |
+| **Scaling** | High reach, low save% | "Gen Z โง่ลง" (18K likes, 10% save) | Grow followers |
+| **Converting** | High save% + high share% | "ไม่ต้องเรียนเก่ง EP.2" (19.7%+38%) | Drive action |
+| **Social Weapon** | Share >35% | "เด็กถนัดซ้าย" (36.7% share) | Self-distributing via LINE |
+
+### "Social Weapon" Content Pattern
+Content that parents use as communication ammunition — sending to grandparents, teachers, spouses to change their behavior. These clips distribute themselves through LINE groups without relying on TikTok algorithm. Design criteria:
+- Topic must be a DEBATE between generations (modern parenting vs traditional)
+- Content must VALIDATE the parent's position with science/authority
+- Must be understandable from title alone (shareable without context)
+- Must include a "debatable statement" that triggers comment war
+
+## 7. Key Constraints (from 38 agents)
 
 ### TikTok Platform Rules
 - No external links in comments (BAN risk)
