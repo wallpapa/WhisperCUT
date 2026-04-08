@@ -98,6 +98,12 @@ import {
   handleCoverPrefsAI, coverPrefsAITool,
 } from "./tools/cover-design.js";
 
+// ── Video Studio (Analysis + B-Roll) ────────────────────────────
+import {
+  handleAnalyzeVideo, analyzeVideoTool,
+  handleGenerateBRoll, generateBRollTool,
+} from "./tools/video-studio.js";
+
 // ── Memory Layer ────────────────────────────────────────────────
 import { getMemoryLayer } from "../memory/memory-layer.js";
 
@@ -196,6 +202,9 @@ const tools = [
   generateCoverTool,
   selectCoverAITool,
   coverPrefsAITool,
+  // Video Studio (Gemini Video Analysis + Veo 3.1 B-Roll)
+  analyzeVideoTool,
+  generateBRollTool,
 ];
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools }));
@@ -257,6 +266,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case "whispercut_generate_cover":       return await handleGenerateCover(args as any);
       case "whispercut_select_cover_ai":      return await handleSelectCoverAI(args as any);
       case "whispercut_cover_preferences_ai": return await handleCoverPrefsAI(args as any);
+      // Video Studio
+      case "whispercut_analyze_video":       return await handleAnalyzeVideo(args as any);
+      case "whispercut_generate_broll":      return await handleGenerateBRoll(args as any);
 
       default:
         return {
