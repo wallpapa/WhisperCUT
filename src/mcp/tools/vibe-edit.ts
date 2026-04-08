@@ -18,6 +18,7 @@ import { renderHQ } from "../../engine/ffmpeg.js";
 import { listVibes } from "../../science/vibe-library.js";
 import { extractFromVibeEdit } from "../../p2p/memory-extractor.js";
 import { retrieveMemories } from "../../p2p/memory-retriever.js";
+import { getMemoryLayer } from "../../memory/memory-layer.js";
 
 const OUTPUT_DIR = process.env.OUTPUT_DIR || "./output";
 
@@ -99,6 +100,28 @@ export async function handleVibeEdit(args: any) {
   const networkKnowledge = await retrieveMemories({ topic, platform, vibe }).catch(() => ({ memories: [], promptText: "" }));
   if (networkKnowledge.promptText) {
     console.error(`[vibe-edit] Retrieved ${networkKnowledge.memories.length} memories from network`);
+  }
+
+  // ── [0.5] Recall memory layer insights ─────────────────────────────────
+  try {
+    const memory = getMemoryLayer();
+    const insights = await memory.recall({
+      channel: "doctorwaleerat",
+      topic,
+      intent: `best vibe and hook style for ${topic}`,
+      limit: 5,
+    });
+    if (insights.length > 0) {
+      const memoryPrompt = memory.formatForPrompt(insights);
+      if (networkKnowledge.promptText) {
+        networkKnowledge.promptText += "\n" + memoryPrompt;
+      } else {
+        networkKnowledge.promptText = memoryPrompt;
+      }
+      console.error(`[vibe-edit] Memory recalled ${insights.length} insights`);
+    }
+  } catch (e: any) {
+    console.error(`[vibe-edit] Memory recall failed: ${e.message}`);
   }
 
   // ── [1] Generate vibe script ───────────────────────────────────────────

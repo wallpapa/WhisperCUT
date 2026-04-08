@@ -302,6 +302,7 @@ export async function handleGenerateCover(args: {
       channel,
       quietLuxury: quiet_luxury,
       lowerThird: lower_third,
+      memoryContext,
     });
 
     try {

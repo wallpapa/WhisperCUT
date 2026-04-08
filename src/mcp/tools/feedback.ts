@@ -4,6 +4,7 @@
 import { feedbackLoop, quickScore } from "../../ai/feedback-loop.js";
 import type { FeedbackResult, VideoScore } from "../../ai/feedback-loop.js";
 import { extractFromFeedback } from "../../p2p/memory-extractor.js";
+import { getMemoryLayer } from "../../memory/memory-layer.js";
 
 export const feedbackTool = {
   name: "whispercut_feedback",
@@ -89,6 +90,28 @@ export async function handleFeedback(args: any) {
       (s.hook_score + s.cta_score + s.pacing_score + s.engagement_score) / 4;
 
     await extractFromFeedback(result, topic, platform).catch(() => 0);
+
+    // Store feedback in memory layer
+    try {
+      const memory = getMemoryLayer();
+      const fs = result.final_score;
+      await memory.remember({
+        type: "feedback_scored",
+        channel: topic || "unknown",
+        topic: topic || "unknown",
+        data: {
+          hook_score: fs.hook_score,
+          pacing_score: fs.pacing_score,
+          engagement_score: fs.engagement_score,
+          cta_score: fs.cta_score,
+          vibe: platform,
+          passed: avgScore(fs) >= threshold,
+          overall: avgScore(fs),
+        },
+      });
+    } catch (e: any) {
+      console.error(`[feedback] Memory remember failed: ${e.message}`);
+    }
 
     return {
       content: [

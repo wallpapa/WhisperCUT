@@ -194,6 +194,7 @@ export interface CoverPromptConfig {
   channel?: string;
   quietLuxury?: boolean;
   lowerThird?: string;
+  memoryContext?: string;
 }
 
 export function buildCoverPrompt(config: CoverPromptConfig): string {
@@ -232,5 +233,5 @@ ${textLines}
 ${config.lowerThird ? `BOTTOM: Whisper-thin bar: ${config.lowerThird}` : ""}
 NO badge, NO logo, NO emoji icons unless specified.
 
-CRITICAL: Hyper-realistic photography. Every detail must look like a real photo.`;
+CRITICAL: Hyper-realistic photography. Every detail must look like a real photo.${config.memoryContext ? `\n\nMEMORY INSIGHTS (learned from past selections):\n${config.memoryContext}` : ""}`;
 }
