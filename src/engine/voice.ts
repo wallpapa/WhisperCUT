@@ -14,10 +14,11 @@ import { join }                      from "path";
 
 const MINIMAX_API_KEY  = process.env.MINIMAX_API_KEY  || "";
 const MINIMAX_GROUP_ID = process.env.MINIMAX_GROUP_ID || "";
-const MINIMAX_VOICE_ID = process.env.MINIMAX_VOICE_ID || "Dr.Gwang"; // cloned voice
+const MINIMAX_VOICE_ID = process.env.MINIMAX_VOICE_ID || "moss_audio_39a5b671-1e08-11f1-be4b-de7d2e195ee6"; // Dr.Gwang cloned voice
 
-// MiniMax TTS API endpoint (T2A v2)
-const MINIMAX_TTS_URL = "https://api.minimax.chat/v1/t2a_v2";
+// MiniMax TTS API endpoint (T2A v2 — speech-02-turbo)
+// Note: api.minimax.io (not .chat) is the correct endpoint
+const MINIMAX_TTS_URL = process.env.MINIMAX_TTS_URL || "https://api.minimax.io/v1/t2a_v2";
 
 export interface VoiceOptions {
   text:       string;
