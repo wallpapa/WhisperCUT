@@ -13,6 +13,7 @@
 import type { MemoryEvent, RecallQuery, MemoryInsight, MemoryProvider, Pattern } from "./types.js";
 import { mem0Provider } from "./providers/mem0.js";
 import { supabaseBridgeProvider } from "./providers/supabase.js";
+import { teleMemProvider, isTeleMemAvailable } from "./providers/telemem.js";
 
 // ── Singleton ─────────────────────────────────────────────────
 
@@ -21,18 +22,37 @@ let _instance: MemoryLayer | null = null;
 export class MemoryLayer {
   private providers: MemoryProvider[] = [];
 
+  private _initPromise: Promise<void> | null = null;
+
   constructor() {
-    // Phase 1: Mem0 + Supabase bridge
+    // Phase 1: Mem0 + Supabase bridge (sync — always available)
     this.providers.push(mem0Provider);
 
     if (process.env.SUPABASE_URL) {
       this.providers.push(supabaseBridgeProvider);
     }
 
+    // Phase 2: TeleMem (async — check sidecar availability)
+    this._initPromise = this._initAsync();
+  }
+
+  private async _initAsync() {
+    try {
+      const teleMemReady = await isTeleMemAvailable();
+      if (teleMemReady) {
+        this.providers.push(teleMemProvider);
+      }
+    } catch {}
+
     console.error(
       `[memory-layer] Initialized with ${this.providers.length} providers: `
       + this.providers.map(p => p.name).join(", "),
     );
+  }
+
+  /** Wait for async providers to finish init */
+  async ready(): Promise<void> {
+    if (this._initPromise) await this._initPromise;
   }
 
   /** Store a memory event across all providers */
