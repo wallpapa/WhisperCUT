@@ -12,23 +12,27 @@ import type { MemoryProvider, MemoryEvent, RecallQuery, MemoryInsight } from "..
 // ── Mem0 Client ───────────────────────────────────────────────
 
 let mem0Client: any = null;
+let mem0InitFailed = false;
 
 function getMem0() {
   if (mem0Client) return mem0Client;
+  if (mem0InitFailed) return null;
 
   try {
-    // Dynamic import to avoid hard crash if mem0ai not installed
     const { MemoryClient } = require("mem0ai");
     const apiKey = process.env.MEM0_API_KEY;
 
-    if (apiKey) {
-      mem0Client = new MemoryClient({ apiKey });
-    } else {
-      // Local mode — no API key, uses in-memory storage
-      mem0Client = new MemoryClient();
+    if (!apiKey) {
+      console.error("[mem0] No MEM0_API_KEY — Mem0 disabled");
+      mem0InitFailed = true;
+      return null;
     }
+
+    mem0Client = new MemoryClient({ apiKey });
     return mem0Client;
-  } catch {
+  } catch (e: any) {
+    console.error(`[mem0] Init failed: ${e.message?.slice(0, 100)}`);
+    mem0InitFailed = true;
     return null;
   }
 }
@@ -122,17 +126,13 @@ export const mem0Provider: MemoryProvider = {
 
     const insights: MemoryInsight[] = [];
 
-    try {
-      // Level 1: Per-Topic (highest priority)
-      if (query.topic) {
+    // Level 1: Per-Topic (highest priority)
+    if (query.topic) {
+      try {
         const topicResults = await client.search(
           `${query.intent} for topic "${query.topic}"`,
-          {
-            user_id: `channel:${query.channel}`,
-            limit: query.limit || 3,
-          },
+          { user_id: `channel:${query.channel}`, limit: query.limit || 3 },
         );
-
         for (const r of topicResults?.results || topicResults || []) {
           insights.push({
             text: r.memory || r.text || String(r),
@@ -141,45 +141,39 @@ export const mem0Provider: MemoryProvider = {
             scope: "per_topic",
           });
         }
+      } catch (e: any) {
+        console.error(`[mem0] recall per-topic failed: ${e.message?.slice(0, 100)}`);
       }
+    }
 
-      // Level 2: Per-Channel
+    // Level 2: Per-Channel
+    try {
       const channelResults = await client.search(query.intent, {
-        user_id: `channel:${query.channel}`,
-        limit: query.limit || 3,
+        user_id: `channel:${query.channel}`, limit: query.limit || 3,
       });
-
       for (const r of channelResults?.results || channelResults || []) {
         const text = r.memory || r.text || String(r);
-        // Avoid duplicates from topic search
         if (!insights.some(i => i.text === text)) {
-          insights.push({
-            text,
-            confidence: r.score ?? 0.6,
-            source: "mem0",
-            scope: "per_channel",
-          });
-        }
-      }
-
-      // Level 3: Cross-Channel (search without user_id filter)
-      const globalResults = await client.search(query.intent, {
-        limit: 2,
-      });
-
-      for (const r of globalResults?.results || globalResults || []) {
-        const text = r.memory || r.text || String(r);
-        if (!insights.some(i => i.text === text)) {
-          insights.push({
-            text,
-            confidence: r.score ?? 0.4,
-            source: "mem0",
-            scope: "cross_channel",
-          });
+          insights.push({ text, confidence: r.score ?? 0.6, source: "mem0", scope: "per_channel" });
         }
       }
     } catch (e: any) {
-      console.error(`[mem0] recall failed: ${e.message}`);
+      console.error(`[mem0] recall per-channel failed: ${e.message?.slice(0, 100)}`);
+    }
+
+    // Level 3: Cross-Channel
+    try {
+      const globalResults = await client.search(query.intent, {
+        user_id: "whispercut-global", limit: 2,
+      });
+      for (const r of globalResults?.results || globalResults || []) {
+        const text = r.memory || r.text || String(r);
+        if (!insights.some(i => i.text === text)) {
+          insights.push({ text, confidence: r.score ?? 0.4, source: "mem0", scope: "cross_channel" });
+        }
+      }
+    } catch (e: any) {
+      console.error(`[mem0] recall cross-channel failed: ${e.message?.slice(0, 100)}`);
     }
 
     // Sort: per_topic first, then per_channel, then cross_channel
