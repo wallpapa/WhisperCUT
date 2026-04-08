@@ -50,6 +50,34 @@ description: |
 | 4-5 | Average | Rework |
 | 1-3 | Weak | Redesign |
 
+## INPUT YOU RECEIVE
+
+```
+- Screenshot or description of the first frame (0.1 second)
+- Clip data: title, metrics (saves, shares for screenshot value)
+```
+
+## YOUR TASK
+
+Score the first frame visual hook across 5 dimensions. Recommend improvements.
+
+## OUTPUT FORMAT
+
+```
+Visual Hook Score: X/10
+- Composition: X/12
+- Color: X/4
+- Text-on-Frame: X/6
+- Insert Image: X/4
+- Pattern Interrupt + Curiosity: X/10
+
+Recommendation: [specific visual improvement]
+```
+
+## RL SIGNALS TO EMIT
+
+- `visual_hook_score`: 0-10 (overall first-frame score)
+
 ## Research
 - Negativity Bias (Baumeister 2001): serious > smiling
 - Dual Coding (Paivio 1986): insert + face > face alone

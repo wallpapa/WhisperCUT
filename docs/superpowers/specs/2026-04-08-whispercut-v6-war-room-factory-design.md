@@ -458,25 +458,57 @@ Deferred to separate specs:
 
 ## 9. Implementation Scope
 
-### Files to Create (11 skill files)
+### Files Created (15 skill files) — COMPLETED
 
-1. `.claude/skills/war-room.md` — master War Room router
-2. `.claude/skills/content-factory.md` — content production pipeline
-3. `.claude/skills/agents/hook-master.md` — hook analysis agent
-4. `.claude/skills/agents/mind-reader.md` — consumer psychology agent
-5. `.claude/skills/agents/visual-sensei.md` — visual production agent
-6. `.claude/skills/agents/algo-whisperer.md` — TikTok algorithm agent
-7. `.claude/skills/agents/policy-guardian.md` — compliance agent
-8. `.claude/skills/agents/fear-crusher.md` — fear reduction agent
-9. `.claude/skills/agents/ad-detective.md` — organic vs paid detector
-10. `.claude/skills/agents/persona-template.md` — dynamic persona creator
-11. `.claude/skills/agents/debate-moderator.md` — cross-agent debate
+**Master Skills (2):**
+1. `.claude/skills/war-room.md` — master War Room router (`/whisper-army`)
+2. `.claude/skills/content-factory.md` — content production pipeline (`/whisper-create`)
 
-### Database Migrations (2)
+**Analysis Agents (8):**
+3. `.claude/skills/agents/hook-master.md` — hook analysis + emotional trigger evaluation
+4. `.claude/skills/agents/mind-reader.md` — consumer psychology + Thai cultural barriers
+5. `.claude/skills/agents/visual-sensei.md` — visual production + algorithm risk flags
+6. `.claude/skills/agents/algo-whisperer.md` — TikTok algorithm + distribution waves
+7. `.claude/skills/agents/policy-guardian.md` — Thai medical law + TikTok compliance
+8. `.claude/skills/agents/fear-crusher.md` — fear reduction + pain barrier analysis
+9. `.claude/skills/agents/ad-detective.md` — organic vs paid detection
+10. `.claude/skills/agents/conversion-doctor.md` — comment→DM→LINE→booking funnel
 
-1. `shared_memories` — add `agent_source` + `session_id` columns
-2. `video_performance` — add `organic_confidence` column
+**Retention Agents (2) — NEW:**
+11. `.claude/skills/agents/retention-analyzer.md` — retention curve prediction + diagnosis
+    - Mode A: Public URL analysis (proxy signals — save%, share%, comments)
+    - Mode B: Script analysis (pre-production — structure-based prediction)
+12. `.claude/skills/agents/retention-optimizer.md` — script retention engineering
+    - Emotional trigger phrases (MANDATORY first 1.5s)
+    - Retention bridge placement formula (12+ bridges per 60s)
+    - Pattern interrupts, open loops, re-hooks, curiosity escalation
+
+**Meta Agents (2):**
+13. `.claude/skills/agents/persona-template.md` — dynamic patient persona creator
+14. `.claude/skills/agents/debate-moderator.md` — cross-agent debate + synthesis
+
+**Pre-existing (1):**
+15. `.claude/skills/agents/visual-hook-agent.md` — first-frame visual hook scoring (5 dimensions)
+
+### Database Migrations (2) — COMPLETED
+
+1. `shared_memories` — added `agent_source` + `session_id` columns ✅
+2. `video_performance` — added `organic_confidence` column ✅
+
+### Emotional Trigger System — NEW Feature
+
+Every clip MUST open with an emotional trigger phrase in the first 1.5 seconds:
+- Integrated into: hook-master.md, retention-analyzer.md, retention-optimizer.md, content-factory.md
+- 8 trigger categories: Identity Threat, Social Proof, Parental Guilt, Authority, Loss Aversion, Controversial, Personal Story, Counter-Intuitive
+- Placement: text overlay (bold, RED/WHITE) + narration voice simultaneously
+
+### Retention Analysis Limitation
+
+TikTok and Instagram do NOT expose retention curves via public URLs. The system uses:
+- **Proxy signals** for existing clips: save%, share%, comment behavior
+- **Script-based prediction** for new content: structure analysis against 6 named patterns
+- **Future:** Integration with TikTok Business API / Instagram Graph API for creator-owned data (requires Business account + API access)
 
 ### Files NOT Modified
 
-All existing `src/` code stays untouched. The skill files orchestrate existing MCP tools via Claude Code's Agent tool — no new TypeScript needed for v6.0 War Room + Factory.
+All existing `src/` code stays untouched. The skill files orchestrate existing MCP tools via Claude Code's Agent tool — no new TypeScript needed for v6.0 War Room + Factory. TypeScript build: clean (0 errors).
