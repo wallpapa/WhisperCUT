@@ -23,6 +23,7 @@ import {
   buildCoverPrompt,
   detectTopicCategory,
 } from "../../engine/scene-dna.js";
+import { getMemoryLayer } from "../../memory/memory-layer.js";
 
 // ── Config ────────────────────────────────────────────────────
 
@@ -257,6 +258,20 @@ export async function handleGenerateCover(args: {
   const scene = await generateSceneDNA(topic);
   const category = detectTopicCategory(topic);
 
+  // 1.5 Recall memory insights
+  const memory = getMemoryLayer();
+  const insights = await memory.recall({
+    channel,
+    topic,
+    intent: `best cover style for ${category} topic`,
+    limit: 5,
+  });
+
+  const memoryContext = memory.formatForPrompt(insights);
+  if (memoryContext) {
+    console.error(`[cover-design] Memory recalled ${insights.length} insights`);
+  }
+
   // 2. Get per-channel RL preferences
   const prefs = await getChannelPreferences(channel);
 
@@ -412,7 +427,7 @@ export async function handleSelectCoverAI(args: {
     // 1. Get generation record
     const { data: gen } = await supabase
       .from("cover_generations")
-      .select("variants")
+      .select("variants, topic")
       .eq("id", generation_id)
       .single();
 
@@ -434,6 +449,38 @@ export async function handleSelectCoverAI(args: {
         await upsertCoverPreference(supabase, channel, dim, value, delta);
         updatedDimensions++;
       }
+    }
+
+    // 3.5 Store selection in memory layer
+    try {
+      const memory = getMemoryLayer();
+      const selectedVariant = variants.find((v: any) => v.label === selected);
+
+      if (selectedVariant?.style) {
+        await memory.remember({
+          type: "cover_selected",
+          channel,
+          topic: gen.topic || "unknown",
+          data: {
+            ...selectedVariant.style,
+            feedback,
+            rejected_count: variants.length - 1,
+          },
+        });
+
+        for (const v of variants) {
+          if (v.label !== selected && v.style) {
+            await memory.remember({
+              type: "cover_rejected",
+              channel,
+              topic: gen.topic || "unknown",
+              data: { ...v.style, feedback: "not selected" },
+            });
+          }
+        }
+      }
+    } catch (e: any) {
+      console.error(`[cover-design] Memory remember failed: ${e.message}`);
     }
 
     // 3. Mark generation as selected
