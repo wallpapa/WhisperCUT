@@ -108,6 +108,12 @@ import {
   handleGenerateAvatarPortraits, generateAvatarPortraitsTool,
 } from "./tools/avatar-studio.js";
 
+// ── LivePortrait (Mac M-series Local Lipsync) ───────────────────
+import {
+  handleLivePortrait, livePortraitTool,
+  handleLivePortraitStatus, livePortraitStatusTool,
+} from "./tools/liveportrait.js";
+
 // ── DARWIN Engine ───────────────────────────────────────────────
 import {
   handleDarwin, darwinTool,
@@ -218,6 +224,9 @@ const tools = [
   // Video Studio (Gemini Video Analysis + Veo 3.1 B-Roll)
   analyzeVideoTool,
   generateBRollTool,
+  // LivePortrait (Mac M-series Local Lipsync)
+  livePortraitTool,
+  livePortraitStatusTool,
   // DARWIN Engine (Autonomous Workflow + Hypothesis + VibeScore)
   darwinTool,
   hypothesesTool,
@@ -293,6 +302,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case "whispercut_kling_image_to_video": return await handleKlingImageToVideo(args as any);
       // Avatar Studio
       case "whispercut_generate_avatar_portraits": return await handleGenerateAvatarPortraits(args as any);
+      // LivePortrait
+      case "whispercut_liveportrait":        return await handleLivePortrait(args as any);
+      case "whispercut_liveportrait_status": return await handleLivePortraitStatus();
       // DARWIN Engine
       case "whispercut_darwin":              return await handleDarwin(args as any);
       case "whispercut_hypotheses":          return await handleHypotheses(args as any);
