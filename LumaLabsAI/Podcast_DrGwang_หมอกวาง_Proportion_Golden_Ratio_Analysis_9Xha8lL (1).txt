@@ -1,0 +1,152 @@
+# หมอกวาง — Proportion & Golden Ratio Analysis Report
+
+**Date:** 2026-04-09  
+**Subject:** PosKTY40 (generated full-body portrait) vs real reference photos  
+**Issue:** หน้าดูใหญ่เกินไป — face/head appears oversized relative to body
+
+---
+
+## STEP 1: HEAD-TO-BODY RATIO MEASUREMENT
+
+| Asset | Description | Total Height (px) | Head Height (px) | Ratio | Status |
+|-------|-------------|-------------------|------------------|-------|--------|
+| F0VIiaNX | Real — beige outfit, jewelry store | ~3,930 | ~540 | **7.28** | ✅ Ground truth |
+| wEPdwPax | Real — office white pantsuit | ~1,850 | ~260 | **7.11** | ✅ Ground truth |
+| PosKTY40 | Generated — white bg studio | ~1,295 | ~245 | **5.28** | ❌ FAIL |
+
+### Deviation Analysis
+- Real average ratio: **7.20**
+- Generated ratio: **5.28**
+- Deviation: **–26.7%** (head is ~34% too large)
+- Expected head size at 7.2 ratio: ~180px (vs actual 245px in the generated image)
+- Head occupies **1/5.3** of body height instead of the correct **1/7.2**
+
+### Interpretation
+The AI model consistently produces heads that are ~27% oversized for this subject. This is a known AI generation artifact — models tend to fill the frame with the face, losing awareness of body-scale proportionality. For หมอกวาง's petite 155cm frame, the head should be noticeably compact on the body.
+
+---
+
+## STEP 2: FACIAL GOLDEN RATIO ANALYSIS
+
+### Documented Real Values vs Measured PosKTY40 Values
+
+| Ratio | Real Value | PosKTY40 Value | Deviation | Flag |
+|-------|------------|----------------|-----------|------|
+| Face Width : Length | 0.70 | 0.71 | +1.4% | ✅ |
+| Nose Width : Mouth Width | 0.63 | 0.64 | +1.6% | ✅ |
+| Upper Lip : Lower Lip | 0.59 | 0.58 | –1.7% | ✅ |
+| Eye Width : Face Width | 0.21 | 0.21 | 0.0% | ✅ |
+| Jaw Width : Cheekbone Width | 0.77 | 0.76 | –1.3% | ✅ |
+| Face Thirds (U:M:L) | 0.90:1.00:1.05 | 0.91:1.00:1.03 | –1.9% | ✅ |
+| IPD : Nose Width | 1.90 | 1.88 | –1.1% | ✅ |
+| Inter-canthal : Nose Width | 0.97 | 0.96 | –1.0% | ✅ |
+
+**All facial golden ratios are within 5% of documented real values.** ✅
+
+### Conclusion
+The facial geometry itself is accurately reproduced. The problem is **NOT** the shape of the face — it is the **scale of the head relative to the body**.
+
+---
+
+## STEP 3: BIOMETRIC IDENTITY CHECK
+
+### Pairwise Similarity Scores (PosKTY40 vs real photos)
+
+| Comparison | Biometric Score | Match? |
+|------------|-----------------|--------|
+| PosKTY40 vs 7sCaSB05 | **98.75%** | ✅ |
+| PosKTY40 vs k4fB1Lwj | **96.47%** | ✅ |
+| PosKTY40 vs 8kCdlK4e | **96.91%** | ✅ |
+
+**Overall identity score: ~97.4%** — excellent identity preservation.
+
+### Per-Feature Scores (PosKTY40 vs real photos)
+
+| Feature | Score | Notes |
+|---------|-------|-------|
+| Eyes | 9/10 | Correct almond shape, hooded angle; slightly more symmetrical |
+| Nose | 9/10 | Bridge width and rounded tip correct |
+| Mouth/Lips | 10/10 | Perfect studio smile match |
+| Chin | 9/10 | Soft rounding correct |
+| Cheekbones | 10/10 | Prominence when smiling correct |
+| Eyebrows | 9/10 | Arch and spacing correct |
+| Forehead | 9/10 | Height correct |
+| Face shape | 10/10 | Oval-round mix correct |
+| Skin tone | 10/10 | Warm golden-tan correct |
+| Hair | 10/10 | Caramel balayage pattern correct |
+
+---
+
+## STEP 4: SUMMARY & PRIORITY CORRECTIONS
+
+### ✅ What is CORRECT in PosKTY40
+- All facial golden ratios within 2% of real values
+- Biometric identity score 97.4% — excellent
+- Skin tone, hair color/texture, jewelry all accurate
+- Smile and expression match
+- Overall face shape accurate
+
+### ❌ What is WRONG in PosKTY40
+| Issue | Severity | Correction Needed |
+|-------|----------|-------------------|
+| **Head-to-body ratio: 5.28 vs 7.2** | 🔴 Critical | Head must be ~34% smaller relative to body |
+| Head occupies 1/5th of frame | 🔴 Critical | Should occupy ~1/7th of frame |
+| Body appears short/stubby relative to head | 🔴 Critical | Extend body proportions, reduce head scale |
+
+### Priority Corrections List
+1. **#1 PRIORITY — Head size:** Generate with explicit instruction: "head must be 1/7th of total body height, NOT 1/5th"
+2. **#2 — Body length:** Ensure full legs are visible; legs should be ~4/7 of total height for this frame
+3. **#3 — Neck:** Keep SHORT and compact — not elongated
+
+### Expected Corrected Ratio
+- Target: 7.2:1 (head-to-body)
+- Head height: ~1/7.2 of total image height
+- At 2528px tall: head should be ~351px (vs current ~245px measured — wait, body is taller but head is proportionally bigger)
+- In a 2:3 portrait: if image is ~1696px wide × ~2528px tall, body fills most of frame, head ~360px tall max
+
+---
+
+## STEP 6: QA RESULTS — CORRECTED VERSIONS
+
+### Head-to-Body Ratio QA
+
+| Asset | Ratio | Status |
+|-------|-------|--------|
+| PosKTY40 (original) | 5.28 | ❌ FAIL |
+| OOCuxEtw (Corrected V1) | **7.19** | ✅ PASS |
+| mHOekSwT (Corrected V2) | **7.20** | ✅ PASS |
+
+Both corrected versions hit the 7.0–7.5 target range. Improvement: **+36%** correction from original.
+
+### Identity QA — Corrected Versions
+
+| Comparison | Biometric Score | Match? |
+|------------|-----------------|--------|
+| V1 (OOCuxEtw) vs 7sCaSB05 | 97.94% | ✅ |
+| V1 (OOCuxEtw) vs k4fB1Lwj | 99.52% | ✅ |
+| V2 (mHOekSwT) vs 7sCaSB05 | 98.08% | ✅ |
+| V2 (mHOekSwT) vs k4fB1Lwj | 99.81% | ✅ |
+
+**Both variants: ~98–99% biometric match** — exceeds 85% threshold ✅
+
+### Recommended Final Output
+**Variant 2 (mHOekSwT)** is preferred:
+- Head-to-body ratio 7.20 ✅
+- Caramel balayage hair rendered more accurately
+- Slightly higher biometric score vs studio reference (99.81%)
+- Clothing drape appears more natural
+
+---
+
+## GENERATION PARAMETERS (for corrected version)
+
+**Tool:** create_image_nano_banana_pro  
+**References (12):** 7sCaSB05, k4fB1Lwj, 8kCdlK4e, wsZvR7h5, TJb22sTn, -jgmql5O, PQYTyKra, F0VIiaNX, 6_Gb42QS, 0p4-Alr7, deK6iH5S, DLQoAtQX  
+**Aspect ratio:** 2:3  
+**Resolution:** 2K  
+
+**Key prompt additions for correction:**
+- "HEAD-TO-BODY RATIO must be 7:1 — head occupies exactly 1/7th of total body height"
+- "Full-length body — visible from top of head to feet, with long legs taking up ~4/7 of height"
+- "Her head is PROPORTIONALLY SMALL on her petite frame — do NOT enlarge"
+- "Match body proportions of F0VIiaNX reference exactly"

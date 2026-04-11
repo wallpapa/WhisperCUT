@@ -1,0 +1,31 @@
+# Lipsync Production Notes — SchoolFinder EP.1
+
+## Lipsynced Segment Inventory
+
+| Segment | Time | Video ID | Audio ID | Lipsync ID | Duration |
+|---------|------|----------|----------|------------|---------|
+| Hook | 0–8s | V1ZLP-dL | W0PYRyLa | **ynoFv1WS** | ~8s |
+| Point 1a (RAE Research) | 8–22s | EjOKPNg7 | NvdZn_EH | **pxsNmEgj** | ~14s |
+| Point 1b (Hockey) | 22–37s | bd5kxJjW | Ru9MHopf | **WXMFjr1W** | ~15s |
+| Point 2 (Thai Cutoff) | 37–52s | McZeXQiX | 2eW80pEu | **t0pGKiCe** | ~15s |
+| Point 3 (Research detail) | 52–63s | HNOrjgg0 | BprTH-9B | **ilqubj43** | ~11s |
+| Summary | 63–74s | g56wahOZ | CKpRvVTP | **YiFcGuP8** | ~11s |
+| CTA-a | 74–87s | TOlilWHT | gtZC4CBz | **GIskob46** | ~13s |
+| CTA-b | 87–90.8s | TOlilWHT | U2I3jz9R | **E35uSNVd** | ~4s |
+
+## QA Summary
+All 8 clips **PASS**. Lipsync quality: Excellent. Face consistency: Perfect across all segments.  
+Minor artifact: Slight mouth softening during rapid complex syllables — acceptable for production.
+
+## Notes for Final Assembly
+- CTA is split into CTA-a + CTA-b (stitch together before compositing)
+- Point 1 is split into 1a + 1b (stitch together before compositing)
+- All clips use 9:16 aspect ratio (portrait/vertical)
+- Audio: TTS re-generated per segment using same Bella voice settings (style=0.2, stability=0.5, similarity=0.75)
+- Source keyframe image: _ATiF9fC (solo podcast shot — user said "ใกล้เคียงมาก")
+
+## Infographics for Next Step (not in this job)
+- Kids comparison: 2GG0rSI0
+- TIMSS score gap: 1nPhvTZ0
+- Hockey birth month: jVqwy3Mo
+- Thai cutoff timeline: hrUjb7an

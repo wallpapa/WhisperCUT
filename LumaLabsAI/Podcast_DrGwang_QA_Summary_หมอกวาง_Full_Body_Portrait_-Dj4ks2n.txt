@@ -1,0 +1,38 @@
+# QA Summary — หมอกวาง Full Body Portrait Variants
+
+## Biometric Identity Scores
+| Variant | vs 7sCaSB05 (Primary) | vs -jgmql5O (Approved Face) | vs F0VIiaNX (Body Ref) |
+|---|---|---|---|
+| **Variant A (RsNHYft3)** | **98.0%** ✅ | **99.3%** ✅ | **98.4%** ✅ |
+| **Variant B (8tI_I4yH)** | **98.3%** ✅ | **90.4%** ✅ | **99.0%** ✅ |
+
+Both variants far exceed the 85% identity threshold — exceptional biometric match.
+
+---
+
+## Proportion Fixes Assessment
+
+| Issue | Target | Variant A | Variant B |
+|---|---|---|---|
+| Head:Body ratio | 7.3:1 | ~7.0:1 ✅ (improved from 6.6:1) | ~7.2:1 ✅ (near target) |
+| Forehead height | 0.90x middle | Improved — shorter hairline ✅ | More clearly short forehead ✅ |
+| Face shape W:L | 0.70 oval | Slightly oval ✅ | More convincingly oval ✅ |
+| Jaw:Cheekbone | 0.77 | Tapers nicely ✅ | Well-tapered ✅ |
+| Nose:Mouth ratio | 0.63 | Proportionate ✅ | Proportionate ✅ |
+| Upper:Lower lip | 0.59 | Lower fuller ✅ | Lower fuller ✅ |
+
+---
+
+## Feature Preservation (must be 8+)
+- **Eyes**: Hooded lid, correct spacing — ✅ both variants
+- **Nose**: Rounded tip, correct bridge — ✅ both variants
+- **Chin**: Soft rounded — ✅ both variants
+- **Cheekbones**: Natural — ✅ both variants
+
+---
+
+## Verdict
+- **Variant B (8tI_I4yH)** is the **superior output**: stronger oval face shape, smaller head relative to body (closer to 7.3:1), and near-perfect 98.3% identity match to primary reference
+- **Variant A (RsNHYft3)** is strong backup: 99.3% match to approved face target
+- Both pass QA at 90%+ biometric identity — no regeneration needed
+- **Recommended: Variant B** as the definitive portrait

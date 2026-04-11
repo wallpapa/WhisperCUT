@@ -1,0 +1,213 @@
+# 🧬 Digital Twin Character Creation Process
+## หมอกวาง (Dr. Waleerat) — Lessons Learned & Reusable Pipeline
+
+---
+
+## Overview
+- สร้าง Digital Twin ของคนจริงให้ได้ความเหมือนระดับ Hyperrealistic
+- ใช้สำหรับวิดีโอ, podcast, social media content
+- ระยะเวลา: ~4-6 ชั่วโมง (ครั้งแรก) → 30 นาทีต่อ scene (หลังมี reference sheet)
+- ต้องการ: รูปถ่ายจริง 20-40 รูป หลากหลายมุม
+
+---
+
+## PHASE 1: Reference Collection (รวบรวมรูปต้นฉบับ)
+
+### 1.1 รูปที่ต้องมี (ขั้นต่ำ 6 ประเภท)
+
+| ประเภท | จำนวน | ลักษณะ | ความสำคัญ |
+|---|---|---|---|
+| Close-up Frontal Neutral | 2-3 รูป | Selfie/ภาพใกล้ หน้าตรง ไม่ยิ้ม | ⭐⭐⭐ โครงหน้า |
+| Smile with Teeth | 2-3 รูป | ยิ้มเห็นฟันชัด แสงดี | ⭐⭐⭐ ฟัน/รอยยิ้ม |
+| Profile 90° | 1-2 รูป | ด้านข้างจริง 90 องศา | ⭐⭐⭐ 3D geometry |
+| 3/4 Angle | 1-2 รูป | มุมเฉียง 45° | ⭐⭐ โหนกแก้ม/จมูก |
+| Full Body | 2-3 รูป | เต็มตัว หัวจรดเท้า | ⭐⭐ สัดส่วนร่างกาย |
+| Various Lighting | 3-5 รูป | แสงต่างๆ | ⭐ cross-reference |
+
+### 1.2 ข้อมูลยืนยันจากเจ้าตัว (CRITICAL)
+- ส่วนสูงจริง (cm) — ห้ามประมาณ
+- ลักษณะเด่นที่ต้องรักษา (ไฝ, แผล, tattoo)
+- ชุดที่ต้องการใส่ใน Digital Twin
+
+---
+
+## PHASE 2: Subject Extraction (ลบพื้นหลัง)
+- เลือกรูปที่ดีที่สุด 6 รูป จากแต่ละประเภท
+- ใช้ component:subject-extraction strategy
+- ลบพื้นหลัง → cutout บนพื้นขาว
+- QA: ขอบสะอาด, เครื่องประดับครบ, ท่าทางไม่เปลี่ยน
+
+---
+
+## PHASE 3: Golden Ratio Facial Mapping (วัดสัดส่วน)
+
+### 3.1 ระบบวัด 3 ชั้น
+1. **Rule of Fifths (แนวตั้ง 5 ส่วน):** ขอบหน้า→หางตา→หัวตา→หัวตา→หางตา→ขอบหน้า
+2. **Rule of Thirds (แนวนอน 3 ส่วน):** ไรผม→คิ้ว→ฐานจมูก→คาง
+3. **Golden Ratio (φ=1.618):** Face W:L, Nose:Mouth, Lip ratio, Eye:Face, Jaw:Cheek
+
+### 3.2 ค่าที่ต้องวัดและบันทึก
+
+| ค่า | วัดจาก | ค่าหมอกวาง | เทียบ φ |
+|---|---|---|---|
+| Face Width:Length | หน้าตรง | 0.70 | +13% กว้างกว่า golden |
+| Nose:Mouth | หน้าตรง | 0.63 | ≈ φ (สมบูรณ์แบบ!) |
+| Upper:Lower Lip | หน้าตรง | 0.59 | ≈ φ (ใกล้เคียง) |
+| Eye:Face Width | หน้าตรง | 0.21 | = 1/5 rule (perfect) |
+| Jaw:Cheekbone | หน้าตรง | 0.77 | กรามชัด |
+| Face Thirds | หน้าตรง | 0.90:1.00:1.05 | หน้าผากสั้น |
+| Head:Body | เต็มตัว | 7.3:1 | 160cm |
+
+### 3.3 Profile Measurements
+- **Forehead projection:** ~1.3-1.4x chin baseline
+- **Nasolabial angle:** ~95°
+- **Profile classification:** mild Class II convexity
+- **Ricketts E-line:** upper lip ~3mm behind, lower ~2mm behind
+
+---
+
+## PHASE 4: Model Comparison (เทียบ AI Models)
+
+### 4.1 ทดสอบ 4 Models ด้วย prompt + reference เดียวกัน
+
+| Model | จุดแข็ง | Ref สูงสุด | ผลหมอกวาง |
+|---|---|---|---|
+| Nano Banana Pro | Photorealism, ref เยอะ | 14 รูป | 🥇 Full body (98.9%+) |
+| Uni-1 | Body proportions ดี | 9 รูป | 🥇 Body ratio |
+| Seedream | หน้าเหมือนสุด | จำกัด | 🥇 Face only (99.84%) |
+| GPT Image 1.5 | Multi-ref ซับซ้อน | 4 รูป | Good overall |
+
+### 4.2 Recommendation
+- **Full body shots:** Nano Banana Pro (12+ refs)
+- **Face close-ups:** Seedream
+- **Body proportions:** Uni-1
+- **Complex composites:** GPT Image 1.5
+
+---
+
+## PHASE 5: Character Reference Sheet (6 มุม)
+
+### 5.1 สร้างทีละรูป แยกกัน (ไม่ยัดรวม grid)
+
+| # | มุม | Ratio | Primary Ref | Chain From |
+|---|---|---|---|---|
+| 1 | Front Face | 1:1 | REF_STRUCTURAL | — |
+| 2 | Side Profile | 1:1 | REF_VOLUMETRIC + Profile | Front Face |
+| 3 | Full Body Front | 2:3 | Cutout + Full Body | Front Face |
+| 4 | Full Body Back | 2:3 | Front output | Full Body Front |
+| 5 | Full Body Left Profile | 2:3 | Profile + Front | Full Body Front |
+| 6 | Full Body Right Profile | 2:3 | Profile + Left | Left Profile |
+
+### 5.2 QA ทุกรูป
+- **Biometric identity-consistency:** 85%+ vs ต้นฉบับ
+- **Golden Ratio:** ทุกค่าต่างไม่เกิน 5%
+- **Cross-pose consistency:** 8+/10
+
+---
+
+## PHASE 6: Iterative Refinement (ปรับแต่งจุดเฉพาะ)
+
+### 6.1 ปัญหาที่มักเจอ & วิธีแก้
+
+| ปัญหา | สาเหตุ | Prompt Fix | วิธี |
+|---|---|---|---|
+| หน้าผากยุบ | AI ทำ profile แบน | "prominent convex forehead projection" | Regenerate |
+| คอยาว | AI ยืดคอ | "SHORT neck, petite frame [height]cm" | Regenerate |
+| คางแหลม | AI ทำ V-shape | "rounded soft chin, Jaw:Cheek=0.77" | Modify |
+| หน้ากว้าง | AI ทำหน้ากลม | "oval face, Face W:L=0.70" | Modify |
+| ปาก/ฟันผิด | ขาด ref ยิ้มดี | เพิ่ม REF_EXPRESSION ที่เห็นฟัน | Regenerate |
+| หัวใหญ่เกิน | AI ขยายหัว | "head-to-body ratio 7.3:1" | Regenerate |
+| หน้าไม่เหมือนเลย | ref น้อย | เพิ่ม ref ให้สูงสุด 12-14 รูป | Regenerate |
+
+### 6.2 Modify vs Regenerate Decision
+- **ปรับเล็กน้อย** (หน้าเรียว, คางกลม, สีผิว): ใช้ Modify Image → เร็ว รักษาส่วนอื่น
+- **ปรับใหญ่** (หน้าไม่เหมือน, สัดส่วนผิดมาก): Generate ใหม่ → แม่นกว่า
+- ลอง Modify ก่อนเสมอ ถ้าไม่ได้ค่อย Regenerate
+
+---
+
+## PHASE 7: Scene Placement (วางในฉาก)
+- ใช้ Approved Reference Sheet + Scene Base Image
+- Modify ภาพฉากโดยอ้าง approved face refs
+- ระบุชุด, ท่าทาง, expression ชัดเจน
+- QA biometric ในฉาก: 85%+
+
+---
+
+## PHASE 8: Video Production
+
+### Pipeline:
+1. **TTS** — สร้างเสียงพากย์จากสคริปต์ (เลือก voice ที่เหมาะ)
+2. **Keyframes** — สร้างภาพ character ในแต่ละ segment
+3. **Video Generation** — สร้างวิดีโอจาก keyframes
+4. **Lipsync** — ซิงค์ปากกับเสียง
+5. **Infographics** — สร้างภาพประกอบ/กราฟ
+6. **Render** — รวม text overlays + subtitles + BGM + stitch
+
+---
+
+## KEY LEARNINGS
+
+### ✅ สิ่งที่ได้ผล
+1. 12+ references ใน Nano Banana Pro → หน้าเหมือนที่สุด
+2. Golden Ratio วัดตัวเลข → QA แม่นกว่าดูด้วยตาเปล่า
+3. Chain reference ทีละรูป → consistency สูง
+4. Modify เฉพาะจุด → เร็วกว่า generate ใหม่ทั้งรูป
+5. ข้อมูลจากเจ้าตัว (ส่วนสูงจริง) → สัดส่วนถูกต้อง
+6. ศึกษารูปต้นฉบับละเอียดก่อน generate → ลดรอบแก้ไข
+7. ทดสอบหลาย models → เลือกตัวที่เหมาะกับแต่ละงาน
+
+### ❌ สิ่งที่ไม่ได้ผล
+1. ยัดทุกอย่างใน prompt เดียว → AI สับสน
+2. Reference น้อย (1-3 รูป) → หน้าไม่เหมือน
+3. ไม่ระบุ negative constraints → AI แต่งสวย/genericize
+4. ไม่มี profile จริง → หน้าผากผิดรูปทุกครั้ง
+5. ประมาณส่วนสูงเอง → head:body ratio ผิด
+
+---
+
+## APPROVED ASSETS — หมอกวาง
+
+| Asset ID | ประเภท | Biometric Score | Status |
+|---|---|---|---|
+| -jgmql5O | Front Face Portrait | 99.7% | ✅ APPROVED |
+| PQYTyKra | Side Profile Portrait | 99.3% | ✅ APPROVED |
+| Q5BrqHM3 | Full Body Left Profile | 99.98% | ✅ APPROVED |
+| RsNHYft3 | Best Full Body Front | User pick "เหมือนสุด" | ✅ APPROVED |
+| og5PUAHZ | Slim Face Version (4K) | 99% | ✅ APPROVED |
+| wisMg18j | Podcast Two-Shot | 93.2% | ✅ APPROVED |
+| t6q9CXxV | Podcast Beige Outfit | 93.2% | ✅ APPROVED |
+
+---
+
+## REFERENCE DOCUMENTS
+
+| Doc | Asset ID | เนื้อหา |
+|---|---|---|
+| Golden Ratio Facial Profile | v8hpHEYq | สัดส่วนใบหน้าทุกค่า (10 ratios) |
+| Master Anatomical Profile | ySiYfjyz | Hyperrealistic biometric profile (14 images) |
+| Proportion Analysis (160cm) | OTZWpUSv | Head:Body + Golden Ratio audit + corrections |
+| Clone Avatar Plan | 4GcttRyG | แผนงาน 4 phases เดิม |
+
+---
+
+## ORIGINAL REFERENCE PHOTOS (Ground Truth)
+
+| Asset ID | ใช้เป็น | ลักษณะ |
+|---|---|---|
+| 7sCaSB05 | REF_STRUCTURAL | Selfie หน้าตรง สงบ (ใกล้สุด) |
+| k4fB1Lwj | REF_EXPRESSION | สตูดิโอ ยิ้มเห็นฟัน |
+| wsZvR7h5 | REF_PROFILE | Profile 90° (รูปเดียว) |
+| TJb22sTn | REF_VOLUMETRIC | 3/4 angle คมชัด |
+| F0VIiaNX | BODY_PROPORTION | เต็มตัว ชุดเบจ (สัดส่วนชัด) |
+| 8kCdlK4e | FACE_CROSSREF | Selfie ใกล้ neutral #2 |
+| 6_Gb42QS | FACE_CROSSREF | Selfie ใกล้ neutral #3 |
+| 0p4-Alr7 | SMILE_NATURAL | ยิ้มจริง ถือดอกไม้ |
+| deK6iH5S | FULL_BODY_EVENT | เต็มตัว งาน event |
+
+---
+
+*Process created: 2026-04-09*
+*Subject: หมอกวาง (Dr. Waleerat) — 160cm*
+*Total reference images used: 40+*
+*Best model for this subject: Nano Banana Pro (12 refs)*

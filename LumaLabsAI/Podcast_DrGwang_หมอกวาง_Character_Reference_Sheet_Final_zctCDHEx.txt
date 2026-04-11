@@ -1,0 +1,43 @@
+# หมอกวาง Character Reference Sheet — Final Approved Assets
+
+## 📋 Reference Sheet Summary
+
+| # | Pose | Asset ID | Biometric Score | Status |
+|---|------|----------|----------------|--------|
+| 1 | Front Face Portrait (1:1) | `-jgmql5O` | 99.7% | ✅ APPROVED |
+| 2 | Side Profile Portrait (1:1) | `PQYTyKra` | 99.3% | ✅ APPROVED |
+| 3 | Full Body Front (2:3) | `-gZ8f_HM` | — | ✅ APPROVED |
+| 4 | Full Body Back (2:3) | `-5pcY7JL` | — | ✅ APPROVED |
+| 5 | Full Body Left Profile (2:3) | `Q5BrqHM3` | 99.98% | ✅ APPROVED |
+| 6 | Full Body Right Profile (2:3) | `fyS9JjzS` | 98.9% | ✅ APPROVED (Fixed) |
+
+---
+
+## 📑 Supporting Documents
+
+| Document | Asset ID | Description |
+|----------|----------|-------------|
+| Golden Ratio Profile Analysis | `v8hpHEYq` | Facial proportions measured against golden ratio |
+| Anatomical Profile Notes | `ySiYfjyz` | Detailed anatomical breakdown of profile features |
+
+---
+
+## 🔑 Key Identity Notes
+
+- **Height / Build:** Petite ~155cm, slender frame, SHORT compact neck
+- **Facial Profile:** Prominently CONVEX — strong forward-projecting forehead, prominent rounded nose tip as most forward point, defined lips, slightly recessed chin, rounded soft jaw (NOT pointy)
+- **Hair:** Dark wavy hair with honey/caramel balayage highlights, past shoulders
+- **Accessories:** Gold watch (left wrist), small gold circular pendant necklace, gold C-shaped hoop earrings
+- **Outfit (reference set):** Beige/cream sleeveless top, wide-leg beige pants, elegant heeled sandals
+- **Skin tone:** Warm Thai skin tone, smooth complexion
+
+---
+
+## 🔄 Fix History
+
+- **SoSOF9kh** (original right profile): Marked ⚠️ Needs Review — forehead not prominent enough
+- **fyS9JjzS** (fixed right profile): Forehead pushed forward to match PQYTyKra's convex projection — biometric 98.9% ✅
+
+---
+
+*Generated: 2026-04-09 | Character: หมอกวาง*

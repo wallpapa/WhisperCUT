@@ -1,0 +1,43 @@
+# Clone Avatar Plan
+
+## เป้าหมาย
+สร้าง Digital Double ของหมอกวาง (Dr. Waleerat) อย่างเป็นระบบ ทีละมุม เพื่อใช้เป็น master reference สำหรับทุกงานต่อไป
+
+---
+
+## Phase 1: Subject Extraction (ลบพื้นหลัง)
+
+Extract หมอกวางจาก 6 รูปต้นฉบับที่ดีที่สุด ลบพื้นหลังให้เหลือแค่ตัวบนพื้นขาว:
+
+1. **7sCaSB05** — Selfie หน้าตรง สงบ (ใกล้มาก)
+2. **k4fB1Lwj** — สตูดิโอ ยิ้มเห็นฟัน (ชัดมาก)
+3. **wsZvR7h5** — Profile 90° ด้านข้าง (รูปเดียว)
+4. **TJb22sTn** — มุม 3/4 ผมพลิ้ว (คมชัด)
+5. **F0VIiaNX** — เต็มตัว ร้านจิวเวลรี่ (สัดส่วนชัด)
+6. **wEPdwPax** — เต็มตัว Office ชุดขาว (สัดส่วนดี)
+
+**เครื่องมือ:** Remove Background / Subject Extraction
+**QA:** ตรวจขอบสะอาด ไม่มี background เหลือ รักษาเครื่องประดับ/ผม/เสื้อผ้าครบ
+
+## Phase 2: Character Reference Sheet (6 มุม แยกทีละรูป)
+
+สร้างภาพหมอกวาง 6 มุม บนพื้นขาว แต่ละมุมแยกเป็นรูปเดียว:
+
+1. **Front Face Portrait** (1:1) — หน้าตรง ไหล่ขึ้นไป neutral expression
+2. **Side Profile Portrait** (1:1) — ด้านข้าง 90° ใช้ wsZvR7h5 ช่วย
+3. **Full Body Front** (2:3) — เต็มตัว หน้าตรง ยืน
+4. **Full Body Back** (2:3) — เต็มตัว หลัง
+5. **Full Body Left Profile** (2:3) — เต็มตัว ด้านซ้าย
+6. **Full Body Right Profile** (2:3) — เต็มตัว ด้านขวา
+
+**สำคัญ:** แต่ละรูปต้อง chain reference จากรูปก่อนหน้า เพื่อรักษาความสม่ำเสมอ
+**ชุด:** เบจ sleeveless + กางเกงขากว้าง + นาฬิกาทอง + สร้อยจี้ + ต่างหูห่วง
+**QA:** เทียบหน้ากับต้นฉบับทุกรูป ต้อง 85%+ biometric
+
+## Phase 3: Podcast Scene Placement
+
+ใช้ reference sheet ที่ล็อคแล้ววาง character เข้าฉาก podcast 4 มุมกล้อง
+
+## Phase 4: Video + Lipsync
+
+สร้างวิดีโอ + TTS + Lipsync ตามแผนเดิม

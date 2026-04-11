@@ -1,0 +1,161 @@
+# หมอกวาง — Unified Anatomical Profile (Level 3 Gold Standard)
+*Cross-referenced from: REF_EXPRESSION (xFAkaifS), REF_STRUCTURAL (jaAla7Xo), REF_VOLUMETRIC (STEXeQDP)*
+
+---
+
+## I. BROAD FACIAL CHARACTERISTICS
+
+**Skin Tone:** Light/Fair. Neutral-to-warm undertone. Under tungsten/indoor lighting (xFAkaifS): warm golden ivory. Under cool LED/studio lighting (STEXeQDP): neutral ivory. Base skin value: light porcelain with warm undertone.
+**Skin Texture:** Extremely smooth with minimal pore visibility. Matte-to-satin finish. No visible acne scarring. Very low surface roughness.
+**Apparent Age:** 25–33 years.
+**Gender Presentation:** Female, feminine presentation.
+
+---
+
+## II. FACE SHAPE & BONE STRUCTURE
+
+**Face Shape:** Oval-Round with soft contours. Not angular. Widest point at mid-cheek, tapering gently to rounded chin.
+
+**Jaw/Mandible:**
+- Shape: Soft, rounded mandible — no sharp angular corners
+- Width: Medium-narrow; lower face is slim
+- Mandible Angle: Low/Obtuse — very gentle, rounded jaw corners
+- Jaw Sharpness: Soft — no crisp jawline edge
+- Submental Fullness: Low — flat/tight under-chin area, no double chin
+- Jaw-to-Neck Transition: Gradual/Blended — smooth merge from jaw into neck
+
+**Cheekbones:**
+- Height: Medium — widest point sits mid-face, not near eyes
+- Protrusion: Soft/Medium — not dramatically prominent
+- Width: Medium — cheekbones do not extend unusually wide
+
+**Forehead:**
+- Size: Medium-high vertical height
+- Width: Broad-medium — wide temples
+
+**Chin:**
+- Length: Short-medium
+- Width: Narrow — tapered chin
+- Prominence: Slightly recessed in profile; neutral in frontal view
+- Shape: Rounded
+
+**Symmetry:**
+- Bilateral Symmetry: High — left and right sides closely mirror each other
+- Feature Alignment: Aligned — eyes, brows, mouth corners at equivalent levels
+- Vertical Alignment: Aligned — nose, lips, chin along central axis
+
+**Proportions:**
+- Upper vs Mid vs Lower Face: Balanced, with slightly shorter lower third (ratio approx 1:1:0.8)
+- Forehead:Nose:Chin Ratio: Balanced to slightly long-nose, short-chin
+- Vertical Elongation: Balanced — neither elongated nor compressed
+
+**Brow Ridge:**
+- Depth: Recessed/Shallow — very subtle brow ridge, no heavy supraorbital shelf
+- Shape: Flat-to-gently curved
+
+**Periocular Region:**
+- Orbital Aperture Shape: Almond/Oval
+- Eye Socket Depth: Medium — not deeply recessed, not prominent
+- Inter-Orbital Distance: Medium — standard intercanthal distance
+
+---
+
+## III. UPPER FACE
+
+**Eyebrows:**
+- Thickness: Thin to medium — not bushy, well-shaped
+- Width: Narrow band
+- Length: Medium — reaches outer corner of eye
+- Color: Dark brown to black, consistent with hair base color
+- Shape: High arch — clear upward peak, then tapering tail
+- Eyebrow-Eye Distance: Medium — standard placement above eye
+- Tilt: Upturned — tail of brow sits higher than inner start
+- Distance Between Eyebrows: Medium gap — not closely set, not widely spaced
+
+**Eyes:**
+- Shape: Almond with slight monolid/hooded influence — upper lid fold is minimal
+- Color: Dark brown iris, very dark
+- Size: Medium
+- Iris Size: Medium-large relative to visible eye opening
+- Sclera Visibility: Minimal below iris; no inferior scleral show; slight upper scleral coverage by lid
+- Eye Cover Fold Thickness: Thin — slight epicanthic fold characteristic of East Asian lid type
+- Eyelash Length: Medium-long, dark
+- Eyelash Density: Dense especially at outer corners
+- Gaze Direction: Direct (at camera), mid focal distance
+
+**Periocular Soft Tissue:**
+- Under-Eye Volume: Medium — slight fullness (aegyo-sal subtly present in xFAkaifS)
+- Tear Trough Depth: Shallow — no prominent hollowing
+- Lower-Lid Fullness: Slightly full (subtle aegyo-sal puffiness)
+- Soft-Tissue Asymmetry: Minimal — both sides nearly symmetric
+
+---
+
+## IV. LOWER FACE
+
+**Nose:**
+- Root of Nose Depth: Shallow — smooth transition from forehead to nose bridge without dramatic dip
+- Root of Nose Width: Medium
+- Bridge Shape: Straight
+- Bridge Protrusion: Medium — not a high bridge, not flat
+- Nasal Tip Shape: Rounded/slightly bulbous — soft tip, not pointed
+- Nasal Tip Projection: Medium — tip projects moderately from face
+- Nostril Width: Medium — aligns with intercanthal distance
+- Alar Base Width: Medium — matches intercanthal distance
+- Columella Shape: Straight
+- Nasal Tip Rotation: Neutral to slightly upturned
+
+**Nasolabial:**
+- Nasolabial Fold Depth: Shallow at rest; becomes moderately visible when smiling (xFAkaifS)
+- Smile Line Curvature: Medium curvature when smiling
+- Nasolabial Angle: Normal (95°–115°)
+- Midface Projection: Medium
+
+**Philtrum:**
+- Length: Medium
+- Shape: Moderately defined columns; medium depth groove
+
+**Lips:**
+- Upper Lip Thickness: Medium — distinct cupid's bow with M-shape definition
+- Lower Lip Thickness: Slightly fuller than upper — medium-full
+- Lip Width: Medium
+- Lip Color: Soft pink/rose, natural pigmentation
+- Upper Lip Shape: Pronounced/Heart-shaped cupid's bow with clear peaks and center dip
+- Lower Lip Shape: Rounded, smooth curve
+- Commissure Angle: Neutral to slightly upturned at rest
+- Commissure Length: Medium
+- Mouth Curvature: Slightly upward — natural resting "positive" expression
+
+**Facial Hair:** Absent
+
+**Chin-Lip:**
+- Mentolabial Fold Depth: Shallow
+- Labio-Mental Angle: Obtuse — gentle transition
+- Lower Lip to Chin Tip Distance: Short-medium
+
+---
+
+## V. MISCELLANEOUS
+
+### a. Beauty Marks / Freckles
+**Count:** Zero visible beauty marks across all three reference images.
+**Freckles:** Absent.
+**Note:** Subject has NO beauty marks, moles, or freckles — DO NOT hallucinate any marks.
+
+### b. Skin Texture
+Surface Quality: Very smooth. Pore Visibility: Minimal — pores not prominently visible.
+Fine Lines: None visible at apparent age. Acne/Scarring: Clear. Finish: Matte-to-natural satin.
+Notable: Extremely clean, well-maintained skin with no visible imperfections. No roughness.
+
+### c. Ears
+Size: Medium. Angle: Close to head — not protruding.
+Lobe Type: Appears attached (mostly obscured by hair). Lobe Size: Medium.
+Notable: Ears mostly hidden by hair in all references; preserve medium-close positioning.
+
+### d. Hair Color
+Base Color: Dark brown to black at roots.
+Undertone: Neutral-cool at roots, warm golden/honey at ends.
+Highlights: Ombre — dark brown/black at roots, transitioning mid-shaft to golden honey blonde at ends.
+Roots vs Ends: Strong contrast — dark root, bright golden/honey blonde ends.
+Shine/Texture: Natural sheen, wavy/curled texture especially at ends.
+Notable: The distinctive ombre — dark-to-golden-blonde — is a KEY identity marker. Must be preserved exactly.

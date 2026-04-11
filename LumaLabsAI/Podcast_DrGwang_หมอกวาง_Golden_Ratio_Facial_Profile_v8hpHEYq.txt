@@ -1,0 +1,218 @@
+# หมอกวาง — Golden Ratio Facial Profile
+## Mathematical Measurement Documentation v1.0
+### Measured: 2026-04-09 | Method: AI-assisted landmark analysis
+
+---
+
+## OVERVIEW
+**Subject:** หมอกวาง (Mok Kwang)  
+**Heritage:** Thai  
+**Face Shape:** Oval with heart-shaped tendencies  
+**Skin Tone:** Warm tan  
+**Eye Color:** Dark brown  
+**Hair:** Dark brown base with golden/honey balayage highlights  
+**Distinctive Features:** High cheekbones, warm complexion, gold hoop earrings, gold circular pendant
+
+---
+
+## SECTION I — FRONTAL RATIOS
+*Sources: 7sCaSB05 (PRIMARY), 8kCdlK4e (SECONDARY) — averaged where discrepancy <10%*
+
+| Measurement | 7sCaSB05 | 8kCdlK4e | AVERAGE | Golden Ratio Ideal | Deviation |
+|---|---|---|---|---|---|
+| **A. Face Thirds (U:M:L)** | 0.92:1.00:1.07 | 0.88:1.00:1.03 | **0.90:1.00:1.05** | 1:1:1 | Upper short, lower slightly long |
+| **B. Face Width:Length** | 0.72 | 0.67 | **0.70** | 0.618 (φ) | Slightly wider than golden |
+| **C. IPD : Nose Alar Width** | 1.96 | 1.84 | **1.90** | 1.618 | Wider eye spacing relative to nose |
+| **D. Nose Width : Mouth Width** | 0.61 | 0.65 | **0.63** | 0.618 (φ) | Nearly PERFECT golden ratio |
+| **E. IPD : Mouth Width** | 1.20 | 1.19 | **1.20** | 1.0 (equal) | Eyes slightly wider than mouth |
+| **F. Upper Lip : Lower Lip** | 0.60 | 0.58 | **0.59** | 0.618 | Near-perfect — lower lip ~69% thicker |
+| **G. Eye Width : Face Width** | 0.20 | 0.22 | **0.21** | 0.20 (1/5 rule) | Perfect classical proportion |
+| **H. Jaw Width : Cheekbone Width** | 0.76 | 0.77 | **0.77** | 0.75 | Slightly wider jaw = strong definition |
+| **I. Inter-canthal : Nose Width** | 0.96 | 0.97 | **0.97** | 1.00 | Near-perfect — nose = inner eye spacing |
+| **J. Nose Length : Nose Width** | 2.15 | 2.16 | **2.16** | 1.618 | Nose longer than wide = elegant profile |
+
+### Key Frontal Findings:
+- **Most critical:** Face thirds show shorter upper third (forehead relatively compact) and slightly longer lower third
+- **Nose:Mouth ratio = 0.63 ≈ φ (0.618)** — This is essentially perfect golden ratio
+- **Upper:Lower lip = 0.59** — Lower lip is significantly fuller (~69% thicker than upper)
+- **Eye spacing is wide** relative to nose width (IPD:Nose = 1.90, above golden 1.618)
+- **Jaw:Cheek = 0.77** — Strong, defined jawline (wider than average 0.75)
+
+---
+
+## SECTION II — PROFILE RATIOS
+*Source: wsZvR7h5 (GROUND TRUTH — true 90° profile)*
+
+### A. Profile Projection Map
+*Reference: Chin (pogonion) = 1.0*
+
+| Feature | Projection vs Chin | Notes |
+|---|---|---|
+| Forehead (glabella) | **~1.1** | Slightly forward of chin vertical — balanced |
+| Nose tip (pronasale) | **~2.8** | Most forward projection point |
+| Subnasale (nose base) | **~1.4** | Below nose tip |
+| Upper lip (labrale sup.) | **~1.6** | Forward of chin |
+| Lower lip (labrale inf.) | **~1.5** | Slightly behind upper lip |
+| Chin (pogonion) | **1.0** | Reference baseline |
+
+### B. Angular Measurements
+
+| Angle | Measured Value | Classical Female Range | Classification |
+|---|---|---|---|
+| **Nasofrontal angle** | **~138°** | 120-135° | Slightly open/flat forehead-nose transition |
+| **Nasolabial angle** | **~95°** | 95-110° | Lower end of normal — nose slightly downward-ish or neutral |
+| **Mentolabial angle** | **~125°** | 120-135° | Well-defined chin-lip fold |
+
+### C. Profile Proportions
+
+| Measurement | Value | Notes |
+|---|---|---|
+| **Nose length : Lower face** | **1:1.1** | Slightly shorter nose than chin height — balanced |
+| **Nose tip rotation** | **Neutral to slightly upturned** | Minimal columella show from side |
+| **Forehead inclination** | **~5-8° from vertical** | Slight posterior slant — not prominent |
+| **Profile thirds (U:M:L)** | **1.0:1.1:1.0** | Slightly longer mid-face (brow to nose) |
+| **Chin prominence** | **Slightly recessed** | Chin slightly behind upper lip vertical |
+| **Profile classification** | **Class II tendency** | Mild — convex profile |
+
+### D. Ricketts E-Line (Nose tip → Chin)
+| Lip | Position vs E-line | Ideal Female |
+|---|---|---|
+| Upper lip | **~3mm behind** | 2-3mm behind ✅ |
+| Lower lip | **~2mm behind** | On line to 1mm behind ✅ |
+
+---
+
+## SECTION III — 3/4 VIEW RATIOS
+*Source: TJb22sTn*
+
+| Measurement | Value | Notes |
+|---|---|---|
+| **Foreshortened face width** | **80-85% of frontal** | Right side turned away |
+| **Nose projection beyond far cheek** | **5-8% of face width** | Moderate projection |
+| **Far eye width vs near eye** | **~70%** | Standard foreshortening |
+| **Nose dorsum** | Straight with gentle distal curve | Consistent with profile |
+| **Cheekbone prominence** | High on near side | Confirms high cheekbones |
+
+---
+
+## SECTION IV — SMILE DYNAMICS
+*Source: k4fB1Lwj*
+
+| Measurement | Value | Notes |
+|---|---|---|
+| **Smile width : Rest width** | **~1.4x** | Wide, expressive smile |
+| **Upper lip thinning** | **~50% thinner** | Upper lip nearly disappears when smiling |
+| **Lower lip change** | Maintains thickness, stretches horizontally | Full lower lip persists |
+| **Teeth exposure height** | **~65% of mouth opening** | Shows upper and lower teeth |
+| **Teeth display width** | **~80% of smile width** | Wide teeth display |
+| **Eye narrowing (lower lid rise)** | **~1/3 of eye height** | Significant squinting |
+| **Crow's feet** | Faint at outer canthi | Soft, natural |
+| **Nasolabial fold depth** | **Medium-to-deep** | Distinct fold when smiling |
+| **Smile symmetry** | Left commissure (viewer's right) lifts slightly higher | Very close to symmetric |
+
+---
+
+## SECTION V — DEVIATION FROM GOLDEN RATIO SUMMARY
+
+| Ratio | หมอกวาง Value | φ = 1.618 Ideal | Verdict |
+|---|---|---|---|
+| Nose:Mouth | 0.63 | 0.618 | ✅ +1.9% — Nearly perfect |
+| Face Width:Length | 0.70 | 0.618 | ⚠️ +13.3% — Slightly wider |
+| Upper:Lower Lip | 0.59 | 0.618 | ✅ -4.5% — Very close |
+| Eye:Face Width | 0.21 | 0.20 | ✅ +5% — Perfect 1/5 rule |
+| ICD:Nose Width | 0.97 | 1.00 | ✅ -3% — Near equal |
+| IPD:Nose | 1.90 | 1.618 | ⚠️ +17.5% — Eyes appear wider spaced |
+| Jaw:Cheek | 0.77 | 0.75 | ✅ +2.7% — Defined jaw |
+
+**Overall Assessment:** หมอกวาง's face is close to golden ratio in several key measurements (nose:mouth, lips, eye width, inter-canthal:nose). The main deviations are slightly wider face relative to length (rounder than classical ideal), and wider interpupillary spacing relative to nose. These are characteristic features, not flaws — they must be PRESERVED in generation.
+
+---
+
+## SECTION VI — PROFILE GENERATION CONSTRAINTS
+*For use as hard constraints in AI generation prompts*
+
+```
+PROFILE HARD CONSTRAINTS:
+1. Forehead projects ~10% forward of chin vertical line (glabella/chin ratio = 1.1)
+2. Nose is the most forward feature — projects ~2.8x chin distance
+3. Upper lip at 1.6x, lower lip at 1.5x chin projection
+4. Nasofrontal angle: ~138° (forehead-to-nose transition is smooth, open)
+5. Nasolabial angle: ~95° (nose base to upper lip angle, slightly acute)
+6. Mentolabial angle: ~125° (well-defined chin-lip fold)
+7. Nose length ≈ lower face height (ratio 1:1.1)
+8. Nose tip: NEUTRAL rotation — not upturned, not downturned
+9. Forehead: near-vertical with slight 5-8° posterior tilt
+10. Chin: slightly recessed — behind upper lip vertical, convex profile
+11. Upper and lower lips both behind Ricketts E-line (upper 3mm, lower 2mm)
+12. Profile thirds: near equal with middle (brow-to-nose) slightly longer (1.0:1.1:1.0)
+13. Profile classification: mild Class II convexity
+```
+
+---
+
+## SECTION VII — COMPLETE ANATOMICAL PROFILE (for generation prompts)
+
+**Frontal constraints:**
+- Face thirds: Short upper (0.90x), standard middle (1.0x), slightly long lower (1.05x)
+- Face slightly wider than classical golden at 0.70 Width:Length
+- IPD relatively wide (1.90x nose width — eyes appear well-spaced)
+- Nose width = inner eye corner spacing (ICD:Nose = 0.97 ≈ 1.0)
+- Nose:Mouth = 0.63 (golden ratio)
+- Lower lip significantly fuller than upper (Upper:Lower = 0.59)
+- Strong jaw relative to cheekbones (0.77)
+
+**Profile constraints:**
+- Forehead near-vertical, slightly recessed vs chin
+- Nose is prominent forward projection
+- Nasolabial angle ~95° (neutral-to-acute)
+- Lips both behind E-line
+- Slight chin recession
+- Smooth convex profile
+
+---
+
+---
+
+## SECTION VIII — GENERATION QA RESULTS
+
+### Attempt 1 (HodZjLic)
+| Ratio | Target | Measured | % Diff | Result |
+|---|---|---|---|---|
+| A. Forehead vs chin | 1.1x | 1.15x | 4.5% | ✅ PASS |
+| B. Nose projection | 2.8x | 2.85x | 1.8% | ✅ PASS |
+| C. Nasofrontal angle | 138° | 139° | 0.7% | ✅ PASS |
+| **D. Nasolabial angle** | **95°** | **102°** | **7.3%** | **❌ FAIL** |
+| E. Mentolabial angle | 125° | 128° | 2.4% | ✅ PASS |
+| F. Upper lip projection | 1.6x | 1.62x | 1.3% | ✅ PASS |
+| G. Lower lip projection | 1.5x | 1.48x | 1.3% | ✅ PASS |
+| H. Nose:Lower face | 1:1.1 | 1:1.15 | 4.5% | ✅ PASS |
+| I. Profile thirds | 1.0:1.1:1.0 | 1.0:1.1:1.05 | 5.0% | ✅ PASS |
+| J. Chin recession | convex | convex | — | ✅ PASS |
+| **Biometric identity** | **≥85%** | **99.2–99.9%** | — | **✅ PASS** |
+
+**Verdict: FAIL — 1 ratio off by >5%**
+
+### Attempt 2 (e5hLk6hV) — FINAL
+| Ratio | Target | Measured | % Diff | Result |
+|---|---|---|---|---|
+| A. Forehead vs chin | 1.1x | 1.08x | 1.8% | ✅ PASS |
+| B. Nose projection | 2.8x | 2.75x | 1.8% | ✅ PASS |
+| C. Nasofrontal angle | 138° | 136° | 1.4% | ✅ PASS |
+| **D. Nasolabial angle** | **95°** | **97°** | **2.1%** | **✅ PASS** |
+| E. Mentolabial angle | 125° | 123° | 1.6% | ✅ PASS |
+| F. Upper lip projection | 1.6x | 1.62x | 1.3% | ✅ PASS |
+| G. Lower lip projection | 1.5x | 1.48x | 1.3% | ✅ PASS |
+| H. Nose:Lower face | 1:1.1 | 1:1.08 | 1.8% | ✅ PASS |
+| I. Profile thirds | 1.0:1.1:1.0 | 1.0:1.1x:1.0 | <1% | ✅ PASS |
+| J. Chin recession | convex | convex | — | ✅ PASS |
+| **Biometric identity** | **≥85%** | **98.1–99.8%** | — | **✅ PASS** |
+
+**Verdict: ✅ ALL 10 RATIOS PASS — APPROVED**  
+Asset ID: e5hLk6hV
+
+---
+
+*Document created: 2026-04-09*  
+*Measurement method: AI visual landmark analysis via judge_tool*  
+*Cross-reference: 5 images used — 2 frontal (7sCaSB05, 8kCdlK4e), 1 profile (wsZvR7h5), 1 x 3/4 (TJb22sTn), 1 smile (k4fB1Lwj)*  
+*Generation attempts: 2 | Final approved: e5hLk6hV*

@@ -1,0 +1,110 @@
+# FORENSIC FACIAL ANALYSIS — หมอกวาง (h8L7fFo0)
+## High-Res Event Photo Blueprint
+
+---
+
+## A. GOLDEN RATIO MEASUREMENTS
+| Measurement | Ratio | Notes |
+|---|---|---|
+| Face Width:Length | 1:1.35 | Slightly elongated oval |
+| Nose Width:Mouth Width | 1:2 | Mouth is 2x nose width |
+| Upper Lip:Lower Lip | 1:1.5 | Lower lip notably fuller |
+| Eye Width:Face Width | 1:5 (20%) | Each eye = exactly 1/5 face width |
+| Jaw Width:Cheekbone Width | 0.8:1 | Soft jaw narrower than cheeks |
+| Inter-pupillary:Nose Width | 1.2:1 | Pupils wider than nose |
+| Nose Length:Width | 1.4:1 | Taller than wide |
+
+---
+
+## B. RULE OF THIRDS (Horizontal)
+- Hairline → Brow: **30%**
+- Brow → Nose base: **32%**
+- Nose base → Chin: **38%** ← slightly elongated lower third
+- Lower third is marginally longer — distinctive characteristic
+
+---
+
+## C. RULE OF FIFTHS (Vertical)
+- Each eye width = exactly 1/5 of total face width ✓
+- Inter-eye gap = 1 eye-width ✓
+- Nose width at nostrils ≈ 1.1x inter-eye gap (slightly wider) ← distinctive
+
+---
+
+## D. DETAILED FEATURE CATALOG
+
+### EYES
+- Shape: **Almond-shaped**
+- Eyelid: **Double lid crease visible**
+- Iris: **Dark brown**
+- Lashes: **Medium density**
+- Spacing: **Normal (1 eye-width apart)**
+
+### EYEBROWS
+- Shape: **Arched**
+- Thickness: **Medium**
+- Arch position: **Over outer 1/3 of eye**
+- Color: **Dark brown**
+
+### NOSE
+- Bridge: **Medium width**
+- Height: **Medium (not flat, not prominent)**
+- Tip: **Rounded/soft tip**
+- Nostrils: **Slight flare — slightly wider than inter-eye gap (1.1x)**
+- Overall: Medium size, soft projection
+
+### LIPS
+- Upper lip: **Medium thickness**
+- Lower lip: **Full** (1.5x upper)
+- Cupid's bow: **Gentle/soft M-shape — NOT sharply peaked**
+- Width: **Wide (proportional to face)**
+- Commissures: **Neutral**
+- Color: **Coral/red tone** (event makeup)
+
+### CHIN
+- Shape: **Rounded**
+- Projection: **Neutral**
+- No dimple
+
+### CHEEKBONES
+- Height: **Medium**
+- Prominence: **Medium**
+
+### JAWLINE
+- Angle: **Soft/rounded**
+- Overall: Smooth contour, no sharp definition
+
+### FOREHEAD
+- Height: **Medium**
+- Shape: **Rounded hairline**
+
+### SKIN
+- Tone: **Fair/warm**
+- Texture: **Very smooth, even**
+
+### HAIR
+- Color: Dark brown roots → caramel/golden blonde wave
+- Pattern: **Wavy/flowing**
+- Parting: **Middle**
+- Styling: Loose waves, voluminous
+
+### MAKEUP (Event)
+- Eyes: Professional eye makeup
+- Lips: **Coral/red lipstick** — distinctive
+- Overall: Polished, professional
+
+---
+
+## E. UNIQUE IDENTIFYING FEATURES
+1. **Smile asymmetry**: Right corner (viewer's left) sits slightly lower
+2. **Hair gradient**: Deep brunette to golden blonde caramel balayage
+3. **Smooth jaw-to-cheek transition**: No harsh angles
+4. **Nostril width slightly wider** than inter-eye gap
+5. **Elongated lower third** of face (38% vs expected 33%)
+
+---
+
+## FACE BLUEPRINT FOR AI GENERATION
+
+**Master prompt excerpt:**
+"Thai woman, almond-shaped eyes with visible double lid crease, dark brown iris, medium lash density, arched dark-brown eyebrows with arch over outer 1/3 of eye. Medium-width nose bridge with soft rounded tip, nostrils very slightly wider than inter-eye gap. Soft gentle cupid's bow upper lip (NOT sharply peaked), full lower lip 1.5x thickness of upper, coral/warm lip tone. Rounded soft chin, medium cheekbones, soft rounded jawline. Medium forehead with rounded hairline. Fair warm skin, very smooth texture. Dark brown hair with honey/caramel balayage highlights, wavy, middle part. Oval face shape 1:1.35 width-to-length ratio with slightly longer lower third."

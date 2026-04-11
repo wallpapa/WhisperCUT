@@ -1,0 +1,53 @@
+# หมอกวาง — Model Comparison Results
+## Uni-1 vs Nano Banana Pro vs Seedream
+
+**Test:** Full body front view, beige outfit, white background, warm smile  
+**References used:** 7sCaSB05 (PRIMARY), k4fB1Lwj (expression), TJb22sTn (volumetric), -jgmql5O (identity verification)
+
+---
+
+## Biometric Scores (vs Ground Truth 7sCaSB05)
+
+| Criterion | Nano Banana Pro | Uni-1 | Seedream |
+|-----------|:--------------:|:-----:|:--------:|
+| **Biometric Match** | 98.94% ✅ | 99.79% ✅ | **99.84%** ✅ |
+| **Nose accuracy** | 9/10 | 10/10 | 10/10 |
+| **Mouth/Lips** | 9/10 | 10/10 | 10/10 |
+| **Smile** | 9/10 | 9/10 | 10/10 |
+| **Body proportions** | 9/10 | 9/10 | 7/10 ⚠️ |
+| **Outfit accuracy** | 9/10 | 9/10 | 9/10 |
+| **Overall quality** | 9/10 | **10/10** | 8/10 |
+| **WINNER** | 🥉 Runner-up | 🥇 **BEST OVERALL** | 🥈 Best face |
+
+---
+
+## Per-Model Analysis
+
+### 🥇 Uni-1 (QfS6mdo7) — **RECOMMENDED**
+- **99.79% biometric match** — virtually identical face identity
+- Best balance of facial accuracy AND body proportions
+- Petite frame rendered realistically with correct scaling
+- Slight softness/sharpness tradeoff vs Seedream
+- **Best choice for this character overall**
+
+### 🥈 Seedream (9KVeZe62)
+- **99.84% biometric match** — highest raw face score
+- Perfect facial likeness, most accurate nose/mouth/smile
+- ⚠️ **Head-to-body ratio slightly off** — "bobble-head" effect, head appears too large for petite frame
+- Best for face-forward crops; less ideal for full body
+
+### 🥉 Nano Banana Pro (DLQoAtQX)
+- **98.94% biometric match** — strong, slightly lower than others
+- Excellent overall quality and realism
+- Minor detail artifacts in hand/watch area
+- Solid performer, good photorealism
+
+---
+
+## Key Findings
+
+- **All 3 models exceeded 98% biometric threshold** — all successfully captured หมอกวาง's identity
+- **Face-only comparison:** Seedream > Uni-1 > Nano Banana Pro
+- **Full body realism:** Uni-1 > Nano Banana Pro > Seedream
+- **For future full-body shots:** Use **Uni-1** for best combined result
+- **For face-focused crops/headshots:** Use **Seedream** or **Uni-1**
