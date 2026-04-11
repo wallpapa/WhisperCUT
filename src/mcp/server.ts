@@ -108,6 +108,9 @@ import {
   handleGenerateAvatarPortraits, generateAvatarPortraitsTool,
 } from "./tools/avatar-studio.js";
 
+// ── Unified Lipsync (multi-provider fallback) ───────────────────
+import { handleLipsync, lipsyncTool } from "./tools/lipsync.js";
+
 // ── LivePortrait (Mac M-series Local Lipsync) ───────────────────
 import {
   handleLivePortrait, livePortraitTool,
@@ -224,6 +227,8 @@ const tools = [
   // Video Studio (Gemini Video Analysis + Veo 3.1 B-Roll)
   analyzeVideoTool,
   generateBRollTool,
+  // Unified Lipsync (multi-provider fallback)
+  lipsyncTool,
   // LivePortrait (Mac M-series Local Lipsync)
   livePortraitTool,
   livePortraitStatusTool,
@@ -302,6 +307,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case "whispercut_kling_image_to_video": return await handleKlingImageToVideo(args as any);
       // Avatar Studio
       case "whispercut_generate_avatar_portraits": return await handleGenerateAvatarPortraits(args as any);
+      // Unified Lipsync
+      case "whispercut_lipsync":             return await handleLipsync(args as any);
       // LivePortrait
       case "whispercut_liveportrait":        return await handleLivePortrait(args as any);
       case "whispercut_liveportrait_status": return await handleLivePortraitStatus();
