@@ -1,0 +1,206 @@
+{
+  "subject": "Dr.Gwang (หมอกวาง)",
+  "real_name": "Dr. Waleerat",
+  "version": "1.0",
+  "source": "LumaLabs forensic analysis (14 assets + 40+ references)",
+  "confidence": "99.97%",
+  "updated": "2026-04-12",
+
+  "demographics": {
+    "apparent_age": "30-35",
+    "gender": "female",
+    "ethnicity": "Thai (East Asian)",
+    "height_cm": 155,
+    "build": "petite, slender"
+  },
+
+  "skin": {
+    "tone_hex_range": ["#D4A890", "#C8977F"],
+    "undertone": "warm_yellow_pink",
+    "finish": "natural_matte_with_t_zone_sheen",
+    "pore_distribution": "T_zone_concentrated",
+    "fine_lines": {
+      "nasolabial": "moderate_at_rest_deep_when_smiling",
+      "crows_feet": "activate_during_duchenne_smile",
+      "forehead": "none_at_rest",
+      "perioral": "none"
+    },
+    "beauty_marks": [
+      {
+        "location": "right_cheek_4_oclock_from_right_nostril",
+        "size_mm": 2,
+        "color": "dark_brown_nearly_black",
+        "type": "flat"
+      }
+    ]
+  },
+
+  "face_shape": {
+    "classification": "inverted_triangle_oval_hybrid",
+    "width_length_ratio": 0.70,
+    "impression": "slightly_heart_shaped_hair_down"
+  },
+
+  "golden_ratios": {
+    "face_width_length": 0.70,
+    "nose_mouth_width": 0.50,
+    "upper_lower_lip": 0.67,
+    "eye_face_width": 0.20,
+    "jaw_cheekbone_width": 0.80,
+    "interpupillary_nose": 1.20,
+    "nose_length_width": 1.40
+  },
+
+  "rule_of_thirds": {
+    "hairline_to_brow": 0.30,
+    "brow_to_nose": 0.32,
+    "nose_to_chin": 0.38,
+    "note": "slightly_elongated_lower_third"
+  },
+
+  "rule_of_fifths": {
+    "each_eye_width": "1/5 of face width",
+    "inter_eye_gap": "1 eye width",
+    "nose_width_vs_inter_eye": 1.1,
+    "note": "nostrils_slightly_wider_than_inter_eye"
+  },
+
+  "eyes": {
+    "shape": "almond",
+    "eyelid": "double_lid_crease_visible",
+    "iris_color": "dark_brown",
+    "lashes": "medium_density",
+    "spacing": "normal_1_eye_width_apart"
+  },
+
+  "eyebrows": {
+    "shape": "arched",
+    "thickness": "medium",
+    "arch_position": "over_outer_1_3_of_eye",
+    "color": "dark_brown"
+  },
+
+  "nose": {
+    "bridge": "medium_width",
+    "height": "medium",
+    "tip": "rounded_soft",
+    "nostrils": "slight_flare_1.1x_inter_eye",
+    "profile_angle_degrees": 95,
+    "classification": "mild_class_II_convexity"
+  },
+
+  "lips": {
+    "upper": "medium_thickness",
+    "lower": "full_1.5x_upper",
+    "cupids_bow": "gentle_soft_M_NOT_sharply_peaked",
+    "width": "wide_proportional",
+    "commissures": "neutral",
+    "color": "coral_red_tone"
+  },
+
+  "jaw": {
+    "shape": "V_line_to_soft_heart",
+    "width": "medium_narrow",
+    "angle": "low_obtuse_soft",
+    "sharpness": "medium_clean_definition_not_razor_sharp",
+    "submental": "firm_flat_no_double_chin"
+  },
+
+  "chin": {
+    "length": "medium",
+    "width": "medium_narrow",
+    "prominence": "neutral",
+    "shape": "rounded_no_dimple"
+  },
+
+  "cheekbones": {
+    "height": "high_at_mid_orbital_level",
+    "protrusion": "medium_prominent",
+    "width": "wide_significantly_wider_than_jaw"
+  },
+
+  "forehead": {
+    "size": "medium_large",
+    "width": "wide_matching_cheekbone",
+    "hairline": "rounded_subtle_center_widows_peak"
+  },
+
+  "asymmetries": {
+    "critical_1": {
+      "feature": "eyebrow",
+      "description": "RIGHT eyebrow sits 2-3mm HIGHER than left at arch peak",
+      "direction": "right_higher",
+      "magnitude_mm": 2.5,
+      "visibility": "most_visible"
+    },
+    "asymmetry_2": {
+      "feature": "eye_opening",
+      "description": "RIGHT eye marginally larger opening than left",
+      "direction": "right_larger"
+    },
+    "asymmetry_3": {
+      "feature": "scleral_show",
+      "description": "LEFT eye shows slightly more inferior scleral show",
+      "direction": "left_more"
+    },
+    "asymmetry_4": {
+      "feature": "smile_commissure",
+      "description": "LEFT commissure pulls slightly higher/more laterally during smiling",
+      "direction": "left_higher_when_smiling"
+    },
+    "asymmetry_5": {
+      "feature": "nose",
+      "description": "Slight rightward deviation",
+      "direction": "rightward",
+      "magnitude": "minimal"
+    }
+  },
+
+  "proportions": {
+    "head_body_ratio": 7.3,
+    "neck": "short_compact",
+    "profile": {
+      "classification": "convex",
+      "forehead_projection": "1.3-1.4x chin baseline",
+      "nasolabial_angle_degrees": 95,
+      "ricketts_e_line": {
+        "upper_lip": "-3mm behind",
+        "lower_lip": "-2mm behind"
+      }
+    }
+  },
+
+  "hair": {
+    "color": "dark_brown_with_honey_caramel_balayage",
+    "texture": "wavy",
+    "part": "middle",
+    "length": "past_shoulders"
+  },
+
+  "accessories_default": {
+    "watch": "gold_left_wrist",
+    "necklace": "small_gold_circular_pendant",
+    "earrings": "gold_C_shaped_hoops"
+  },
+
+  "outfits": {
+    "reference_set": "beige_sleeveless_top_wide_leg_pants_heeled_sandals",
+    "medical": "white_clinic_suit_or_doctor_coat",
+    "scrubs": "navy_scrubs"
+  },
+
+  "model_recommendations": {
+    "full_body": { "model": "Uni-1", "score": "99.79%" },
+    "face_only": { "model": "Seedream", "score": "99.84%" },
+    "cover_design": { "model": "Nano Banana Pro", "score": "98.94%" },
+    "multi_reference": { "model": "GPT Image", "score": "good" }
+  },
+
+  "verification_thresholds": {
+    "biometric_match_min": 95,
+    "ratio_tolerance_pct": 5,
+    "feature_score_min": 6,
+    "asymmetry_must_preserve": true,
+    "skin_tone_delta_e_max": 15
+  }
+}
