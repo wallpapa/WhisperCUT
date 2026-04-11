@@ -15,6 +15,8 @@ import { scoreVibe, verifyVibe, formatVibeScore, type VibeScore } from "../scien
 import { getMemoryLayer } from "../memory/memory-layer.js";
 import { recordCoverSelection } from "../memory/rl-collector.js";
 import { detectTopicCategory } from "./scene-dna.js";
+import { generateVoice } from "./voice.js";
+import { lintThaiScriptForLipsync, type ThaiScriptLintReport } from "./thai-mouth-rules.js";
 
 // ── Types ─────────────────────────────────────────────────────
 
@@ -31,6 +33,14 @@ export interface DarwinInput {
   skipIdeation?: boolean;
   /** Photo path for cover face cloning */
   photoPath?: string;
+  /** Source video for lipsync (real talking head) */
+  sourceVideo?: string;
+  /** Pre-written script text */
+  scriptText?: string;
+  /** Lipsync provider */
+  lipsyncProvider?: "wav2lip_local" | "sync_lipsync_2" | "sync_lipsync_2_pro" | "sync_3";
+  /** Voice mode */
+  voiceMode?: "auto" | "clone" | "free_female_th";
 }
 
 export interface DarwinResult {
@@ -52,6 +62,10 @@ export interface DarwinResult {
   cover_paths?: string[];
   voice_path?: string;
   broll_paths?: string[];
+
+  // Phase 4 output (lipsync)
+  lipsync_ready?: boolean;
+  script_lint?: ThaiScriptLintReport;
 
   // Phase 5 output
   status: "awaiting_cover_selection" | "awaiting_publish_approval" | "published" | "error";
@@ -118,7 +132,16 @@ function diagnose(
     return { newStrategy: "worried", action: "Switch expression to worried" };
   }
   if (phase === "voice" && issue.includes("failed")) {
-    return { newStrategy: "f5tts", action: "Fallback to F5-TTS local" };
+    return { newStrategy: "edge_tts", action: "Fallback to Edge TTS free Thai voice" };
+  }
+  if (phase === "voice" && issue.includes("balance")) {
+    return { newStrategy: "edge_tts", action: "MiniMax insufficient balance → Edge TTS PremwadeeNeural (free)" };
+  }
+  if (phase === "lipsync" && issue.includes("obstruction")) {
+    return { newStrategy: "sync_lipsync_2_pro", action: "Face obstruction detected → upgrade to Sync Pro provider" };
+  }
+  if (phase === "lipsync" && issue.includes("bilabial_density")) {
+    return { newStrategy: "rewrite_script", action: "Too many bilabial closures → rewrite script to reduce density" };
   }
 
   return { newStrategy: "default", action: "Retry with default strategy" };
@@ -255,14 +278,100 @@ export async function runDarwin(input: DarwinInput): Promise<DarwinResult> {
 
     console.error(`[darwin] Phase 3: ASSETS (cover + voice + broll)`);
 
+    // 3a. Voice generation (with auto-fallback: MiniMax → Edge TTS → F5)
+    let voicePath: string | undefined;
+    if (input.scriptText) {
+      try {
+        voicePath = await withRetry(async () => {
+          const slug = topic.slice(0, 20).replace(/\s+/g, "_");
+          return generateVoice({
+            text: input.scriptText!,
+            outputPath: `./output/darwin/${slug}_voice.mp3`,
+            mode: input.voiceMode || "auto",
+          });
+        }, immune, 2, "voice");
+        console.error(`[darwin] Voice: ✅ ${voicePath}`);
+      } catch (e: any) {
+        const diag = diagnose("voice", e.message, immune);
+        console.error(`[darwin] Voice: ❌ ${diag.action}`);
+      }
+    }
+
+    // 3b. Script lipsync lint (Thai + English code-switching)
+    let scriptLint: ThaiScriptLintReport | undefined;
+    if (input.scriptText) {
+      try {
+        scriptLint = lintThaiScriptForLipsync(input.scriptText);
+        console.error(`[darwin] Script lint: ${scriptLint.issues?.length || 0} issues, ` +
+          `${scriptLint.english_token_count || 0} EN words, ` +
+          `est. ${scriptLint.estimated_duration_sec?.toFixed(1)}s`);
+      } catch {}
+    }
+
     phaseResults.assets = {
       cover: "Delegated to whispercut_generate_cover (4 RL variants)",
-      voice: "Delegated to MiniMax TTS Dr.Gwang",
+      voice: voicePath ? { path: voicePath, status: "generated" } : "Awaiting script",
       broll: "Delegated to whispercut_generate_broll (topic-matched presets)",
+      script_lint: scriptLint ? {
+        english_words: scriptLint.english_token_count,
+        estimated_duration: scriptLint.estimated_duration_sec,
+        issues: scriptLint.issues?.length || 0,
+        counts: scriptLint.counts,
+      } : undefined,
+      lipsync: input.sourceVideo ? {
+        source_video: input.sourceVideo,
+        provider: input.lipsyncProvider || "wav2lip_local",
+        status: "ready_for_phase_4",
+        note: "Use whispercut_real_talking_head_relipsync after voice generated",
+      } : "No source video — render from assets",
       gate_1: "AWAITING: Human cover selection (3-Tap Flow)",
     };
 
     phases.push("assets");
+
+    // ═══════════════════════════════════════════════════════════
+    // PHASE 4: RENDER + LIPSYNC
+    // ═══════════════════════════════════════════════════════════
+
+    console.error(`[darwin] Phase 4: RENDER + LIPSYNC`);
+
+    phaseResults.render = {
+      lipsync_pipeline: input.sourceVideo ? {
+        source_video: input.sourceVideo,
+        voice_path: voicePath,
+        provider: input.lipsyncProvider || "wav2lip_local",
+        language_mode: "th_en",
+        steps: [
+          "1. Mute source video",
+          "2. Fit voice audio to video duration",
+          "3. Run lipsync provider (mouth sync)",
+          "4. Replace audio track",
+          "5. Add captions + text overlays",
+          "6. Export final MP4",
+        ],
+        tool: "whispercut_real_talking_head_relipsync",
+        status: voicePath ? "ready" : "awaiting_voice",
+      } : {
+        mode: "asset_compose",
+        steps: [
+          "1. Compose: cover + voice + broll → timeline",
+          "2. FFmpeg render 1080×1920 @60fps",
+          "3. Add captions + text overlays",
+          "4. Export CapCut draft",
+        ],
+        tool: "whispercut_e2e",
+      },
+      script_lint_summary: scriptLint ? {
+        thai_bilabial: scriptLint.counts?.bilabial_closure,
+        thai_labiodental: scriptLint.counts?.labiodental_contact,
+        thai_rounded: scriptLint.counts?.rounded_vowel,
+        english_words: scriptLint.english_token_count,
+        peak_density: scriptLint.peak_density,
+        issues: scriptLint.issues?.length || 0,
+      } : undefined,
+    };
+
+    phases.push("render");
 
     // ═══════════════════════════════════════════════════════════
     // Return at Gate 1 — awaiting human cover selection
@@ -276,6 +385,9 @@ export async function runDarwin(input: DarwinInput): Promise<DarwinResult> {
       topic,
       vibe,
       hypothesis,
+      voice_path: voicePath,
+      lipsync_ready: !!voicePath && !!input.sourceVideo,
+      script_lint: scriptLint,
       status: "awaiting_cover_selection",
       retries: immune.retries,
       diagnoses: immune.diagnoses,
