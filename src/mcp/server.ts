@@ -102,7 +102,18 @@ import {
 import {
   handleAnalyzeVideo, analyzeVideoTool,
   handleGenerateBRoll, generateBRollTool,
+  handleKlingImageToVideo, klingImageToVideoTool,
 } from "./tools/video-studio.js";
+import {
+  handleGenerateAvatarPortraits, generateAvatarPortraitsTool,
+} from "./tools/avatar-studio.js";
+
+// ── DARWIN Engine ───────────────────────────────────────────────
+import {
+  handleDarwin, darwinTool,
+  handleHypotheses, hypothesesTool,
+  handleVibeScore, vibeScoreTool,
+} from "./tools/darwin.js";
 
 // ── Memory Layer ────────────────────────────────────────────────
 import { getMemoryLayer } from "../memory/memory-layer.js";
@@ -132,6 +143,7 @@ import {
 
 // ── E2E Unified Pipeline ────────────────────────────────────────
 import { handleE2E, e2eTool } from "./tools/e2e.js";
+import { handleRealTalkingHeadRelipsync, realTalkingHeadRelipsyncTool } from "./tools/real-talking-head.js";
 
 // ── Multi-Agent Architecture ────────────────────────────────────
 import { registerAgent, getAgentStats } from "../agents/registry.js";
@@ -198,6 +210,7 @@ const tools = [
   ttsDrGwangTool,
   // E2E Unified Pipeline (PRIMARY — the "one tool" for full production)
   e2eTool,
+  realTalkingHeadRelipsyncTool,
   // AI Cover Design Agent (Nano Banana Pro + Scene DNA + Per-Channel RL)
   generateCoverTool,
   selectCoverAITool,
@@ -205,6 +218,13 @@ const tools = [
   // Video Studio (Gemini Video Analysis + Veo 3.1 B-Roll)
   analyzeVideoTool,
   generateBRollTool,
+  // DARWIN Engine (Autonomous Workflow + Hypothesis + VibeScore)
+  darwinTool,
+  hypothesesTool,
+  vibeScoreTool,
+  klingImageToVideoTool,
+  // Avatar Studio (Nano Banana Pro / Gemini 3 Pro Image)
+  generateAvatarPortraitsTool,
 ];
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools }));
@@ -262,6 +282,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case "whispercut_tts_dr_gwang":          return await handleTtsDrGwang(args as any);
       // E2E Unified Pipeline
       case "whispercut_e2e":                  return await handleE2E(args as any);
+      case "whispercut_real_talking_head_relipsync": return await handleRealTalkingHeadRelipsync(args as any);
       // AI Cover Design Agent
       case "whispercut_generate_cover":       return await handleGenerateCover(args as any);
       case "whispercut_select_cover_ai":      return await handleSelectCoverAI(args as any);
@@ -269,6 +290,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       // Video Studio
       case "whispercut_analyze_video":       return await handleAnalyzeVideo(args as any);
       case "whispercut_generate_broll":      return await handleGenerateBRoll(args as any);
+      case "whispercut_kling_image_to_video": return await handleKlingImageToVideo(args as any);
+      // Avatar Studio
+      case "whispercut_generate_avatar_portraits": return await handleGenerateAvatarPortraits(args as any);
+      // DARWIN Engine
+      case "whispercut_darwin":              return await handleDarwin(args as any);
+      case "whispercut_hypotheses":          return await handleHypotheses(args as any);
+      case "whispercut_vibe_score":          return await handleVibeScore(args as any);
 
       default:
         return {
