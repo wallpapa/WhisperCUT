@@ -215,11 +215,17 @@ Text has THICK black stroke outline for maximum readability.`;
 
 ${styleDirective}
 
-SUBJECT:
+SUBJECT (Dr.Gwang — forensic biometric identity lock, 99.97% confidence):
 - ${scene.expression} expression — ${scene.mood}
+- Face: inverted triangle/oval, W:L 0.70, skin #D4A890 warm beige
+- Eyes: almond, double lid, dark brown, each = 1/5 face width
+- ASYMMETRY: right eyebrow 2-3mm HIGHER than left (preserve this!)
+- Nose: medium bridge, rounded tip, slightly flared (1.1x inter-eye)
+- Lips: gentle cupid's bow, lower lip 1.5x upper, coral tone
+- Jaw: V-line soft (NOT square), tapers to rounded chin
 - Wearing: ${scene.outfit}
-- Props visible: ${scene.props.join(", ") || "none"}
-- Accessories: ${scene.accessories.join(", ") || "minimal"}
+- Accessories: ${scene.accessories.join(", ") || "gold watch, pendant necklace"}
+- Build: petite ~155cm, head:body 7.3:1
 - Shot on Sony A7IV, 85mm f/1.4, hyper-realistic, 8K detail
 
 SETTING:
