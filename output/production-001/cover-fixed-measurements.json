@@ -1,0 +1,101 @@
+{
+  "image_path": "./output/production-001/cover-fixed.png",
+  "timestamp": "2026-04-12T07:53:12.753Z",
+  "method": "gemini_vision",
+  "golden_ratios": {
+    "face_width_length": 0.7,
+    "nose_mouth_width": 0.5,
+    "upper_lower_lip": 0.75,
+    "eye_face_width": 0.16,
+    "jaw_cheekbone_width": 0.85,
+    "interpupillary_nose": 1.83,
+    "nose_length_width": 1.5,
+    "face_thirds": [
+      0.3,
+      0.31,
+      0.39
+    ]
+  },
+  "asymmetries": {
+    "eyebrow_height_diff_mm": 0,
+    "eye_opening_ratio": 1,
+    "smile_commissure_diff": 0,
+    "nose_deviation_degrees": 0,
+    "overall_symmetry_score": 90
+  },
+  "skin_tone": {
+    "hex": "#D5A994",
+    "rgb": [
+      213,
+      169,
+      148
+    ],
+    "lab": [
+      69.3483137254902,
+      8.62745098039216,
+      4.117647058823525
+    ],
+    "undertone": "warm",
+    "match_to_reference": 98
+  },
+  "ratios_passing": 3,
+  "ratios_failing": [
+    "upper_lower_lip",
+    "eye_face_width",
+    "jaw_cheekbone_width",
+    "interpupillary_nose"
+  ],
+  "overall_score": 50,
+  "verdict": "FAIL",
+  "deviations": [
+    {
+      "measurement": "face_width_length",
+      "actual": 0.7,
+      "target": 0.7,
+      "deviation_pct": 0,
+      "severity": "ok"
+    },
+    {
+      "measurement": "nose_mouth_width",
+      "actual": 0.5,
+      "target": 0.5,
+      "deviation_pct": 0,
+      "severity": "ok"
+    },
+    {
+      "measurement": "upper_lower_lip",
+      "actual": 0.75,
+      "target": 0.67,
+      "deviation_pct": 11.9,
+      "severity": "critical"
+    },
+    {
+      "measurement": "eye_face_width",
+      "actual": 0.16,
+      "target": 0.2,
+      "deviation_pct": 20,
+      "severity": "critical"
+    },
+    {
+      "measurement": "jaw_cheekbone_width",
+      "actual": 0.85,
+      "target": 0.8,
+      "deviation_pct": 6.2,
+      "severity": "minor"
+    },
+    {
+      "measurement": "interpupillary_nose",
+      "actual": 1.83,
+      "target": 1.2,
+      "deviation_pct": 52.5,
+      "severity": "critical"
+    },
+    {
+      "measurement": "nose_length_width",
+      "actual": 1.5,
+      "target": 1.4,
+      "deviation_pct": 7.1,
+      "severity": "ok"
+    }
+  ]
+}
